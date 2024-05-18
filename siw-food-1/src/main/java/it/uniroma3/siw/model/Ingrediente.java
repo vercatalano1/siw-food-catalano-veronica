@@ -17,7 +17,7 @@ public class Ingrediente {
 	private Integer quantità;
 	private String nome;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="ingredienti")
 	private List<Ricetta> ricette;
 
 	public Long getId() {

@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Ricetta {
@@ -18,9 +19,9 @@ public class Ricetta {
 	private String nome;
 	private String descrizione;
 	
+	@ManyToOne
+	private Cuoco cuoco;
 	@ManyToMany
-	private List<Cuoco> cuochi;
-	@ManyToMany(mappedBy="ricette")
 	private List<Ingrediente> ingredienti;
 	
 	public Long getId() {
@@ -41,11 +42,11 @@ public class Ricetta {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public List<Cuoco> getCuochi() {
-		return cuochi;
+	public Cuoco getCuochi() {
+		return cuoco;
 	}
-	public void setCuochi(List<Cuoco> cuochi) {
-		this.cuochi = cuochi;
+	public void setCuochi(Cuoco cuochi) {
+		this.cuoco = cuochi;
 	}
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
@@ -55,7 +56,7 @@ public class Ricetta {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(cuochi, descrizione, id, ingredienti, nome);
+		return Objects.hash(cuoco, descrizione, id, ingredienti, nome);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -66,7 +67,7 @@ public class Ricetta {
 		if (getClass() != obj.getClass())
 			return false;
 		Ricetta other = (Ricetta) obj;
-		return Objects.equals(cuochi, other.cuochi) && Objects.equals(descrizione, other.descrizione)
+		return Objects.equals(cuoco, other.cuoco) && Objects.equals(descrizione, other.descrizione)
 				&& Objects.equals(id, other.id) && Objects.equals(ingredienti, other.ingredienti)
 				&& Objects.equals(nome, other.nome);
 	}

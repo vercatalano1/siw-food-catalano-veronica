@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -25,7 +25,7 @@ public class Cuoco {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	
-	@ManyToMany(mappedBy="cuochi")
+	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
 
 	public Long getId() {

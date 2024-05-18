@@ -56,4 +56,13 @@ public class CuocoService {
             result.add(Cuoco);
         return result;
     }
+
+	public boolean existsByNomeAndCognome(String nome, String cognome) {
+		return CuocoRepository.existsByNomeAndCognome(nome,cognome);
+	}
+
+
+	public void delete(Cuoco cuoco) {
+		CuocoRepository.delete(cuoco);
+	}
 }
