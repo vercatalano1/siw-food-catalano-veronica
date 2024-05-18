@@ -1,6 +1,5 @@
 package it.uniroma3.siw.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.siw.controller.validator.RicettaValidator;
 import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.model.Ricetta;
-import it.uniroma3.siw.service.CuocoService;
 import it.uniroma3.siw.service.IngredienteService;
 import it.uniroma3.siw.service.RicettaService;
 import jakarta.validation.Valid;
@@ -29,8 +26,6 @@ public class RicettaController {
 	private RicettaService ricettaService;
 	@Autowired
 	private IngredienteService ingredienteService;
-	@Autowired
-	private CuocoService cuocoService;
 	@Autowired
 	private RicettaValidator ricettaValidator;
 	
