@@ -5,7 +5,7 @@
 	font-family: 'Poppins', sans-serif;
 	outline:none;
 	text-decoration: none;
-	text-transform: capitalize;
+	text-transform: none;
 	transition: all .2s linear;
 	
 }
@@ -25,24 +25,31 @@ body{
 	min-height: 100vh;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	background: url(../images/bg.jpg);
+	align-items: flex-start;
+	background: url(../images/img3.jpg);
 	background-size: cover;
 }
 
 .banner .content{
+	position:relative;
+	margin-left: 0px;
+	margin-right: 500px;
+	margin-top: 200px;
 	max-width: 900px;
-	text-align: center;
+    text-align: left;
 }
 
-.banner .contente h2{
-	font-size: 5em;
+.banner .content h2{
+	
+	font-size: 2em;
 	color:#fff;
 }
 
-.banner.content p{
-	font-size: 1em;
-	color:#fff;
+.banner .content p{
+	position:relative;
+	margin-right: 500px;
+	font-size: 1.5em;
+	color: #fff ;
 }
 
 .btn{
@@ -69,12 +76,20 @@ header{
 	justify-content: space-between;
 	align-items: center;
 	transition: 0.5s;
+    box-shadow:0 .5rem 1rem rgba(0,0,0,.1) ;
+
+}
+
+header.sticky{
+	background: #fff ;
+	padding: 10px 100px;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 header .logo{
 	color:#fff;
 	font-weight: 700;
-	font-size: 2em;
+	font-size: 3em;
 	text-decoration: none;
 }
 
@@ -82,20 +97,28 @@ header .logo span{
 	color: #ff0157;
 }
 
+header sticky .logo{
+	color:#111;
+}
+
 header .navigation {
 	position: relative;
 	display: flex;
+	font-size: 30px;
 }
 
 header .navigation li{
 	list-style: none;
-	margin-left: 30px;
+	margin-left: 40px;
 }
 
 header .navigation li a{
 	text-decoration: none;
 	color:#fff;
-	font-weight: 300;
+	font-weight: 500;
+}
+header .sticky .navigation li a{
+	color:#111;
 }
 
 header .icons a{
@@ -103,7 +126,7 @@ header .icons a{
 	width: 4.5rem;
 	line-height: 4.5rem;
 	border-radius: .5rem;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	color: #fff;
 	text-align: center;;
 	margin-right: 2rem;
@@ -125,4 +148,66 @@ header .fa-bars{
 	cursor: pointer;
 	border: .1rem solid rgb(255, 255, 255);
 	display: none;
+}
+
+.header .search-form{
+	position:fixed;
+	top:110%;
+	right: -110%;
+	width: 50rem;
+	height: 4.5rem;
+	background: #fff;
+	border-radius: .5rem;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.header .search-form input{
+	width: 100%;
+	height: 100%;
+	background: none;
+	text-transform: none;
+	font-size: 1.6rem;
+	color:#111;
+	padding:0 1.5rem;
+}
+
+.header .search-form label{
+	font-size: 2.2rem;
+	padding-right: 1.5rem;
+	color: #fff;
+	cursor: pointer;
+}
+
+.header .search-form label:hover{
+	color:orange;
+}
+
+.expert .content{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin-top: 40px;
+}
+
+.expert .content .box{
+	width: 250px;
+	margin:15px;
+}
+
+.expert .content .box .imgBx{
+	position: relative;
+	height: 100%;
+	height: 300px;
+}
+
+.expert .content .box .imgBx img{
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
