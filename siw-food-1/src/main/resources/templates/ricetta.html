@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ricetta</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.nome}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+    <h1>Dettagli Ricetta</h1>
+    <div th:if="${ricetta}">
+        <span th:text="${ricetta.nome}">Up!</span>
+        <span th:text="'(' + ${ricetta.descrizione} + ')'">2000</span>
+        <!--<span><img width="5%" th:src=${movie.urlImage} /></span> -->
+    </div>
+    <div th:unless="${ricetta}">Non esiste</div>
+  </body>
+</html>

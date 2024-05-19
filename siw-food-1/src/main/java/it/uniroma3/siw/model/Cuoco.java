@@ -24,9 +24,20 @@ public class Cuoco {
 	private String cognome;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
+	@NotBlank
+	private String email;
 	
 	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
+
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;
@@ -75,6 +86,7 @@ public class Cuoco {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		return result;
 	}
 
@@ -101,6 +113,11 @@ public class Cuoco {
 			if (other.data != null)
 				return false;
 		} else if (!data.equals(other.data))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
