@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cuoco</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+    <h1>Profilo dello Chef</h1>
+    <div th:if="${cuoco}">
+        <span th:text="${cuoco.nome}">Up!</span>
+        <span th:text="${cuoco.cognome}">Up!</span>
+        <span th:text="${cuoco.email}">Up!</span>
+        <span th:text="'(' + ${cuoco.data} + ')'">20/20/2000</span>
+        <!--<span><img width="5%" th:src=${movie.urlImage} /></span> -->
+        <!--lista delle ricette di questo cuoco, come link che ti porta alla ricetta-->
+				
+    </div>
+    <div th:unless="${cuoco}">Non esiste</div>
+  </body>
+</html>

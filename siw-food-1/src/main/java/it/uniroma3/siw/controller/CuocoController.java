@@ -24,9 +24,9 @@ public class CuocoController {
 	}
 	
 	
-	@GetMapping(value="/indexCuoco")
+	@GetMapping(value="/admin/indexCuoco")
 	public String indexCuoco() {
-		return "indexCuoco.html";
+		return "admin/indexCuoco.html";
 	}
 	
 	@PostMapping("/admin/cuoco")
@@ -34,7 +34,7 @@ public class CuocoController {
 		if (!CuocoService.existsByNomeAndCognome(Cuoco.getNome(), Cuoco.getCognome())) {
 			this.CuocoService.saveCuoco(Cuoco); 
 			model.addAttribute("Cuoco", Cuoco);
-			return "Cuoco.html";
+			return "cuoco.html";
 		} else {
 			model.addAttribute("messaggioErrore", "Questo Cuoco esiste già");
 			return "admin/formNewCuoco.html"; 

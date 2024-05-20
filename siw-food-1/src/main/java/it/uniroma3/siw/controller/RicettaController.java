@@ -29,9 +29,9 @@ public class RicettaController {
 	@Autowired
 	private RicettaValidator ricettaValidator;
 	
-	@GetMapping("/indexRicetta")
+	@GetMapping("/admin/indexRicetta")
 	public String indexRicetta() {
-		return "indexRicetta.html";
+		return "admin/indexRicetta.html";
 	}
 	
 	@GetMapping(value="/admin/manageRicetta")
