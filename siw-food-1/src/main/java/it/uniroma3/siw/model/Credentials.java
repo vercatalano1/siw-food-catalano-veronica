@@ -16,15 +16,15 @@ public class Credentials {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	private String nome;
+	private String username;
 	private String password;
-	private String ruolo;
+	private String role;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cuoco Cuoco;
 	
-	public String getCuoconame() {
-		return nome;
+	public String getUsername() {
+		return username;
 	}
 	
 	public Long getId() {
@@ -43,8 +43,8 @@ public class Credentials {
 		this.Cuoco = Cuoco;
 	}
 	
-	public void setCuoconame(String Cuoconame) {
-		this.nome = Cuoconame;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public String getPassword() {
@@ -56,11 +56,11 @@ public class Credentials {
 	}
 	
 	public String getRole() {
-		return ruolo;
+		return role;
 	}
 	
 	public void setRole(String ruolo) {
-		this.ruolo = ruolo;
+		this.role = ruolo;
 	}
 
 }
