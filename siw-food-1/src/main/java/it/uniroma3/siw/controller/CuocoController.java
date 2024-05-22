@@ -19,7 +19,7 @@ public class CuocoController {
 
 	@GetMapping(value="/admin/formNewCuoco")
 	public String formNewCuoco(Model model) {
-		model.addAttribute("Cuoco", new Cuoco());
+		model.addAttribute("cuoco", new Cuoco());
 		return "admin/formNewCuoco.html";
 	}
 	
@@ -30,25 +30,25 @@ public class CuocoController {
 	}
 	
 	@PostMapping("/admin/cuoco")
-	public String newCuoco(@ModelAttribute("Cuoco") Cuoco Cuoco, Model model) {
+	public String newCuoco(@ModelAttribute("cuoco") Cuoco Cuoco, Model model) {
 		if (!CuocoService.existsByNomeAndCognome(Cuoco.getNome(), Cuoco.getCognome())) {
 			this.CuocoService.saveCuoco(Cuoco); 
-			model.addAttribute("Cuoco", Cuoco);
+			model.addAttribute("cuoco", Cuoco);
 			return "cuoco.html";
 		} else {
-			model.addAttribute("messaggioErrore", "Questo Cuoco esiste già");
+			model.addAttribute("messaggioErrore", "Questo cuoco esiste già");
 			return "admin/formNewCuoco.html"; 
 		}
 	}
 
 	@GetMapping("/cuoco/{id}")
 	public String getCuoco(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("Cuoco", this.CuocoService.getCuoco(id));
+		model.addAttribute("cuoco", this.CuocoService.getCuoco(id));
 		return "cuoco.html";
 	}
 	@GetMapping("/cuoco")
-	public String getArtists(Model model) {
-		model.addAttribute("ingredienti", this.CuocoService.getAllCuocos());
+	public String getCuochi(Model model) {
+		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
 		return "cuochi.html";
 	}
 	

@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Satisfy', cursive;
 	outline:none;
 	text-decoration: none;
 	text-transform: none;
@@ -32,15 +32,15 @@ p{
 	position:relative;
 	margin-left: 0px;
 	margin-right: 500px;
-	margin-top: 200px;
+	margin-top: 130px;
 	max-width: 900px;
     text-align: left;
 }
 
 .banner .content h2{
-	
 	font-size: 2em;
 	color:#fff;
+	
 }
 
 .banner .content p{

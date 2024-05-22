@@ -23,7 +23,7 @@
 	<ul>
 		<li th:each="ricetta : ${ricette}">
 			<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-				th:text="${ricetta.nome} ">Up! (2000)</a>
+				th:text="${ricetta.nome} ">Up! </a>
 		</li>
 	</ul>
 </body>

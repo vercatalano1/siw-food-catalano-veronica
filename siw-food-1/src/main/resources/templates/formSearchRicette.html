@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cerca Ricetta</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Ricette</title>
 </head>
-
 <body>
-	<header>
+    <header>
 		<div th:if="${userDetails}">
-			<span th:text="${userDetails.nome}"></span>
+			<span th:text="${userDetails.username}"></span>
 			<a href="/logout">Logout</a>
 		</div>
 		<div th:unless="${user}">
 			<a href="/login">Login</a>
 		</div>
 	</header>
+	
+	<h2>Ricerca Ricette</h2>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1>Cerca ricetta per nome</h1>
 	<form th:action="@{/searchRicette}" method="post">
 		<div>Nome: <input type="text" th:value="${nome}" name="nome" />
 		</div>
-		
+		<div><input type="submit" /></div>
 	</form>
 </body>
-
 </html>

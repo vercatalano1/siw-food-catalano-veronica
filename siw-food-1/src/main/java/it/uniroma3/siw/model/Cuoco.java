@@ -63,11 +63,11 @@ public class Cuoco {
 		this.cognome = cognome;
 	}
 
-	public LocalDate getDataNascita() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setDataNascita(LocalDate dataNascita) {
+	public void setData(LocalDate dataNascita) {
 		this.data = dataNascita;
 	}
 

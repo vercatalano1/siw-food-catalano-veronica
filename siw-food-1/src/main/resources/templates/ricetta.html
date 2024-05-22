@@ -20,9 +20,9 @@
     <h1>Dettagli Ricetta</h1>
     <div th:if="${ricetta}">
         <span th:text="${ricetta.nome}">Up!</span>
-        <span th:text="'(' + ${ricetta.descrizione} + ')'">2000</span>
-        <div th:if="${ricetta.cuoco}">Cuoco: <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Cracco</span></div>
-		<!--<span><img width="5%" th:src=${movie.urlImage} /></span> -->
+        <span th:text="'(' + ${ricetta.descrizione} + ')'">descrizione</span>
+        <!--<div th:if="${ricetta.cuoco}">Cuoco: <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Cracco</span></div>
+		<span><img width="5%" th:src=${movie.urlImage} /></span> -->
         <!--lista degli ingredienti di questa ricetta-->				
     </div>
     <div th:unless="${ricetta}">Non esiste</div>
