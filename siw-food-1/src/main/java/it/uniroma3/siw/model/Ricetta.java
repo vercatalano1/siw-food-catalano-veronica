@@ -42,10 +42,10 @@ public class Ricetta {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public Cuoco getCuochi() {
+	public Cuoco getCuoco() {
 		return cuoco;
 	}
-	public void setCuochi(Cuoco cuochi) {
+	public void setCuoco(Cuoco cuochi) {
 		this.cuoco = cuochi;
 	}
 	public List<Ingrediente> getIngredienti() {

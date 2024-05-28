@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +65,13 @@ public class RicettaController {
 			return "admin/formNewRicetta.html"; 
 		}
 	}
+	
+	/*@PostMapping("/associa-cuoco-ricetta-diretto")
+    public String associaCuocoARicettaDiretto() {
+        // Associa direttamente "Max Mariola" alla ricetta "Zuppa di pomodori"
+        ricettaService.associaCuocoARicetta("Risotto con acciughe, limone e cacao", "Carlo", "Cracco");
+        return "redirect:ricetta.html";
+    }*/
 
 	@GetMapping("/ricetta/{id}")
 	public String getRicetta(@PathVariable("id") Long id, Model model) {
@@ -138,6 +146,21 @@ public class RicettaController {
 		}
 		return ingredientiToAdd;
 	}
+	
+	@DeleteMapping("/admin/ricetta/{id}")
+    public String deleteRicetta(@PathVariable("id") Long id, Model model) {
+        Ricetta ricetta = ricettaService.findById(id);
+        if (ricetta != null) {
+            ricettaService.delete(ricetta);
+            // Redirect alla pagina dell'indice dei servizi dopo la cancellazione
+            return "redirect:/admin/indexRicetta";
+        } else {
+            // Nel caso in cui il Cuoco non esista
+            model.addAttribute("messaggioErrore", "Ricetta non trovato");
+            return "admin/indexRicetta.html";
+            }
+        }
+
 	
 	
 }

@@ -6,25 +6,24 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+	<h1>Dettagli Ricetta</h1>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-    <h1>Dettagli Ricetta</h1>
     <div th:if="${ricetta}">
-        <span th:text="${ricetta.nome}">Up!</span>
-        <span th:text="'(' + ${ricetta.descrizione} + ')'">descrizione</span>
-        <!--<div th:if="${ricetta.cuoco}">Cuoco: <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Cracco</span></div>
-		<span><img width="5%" th:src=${movie.urlImage} /></span> -->
-        <!--lista degli ingredienti di questa ricetta-->				
+        <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
+        <p> Descrizione: <div th:utext="${ricetta.descrizione}">Descrizione</div></p> 
+        
+        <div th:if="${ricetta.cuoco != null}">
+			<p>Cuoco: <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a></p>
+        </div>
+        <h4>Ingredienti</h4>
+        <ul>
+            <li th:each="ingrediente : ${ricetta.ingredienti}">
+                <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: 
+                <span th:text="${ingrediente.quantita}">Quantità</span>
+            </li>
+        </ul>
     </div>
+
     <div th:unless="${ricetta}">Non esiste</div>
   </body>
 </html>

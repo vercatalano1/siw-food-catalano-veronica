@@ -68,7 +68,7 @@ header{
 	top:0;
 	left:0;
 	right:0;
-	padding: 40px 100px;
+	padding: 20px 100px;
 	z-index: 10000;
 	display: flex;
 	justify-content: space-between;
@@ -77,6 +77,8 @@ header{
     box-shadow:0 .5rem 1rem rgba(0,0,0,.1) ;
 
 }
+
+
 
 header.sticky{
 	background: #fff ;
