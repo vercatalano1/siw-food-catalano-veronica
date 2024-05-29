@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Scelta regista</title>
+	<title>Scelta cuoco per la ricetta</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -18,12 +18,12 @@
 	</header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1 th:text="'Regista per il film ' + ${movie.title}"></h1>
-	<div th:if="${artists.isEmpty()}">Non ci sono registi nel sistema</div>
+	<h1 th:text="'Cuoco per la ricetta ' + ${ricetta.nome}"></h1>
+	<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
 	<ul>
-		<li th:each="artist : ${artists}">
-			<a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}"
-				th:text="${artist.name} + ' ' + ${artist.surname}">Steven Spielberg</a>
+		<li th:each="cuoco : ${cuochi}">
+			<a th:href="@{'/admin/setCuocoToRicetta/'+ ${cuoco.id}+'/'+${ricetta.id}}"
+				th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">Carlo Cracco</a>
 		</li>
 	</ul>
 </body>

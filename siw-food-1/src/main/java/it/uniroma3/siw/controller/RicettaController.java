@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.RicettaValidator;
+import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.model.Ricetta;
+import it.uniroma3.siw.service.CuocoService;
 import it.uniroma3.siw.service.IngredienteService;
 import it.uniroma3.siw.service.RicettaService;
 import jakarta.validation.Valid;
@@ -25,6 +27,8 @@ import jakarta.validation.Valid;
 public class RicettaController {
 	@Autowired
 	private RicettaService ricettaService;
+	@Autowired
+	private CuocoService cuocoService;
 	@Autowired
 	private IngredienteService ingredienteService;
 	@Autowired
@@ -35,10 +39,30 @@ public class RicettaController {
 		return "admin/indexRicetta.html";
 	}
 	
-	@GetMapping(value="/admin/manageRicetta")
+	@GetMapping("/admin/manageRicetta")
 	public String manageRicetta(Model model) {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "admin/manageRicetta.html";
+	}
+	
+	@GetMapping("/admin/setCuocoToRicetta/{cuocoId}/{ricettaId}")
+	public String setCuocoToricetta(@PathVariable("cuocoId") Long cuocoId, @PathVariable("ricettaId") Long ricettaId, Model model) {
+		
+		Cuoco cuoco = this.cuocoService.getCuoco(cuocoId);
+		Ricetta ricetta = this.ricettaService.findById(ricettaId);
+		ricetta.setCuoco(cuoco);
+		this.ricettaService.save(ricetta);
+		
+		model.addAttribute("ricetta", ricetta);
+		return "admin/formUpdateRicetta.html";
+	}
+	
+	
+	@GetMapping("/admin/addCuoco/{id}")
+	public String addCuoco(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("cuochi", cuocoService.getAllCuocos());
+		model.addAttribute("ricetta", ricettaService.findById(id));
+		return "admin/cuochiToAdd.html";
 	}
 	
 	@GetMapping(value="/admin/formNewRicetta")

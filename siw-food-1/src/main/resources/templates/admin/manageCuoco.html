@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Cuoco</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
+	<h1>Cuochi</h1>
+	<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+	<ul>
+		<li th:each="cuoco : ${cuochi}">
+			<span th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">nome</span>
+			<a th:href="@{'/admin/cuoco' + '/' + ${cuoco.id}}">Cancella</a>
+		</li>
+	</ul>
+</body>
+
+</html>

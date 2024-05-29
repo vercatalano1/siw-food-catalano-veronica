@@ -33,19 +33,15 @@ public class IngredienteController {
 	public String newIngrediente(@ModelAttribute("ingrediente") Ingrediente ingrediente, Model model) {
 		if (!ingredienteService.existsByNome(ingrediente.getNome())) {
 			this.ingredienteService.save(ingrediente); 
-			model.addAttribute("Ingrediente", ingrediente);
-			return "Ingrediente.html";
+			model.addAttribute("ingrediente", ingrediente);
+			return "ingredienti.html";
 		} else {
 			model.addAttribute("messaggioErrore", "Questo Ingrediente esiste già");
 			return "admin/formNewIngrediente.html"; 
 		}
 	}
 
-	@GetMapping("/ingrediente/{id}")
-	public String getIngrediente(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("Ingrediente", this.ingredienteService.findById(id));
-		return "ingrediente.html";
-	}
+	
 	@GetMapping("/ingredienti")
 	public String getArtists(Model model) {
 		model.addAttribute("ingredienti", this.ingredienteService.findAll());

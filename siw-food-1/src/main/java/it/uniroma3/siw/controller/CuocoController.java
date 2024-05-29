@@ -23,6 +23,11 @@ public class CuocoController {
 		return "admin/formNewCuoco.html";
 	}
 	
+	@GetMapping(value="/admin/manageCuoco")
+	public String manageRicetta(Model model) {
+		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
+		return "admin/manageCuoco.html";
+	}
 	
 	@GetMapping(value="/admin/indexCuoco")
 	public String indexCuoco() {

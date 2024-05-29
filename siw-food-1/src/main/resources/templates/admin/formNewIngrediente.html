@@ -3,7 +3,7 @@
 
 <head>
 	<title>
-		New Cuoco
+		New Ingrediente
 	</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
@@ -20,40 +20,26 @@
 	</header>
 	
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1>Aggiungi un cuoco</h1>
-	<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">
+	<h1>Aggiungi un ingrediente</h1>
+	<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
   		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
   		</div>
 		
 		<div>
 			<label>Nome:</label> 
-			<span><input type="text" th:field="${cuoco.nome}" /></span>
+			<span><input type="text" th:field="${ingrediente.nome}" /></span>
 		    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
 		    </span>
 		</div>
 		
 		<div>
-			<label>Cognome:</label> 
-			<span><input type="text" th:field="${cuoco.cognome}" /></span>
-		    <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">
+			<label>Quantità:</label> 
+			<span><input type="number" th:field="${ingrediente.quantità}" /></span>
+		    <span th:if="${#fields.hasErrors('quantità')}" th:errors="*{quantità}">
 		    </span>
 		</div>
 		
-		<div>
-			<label>Email:</label> 
-			<span><input type="text" th:field="${cuoco.email}" /></span>
-		    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-		    </span>
-		</div>
-
-		<div>
-			<label>Data di nascita:</label> <span><input type="data" th:field="${cuoco.data}" /></span>
-		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">
-		    </span>
-		</div>
-
-		<!--come inserire la foto!-->
 		
 		<div>
 			<span><button type="submit">Conferma</button></span>

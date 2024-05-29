@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Aggiorna ricetta
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
+	<h1>Aggiorna Ricetta</h1>
+	<div th:if="${ricetta}">
+		<div>
+			<span th:text="${ricetta.nome}">nome</span>
+			<span th:text="${ricetta.descrizione}">descrizione</span>
+		</div>
+		
+		<div th:unless="${ricetta.cuoco}">
+			<span>Cuoco: nessun cuoco assegnato</span>
+			<button th:onclick="'location.href=\'/admin/addCuoco/' + ${ricetta.id} + '\';'">Aggiungi</button>
+        </div>
+        <div th:if="${ricetta.cuoco}">
+            <span>Cuoco: </span>
+            <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
+        </div>
+
+		<div>
+			<h4>Ingredienti: </h4><a th:href="@{'/admin/formNewIngrediente'}">
+				<button type="button">crea</button>
+			</a>
+			
+			<!--manca la rimozione di un ingrediente-->
+        <ul>
+            <li th:each="ingrediente : ${ricetta.ingredienti}">
+                <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: 
+                <span th:text="${ingrediente.quantita}">Quantità</span>
+            </li>
+        </ul>
+			<a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
+				<button type="button">Modifica</button>
+			</a>
+		
+		</div>
+		<div th:unless="${ricetta}">Ricetta non esistente</div>
+</body>
+
+</html>
