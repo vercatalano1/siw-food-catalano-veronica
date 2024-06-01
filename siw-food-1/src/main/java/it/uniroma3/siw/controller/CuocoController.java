@@ -24,7 +24,7 @@ public class CuocoController {
 	}
 	
 	@GetMapping(value="/admin/manageCuoco")
-	public String manageRicetta(Model model) {
+	public String manageCuoco(Model model) {
 		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
 		return "admin/manageCuoco.html";
 	}

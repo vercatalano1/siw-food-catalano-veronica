@@ -18,13 +18,13 @@ public class Cuoco {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@NotBlank
+	@NotBlank(message = "{cuoco.nome.notblank}")
 	private String nome;
-	@NotBlank
+	@NotBlank(message = "{cuoco.cognome.notblank}")
 	private String cognome;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
-	@NotBlank
+	@NotBlank(message = "{cuoco.email.notblank}")
 	private String email;
 	
 	@OneToMany(mappedBy="cuoco")

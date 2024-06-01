@@ -10,23 +10,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Ingrediente;
+import it.uniroma3.siw.model.Ricetta;
 import it.uniroma3.siw.service.IngredienteService;
+import it.uniroma3.siw.service.RicettaService;
 
 @Controller
 public class IngredienteController {
 	@Autowired 
 	private IngredienteService ingredienteService;
-
-	@GetMapping(value="/admin/formNewIngrediente")
+	
+	@GetMapping("/admin/formNewIngrediente")
 	public String formNewIngrediente(Model model) {
 		model.addAttribute("ingrediente", new Ingrediente());
 		return "admin/formNewIngrediente.html";
 	}
 	
+	@GetMapping("/admin/manageIngrediente")
+	public String manageIngrediente(Model model) {
+		model.addAttribute("ingrediente", this.ingredienteService.findAll());
+		return "admin/manageIngrediente.html";
+	}
 	
-	@GetMapping(value="/indexIngrediente")
+	@GetMapping("admin/indexIngrediente")
 	public String indexIngrediente() {
-		return "indexIngrediente.html";
+		return "admin/indexIngrediente.html";
 	}
 	
 	@PostMapping("/admin/ingrediente")
@@ -61,5 +68,5 @@ public class IngredienteController {
             return "admin/indexIngrediente.html";
             }
         }
-
+	
 }

@@ -24,6 +24,7 @@
 	<div th:if="${ricetta}">
 		<div>
 			<span th:text="${ricetta.nome}">nome</span>
+			<br>
 			<span th:text="${ricetta.descrizione}">descrizione</span>
 		</div>
 		
@@ -36,21 +37,20 @@
             <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
         </div>
 
-		<div>
+		<div th:if="${ricetta}">
 			<h4>Ingredienti: </h4><a th:href="@{'/admin/formNewIngrediente'}">
 				<button type="button">crea</button>
 			</a>
 			
-			<!--manca la rimozione di un ingrediente-->
         <ul>
             <li th:each="ingrediente : ${ricetta.ingredienti}">
-                <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: 
-                <span th:text="${ingrediente.quantita}">Quantità</span>
+                <span th:text="${ingrediente.nome}">Nome ingrediente</span>: 
+                <span th:text="${ingrediente.quantità} + ' grammi'">Quantità</span>
             </li>
         </ul>
-			<a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
+	    <a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
 				<button type="button">Modifica</button>
-			</a>
+		</a>
 		
 		</div>
 		<div th:unless="${ricetta}">Ricetta non esistente</div>

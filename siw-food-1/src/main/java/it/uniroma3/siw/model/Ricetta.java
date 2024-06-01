@@ -9,14 +9,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Ricetta {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	
+	@NotBlank(message = "{ricetta.nome.notblank}")
 	private String nome;
+	@NotBlank(message = "{ricetta.descrizione.notblank}")
 	private String descrizione;
 	
 	@ManyToOne

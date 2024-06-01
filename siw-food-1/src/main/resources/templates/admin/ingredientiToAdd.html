@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Scelta regista</title>
+	<title>Scelta ingredienti</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -16,16 +16,28 @@
 			<a href="/login">Login</a>
 		</div>
 	</header>
-
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1 th:text="'Regista per il film ' + ${movie.title}"></h1>
-	<div th:if="${artists.isEmpty()}">Non ci sono registi nel sistema</div>
+	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div> 
+	
+	<h1 th:text="'Ingredienti per la ricetta ' + ${ricetta.nome}"></h1>
+	<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
 	<ul>
-		<li th:each="artist : ${artists}">
-			<a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}"
-				th:text="${artist.name} + ' ' + ${artist.surname}">Steven Spielberg</a>
+		<li th:each="ingrediente : ${ricetta.ingredienti}">
+			<span th:text="${ingrediente.nome + ' - ' + ingrediente.quantità + ' grammi'}"> </span>
+			<a th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
 		</li>
 	</ul>
+	<div>
+		Ingredienti che si possono aggiungere:
+		<ul>
+			<li th:each="ingrediente : ${ingredientiToAdd}">
+				<span th:text="${ingrediente.nome + ' - ' + ingrediente.quantità + ' grammi'}"> </span>
+				<a th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<a th:href="@{'/admin/formUpdateRicetta/'+ ${ricetta.id}}"><button type="button">Fine</button></a>
+	</div>
 </body>
 
 </html>

@@ -48,7 +48,7 @@
 		</div>
 
 		<div>
-			<label>Data di nascita:</label> <span><input type="data" th:field="${cuoco.data}" /></span>
+			<label>Data di nascita:</label> <span><input type="date" th:field="${cuoco.data}" /></span>
 		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">
 		    </span>
 		</div>

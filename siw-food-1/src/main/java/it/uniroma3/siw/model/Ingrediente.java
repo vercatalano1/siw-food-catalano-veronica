@@ -9,14 +9,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Ingrediente {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@Min(value=0)
-	private Integer quantità;
+	@NotNull(message = "{ingrediente.quantità.notnull}")
+    @Min(value = 0, message = "{ingrediente.quantità.min}")
+    private Integer quantità;
+	@NotBlank(message = "{ingrediente.nome.notblank}")
 	private String nome;
 	
 	@ManyToMany(mappedBy="ingredienti")

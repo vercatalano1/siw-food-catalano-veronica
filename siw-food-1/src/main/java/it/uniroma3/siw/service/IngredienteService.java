@@ -28,7 +28,7 @@ public class IngredienteService {
 
 	public void save(Ingrediente Ingrediente) {
 		// TODO Auto-generated method stub
-		this.ingredienteRepository.save(Ingrediente);
+		ingredienteRepository.save(Ingrediente);
 	}
 
 	public boolean existsByNome(String nome) {
@@ -37,5 +37,5 @@ public class IngredienteService {
 
 	public void delete(Ingrediente ingrediente) {
 		ingredienteRepository.delete(ingrediente);
-	};
+	}
 }
