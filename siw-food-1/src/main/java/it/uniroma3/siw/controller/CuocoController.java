@@ -3,19 +3,25 @@ package it.uniroma3.siw.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.controller.validator.CuocoValidator;
+import it.uniroma3.siw.controller.validator.RicettaValidator;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.service.CuocoService;
+import jakarta.validation.Valid;
 
 @Controller
 public class CuocoController {
 	@Autowired 
 	private CuocoService CuocoService;
+	@Autowired
+	private CuocoValidator cuocoValidator;
 
 	@GetMapping(value="/admin/formNewCuoco")
 	public String formNewCuoco(Model model) {
@@ -35,13 +41,13 @@ public class CuocoController {
 	}
 	
 	@PostMapping("/admin/cuoco")
-	public String newCuoco(@ModelAttribute("cuoco") Cuoco Cuoco, Model model) {
-		if (!CuocoService.existsByNomeAndCognome(Cuoco.getNome(), Cuoco.getCognome())) {
-			this.CuocoService.saveCuoco(Cuoco); 
-			model.addAttribute("cuoco", Cuoco);
+	public String newCuoco(@Valid @ModelAttribute("cuoco") Cuoco cuoco, BindingResult bindingResult, Model model) {
+		this.cuocoValidator.validate(cuoco, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			this.CuocoService.saveCuoco(cuoco); 
+			model.addAttribute("cuoco", cuoco);
 			return "cuoco.html";
 		} else {
-			model.addAttribute("messaggioErrore", "Questo cuoco esiste già");
 			return "admin/formNewCuoco.html"; 
 		}
 	}

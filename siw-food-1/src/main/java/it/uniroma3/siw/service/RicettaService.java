@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 public class RicettaService {
 	@Autowired
 	private RicettaRepository ricettaRepository;
+	@Autowired
 	private  CuocoRepository cuocoRepository;
 	
 	

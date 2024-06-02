@@ -22,6 +22,7 @@
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1>Aggiungi un ingrediente</h1>
 	<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+		<input type="hidden" th:value="${ricettaId}" name="ricettaId" />
   		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
   		</div>

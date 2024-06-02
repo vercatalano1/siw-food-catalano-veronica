@@ -18,7 +18,7 @@ public class Ingrediente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	@NotNull(message = "{ingrediente.quantità.notnull}")
-    @Min(value = 0, message = "{ingrediente.quantità.min}")
+    @Min(value = 1, message = "{ingrediente.quantità.min}")
     private Integer quantità;
 	@NotBlank(message = "{ingrediente.nome.notblank}")
 	private String nome;
