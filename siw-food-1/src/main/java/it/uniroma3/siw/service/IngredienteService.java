@@ -1,5 +1,6 @@
 package it.uniroma3.siw.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -38,4 +39,5 @@ public class IngredienteService {
 	public void delete(Ingrediente ingrediente) {
 		ingredienteRepository.delete(ingrediente);
 	}
+	
 }

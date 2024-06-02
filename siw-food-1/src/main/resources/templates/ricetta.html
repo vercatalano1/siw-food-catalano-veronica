@@ -10,16 +10,18 @@
 
     <div th:if="${ricetta}">
         <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
-        <p> Descrizione: <div th:utext="${ricetta.descrizione}">Descrizione</div></p> 
+       <p>Descrizione:</p>
+        <div th:utext="${ricetta.descrizione}">Descrizione</div>
         
         <div th:if="${ricetta.cuoco != null}">
-			<p>Cuoco: <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a></p>
+			<h3>Cuoco:</h3> <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
         </div>
-        <h4>Ingredienti</h4>
+        <h4>Ingredienti:</h4>
         <ul>
             <li th:each="ingrediente : ${ricetta.ingredienti}">
-                <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: 
-                <span th:text="${ingrediente.quantità}">Quantità</span>
+                <span th:text="${ingrediente.nome}">Nome ingrediente</span>
+                <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">Quantità</span>
+
             </li>
         </ul>
     </div>

@@ -57,6 +57,7 @@ public class CuocoController {
 		model.addAttribute("cuoco", this.CuocoService.getCuoco(id));
 		return "cuoco.html";
 	}
+	
 	@GetMapping("/cuoco")
 	public String getCuochi(Model model) {
 		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());

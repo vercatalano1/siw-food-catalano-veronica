@@ -22,7 +22,8 @@
 	<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
 	<ul>
 		<li th:each="ingrediente : ${ricetta.ingredienti}">
-			<span th:text="${ingrediente.nome + ' - ' + ingrediente.quantità + ' grammi'}"> </span>
+			<span th:text="${ingrediente.nome + ' - ' }"> </span>
+			<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
 			<a th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
 		</li>
 	</ul>

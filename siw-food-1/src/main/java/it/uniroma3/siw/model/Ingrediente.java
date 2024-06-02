@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,7 @@ public class Ingrediente {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotNull(message = "{ingrediente.quantità.notnull}")
-    @Min(value = 1, message = "{ingrediente.quantità.min}")
+	@Column(nullable = true)
     private Integer quantità;
 	@NotBlank(message = "{ingrediente.nome.notblank}")
 	private String nome;

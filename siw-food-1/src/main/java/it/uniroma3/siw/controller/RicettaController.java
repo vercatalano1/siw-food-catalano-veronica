@@ -87,7 +87,7 @@ public class RicettaController {
 		if (!bindingResult.hasErrors()) {
 			this.ricettaService.save(ricetta); 
 			model.addAttribute("ricetta", ricetta);
-			return "/admin/formUpdateRicetta.html";
+			return "ricetta.html";
 		} else {
 			return "admin/formNewRicetta.html"; 
 		}
@@ -102,9 +102,12 @@ public class RicettaController {
 
 	@GetMapping("/ricetta/{id}")
 	public String getRicetta(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("ricetta", this.ricettaService.findById(id));
-		return "ricetta.html";
-	}
+		    Cuoco cuoco = ricettaService.findById(id).getCuoco();
+	        model.addAttribute("ricetta", ricettaService.findById(id));
+	        model.addAttribute("ingredienti", ricettaService.findById(id).getIngredienti());
+	        model.addAttribute("cuoco", cuoco);
+	        return "ricetta.html";
+	    }
 
 	@GetMapping("/ricetta")
 	public String getRicette(Model model) {		
