@@ -38,9 +38,7 @@
         </div>
 
 		<div th:if="${ricetta}">
-			<h4>Ingredienti: </h4><a th:href="@{'/admin/formNewIngrediente/' + ${ricetta.id}}">
-				<button type="button">crea</button>
-			</a>
+			<h4>Ingredienti: </h4>
 			
         <ul>
             <li th:each="ingrediente : ${ricetta.ingredienti}">
@@ -49,6 +47,7 @@
             </li>
         </ul>
 	    <a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
+			<input type="hidden" name="redirectFrom" value="formUpdateRicetta">
 				<button type="button">Modifica</button>
 		</a>
 		

@@ -72,12 +72,19 @@ public class RicettaController {
 	}
 
 	@GetMapping("/admin/formUpdateRicetta/{id}")
-	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
+	public String formUpdateRicetta(@PathVariable("id") Long id,@RequestParam(value = "redirectFrom", required = false) String redirectFrom, Model model) {
 		Ricetta ricetta = ricettaService.findById(id);
 	    List<Ingrediente> ingredienti = ricetta.getIngredienti();
 	    model.addAttribute("ricetta", ricetta);
 	    model.addAttribute("ingredienti", ingredienti);
-		return "admin/formUpdateRicetta.html";
+	 // Verifica se viene fornito il parametro redirectFrom e se è uguale a "formNewRicetta"
+	    if (redirectFrom != null && redirectFrom.equals("formNewRicetta")) {
+	        // Se redirectFrom è "formNewRicetta", reindirizza a formNewRicetta
+	        return "redirect:/admin/formNewRicetta/";
+	    } else {
+	        // Altrimenti, restituisci la vista formUpdateRicetta
+	        return "admin/formUpdateRicetta.html";
+	    }
 	}
 
 	@PostMapping("/admin/ricetta")
@@ -135,6 +142,12 @@ public class RicettaController {
 
 		return "admin/ingredientiToAdd.html";
 	}
+	
+	@PostMapping("/admin/saveAndRedirectToIngredients")
+    public String saveAndRedirectToIngredients(@ModelAttribute Ricetta ricetta) {
+        Ricetta savedRicetta = ricettaService.save(ricetta);
+        return "redirect:/admin/updateIngredienti/" + savedRicetta.getId();
+    }
 
 	@GetMapping("/admin/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
 	public String addIngredienteToRicetta(@PathVariable("ingredienteId") Long ingredienteId, @PathVariable("ricettaId") Long ricettaId, Model model) {

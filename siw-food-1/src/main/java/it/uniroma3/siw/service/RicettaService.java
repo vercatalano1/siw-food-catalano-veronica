@@ -32,9 +32,9 @@ public class RicettaService {
 		return ricettaRepository.findAll();
 	}
 
-	public void save(Ricetta Ricetta) {
+	public  Ricetta save(Ricetta Ricetta) {
 		// TODO Auto-generated method stub
-		ricettaRepository.save(Ricetta);
+		return ricettaRepository.save(Ricetta);
 		
 	}
 
@@ -51,7 +51,7 @@ public class RicettaService {
     }
 
 	public void delete(Ricetta ricetta) {
-		ricettaRepository.delete(ricetta);
+		 ricettaRepository.delete(ricetta);
 	}
 	
 }

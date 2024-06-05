@@ -41,6 +41,15 @@
 
 		<!--come inserire la foto!-->
 		
+		<label>Ingredienti:</label> 
+		<a th:href="@{'/admin/formNewIngrediente'}">
+		    <button type="button">crea</button></a>
+		
+		<a th:href="@{'/admin/saveAndRedirectToIngredients'}">
+			<input type="hidden" name="redirectFrom" value="formNewRicetta">
+				<button type="button">Modifica</button>
+		</a>
+		
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>

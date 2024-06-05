@@ -24,10 +24,9 @@ public class IngredienteController {
 	private IngredienteValidator ingredienteValidator;
 	
 	
-	@GetMapping("/admin/formNewIngrediente/{ricettaId}")
-	public String formNewIngrediente(@PathVariable("ricettaId") Long ricettaId, Model model) {
+	@GetMapping("/admin/formNewIngrediente")
+	public String formNewIngrediente(Model model) {
 	    model.addAttribute("ingrediente", new Ingrediente());
-	    model.addAttribute("ricettaId", ricettaId); // Aggiungi l'ID della ricetta al modello
 	    return "admin/formNewIngrediente.html";
 	}
 	
@@ -43,12 +42,11 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/admin/ingrediente")
-	public String newIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult,@RequestParam("ricettaId") Long ricettaId,  Model model) {
+	public String newIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult, Model model) {
 		this.ingredienteValidator.validate(ingrediente, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			this.ingredienteService.save(ingrediente); 
-			model.addAttribute("ricettaId", ricettaId);
-            return "redirect:/admin/formUpdateRicetta/" + ricettaId;
+            return "redirect:/admin/formNewRicetta";
 		} else {
 			 model.addAttribute("ingrediente", ingrediente);
 			return "admin/formNewIngrediente.html"; 
