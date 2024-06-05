@@ -24,7 +24,9 @@
 		<li th:each="ricetta : ${ricette}">
 			<span th:text="${ricetta.nome}">nome</span>
 			<a th:href="@{'/admin/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
-			<a th:href="@{'/admin/ricetta' + '/' + ${ricetta.id}}">Cancella</a>
+		<form th:action="@{'/admin/ricetta/' + ${ricetta.id}}" method="get">
+            <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
+        </form>
 		</li>
 	</ul>
 </body>

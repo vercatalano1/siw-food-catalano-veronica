@@ -23,7 +23,9 @@
 	<ul>
 		<li th:each="cuoco : ${cuochi}">
 			<span th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">nome</span>
-			<a th:href="@{'/admin/cuoco' + '/' + ${cuoco.id}}">Cancella</a>
+		<form th:action="@{'/admin/cuoco/' + ${cuoco.id}+ '/delete'}" method="post">
+            <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo cuoco?');">Elimina</button>
+        </form>
 		</li>
 	</ul>
 </body>

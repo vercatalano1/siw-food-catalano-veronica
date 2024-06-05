@@ -22,7 +22,8 @@
 	<div th:unless="${ingredienti == null or ingredienti.isEmpty()}">
         <ul>
             <li th:each="ingrediente : ${ingredienti}">
-                <p th:text="'Nome: ' + ${ingrediente.nome} + ' - Quantità: ' + ${ingrediente.quantità} + ' grammi'"></p>
+                <span th:text="${ingrediente.nome}"> </span>
+			    <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
             </li>
         </ul>
     </div>

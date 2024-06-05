@@ -64,13 +64,13 @@ public class CuocoController {
 		return "cuochi.html";
 	}
 	
-	@DeleteMapping("/admin/cuoco/{id}")
+	@PostMapping("/admin/cuoco/{id}/delete")
     public String deleteCuoco(@PathVariable("id") Long id, Model model) {
         Cuoco Cuoco = CuocoService.getCuoco(id);
         if (Cuoco != null) {
-            CuocoService.delete(Cuoco);
+            CuocoService.deleteById(id);
             // Redirect alla pagina dell'indice dei servizi dopo la cancellazione
-            return "redirect:/admin/indexCuoco";
+            return "redirect:/cuoco";
         } else {
             // Nel caso in cui il Cuoco non esista
             model.addAttribute("messaggioErrore", "Cuoco non trovato");

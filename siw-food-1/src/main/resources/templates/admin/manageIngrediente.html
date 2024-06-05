@@ -22,8 +22,11 @@
 	<div th:if="${ingredienti==null || ingredienti.isEmpty()}">Non ci sono ingredienti nel sistema</div>
 	<ul>
 		<li th:each="ingrediente : ${ingredienti}">
-			<span th:text="${ingrediente.nome} + ' ' + ${ingrediente.quantità}+ ' grammi' "> up(2000)</span>
-			<a th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}">Cancella</a>
+			<span th:text="${ingrediente.nome}"> </span>
+			<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
+        <form th:action="@{'/admin/ingrediente/' + ${ingrediente.id} + '/delete'}" method="post">
+            <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo ingrediente?');">Elimina</button>
+        </form>
 		</li>
 	</ul>
 </body>

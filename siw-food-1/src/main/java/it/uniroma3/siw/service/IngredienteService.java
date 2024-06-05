@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.repository.IngredienteRepository;
+import jakarta.transaction.Transactional;
 
 
 
@@ -36,7 +37,10 @@ public class IngredienteService {
 		return ingredienteRepository.existsByNome(nome);
 	}
 
-	public void delete(Ingrediente ingrediente) {
+	@Transactional
+	public void deleteById(Long id) {
+		Ingrediente ingrediente = findById(id);
+		ingredienteRepository.deleteReferencesInRicettaIngredienti(id);
 		ingredienteRepository.delete(ingrediente);
 	}
 	

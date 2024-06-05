@@ -62,15 +62,13 @@ public class IngredienteController {
 		return "ingredienti.html";
 	}
 	
-	@DeleteMapping("/admin/Ingrediente/{id}")
+	@PostMapping("/admin/ingrediente/{id}/delete")
     public String deleteIngrediente(@PathVariable("id") Long id, Model model) {
         Ingrediente ingrediente = ingredienteService.findById(id);
         if (ingrediente != null) {
-            ingredienteService.delete(ingrediente);
-            // Redirect alla pagina dell'indice dei servizi dopo la cancellazione
-            return "redirect:/admin/indexIngrediente";
+            ingredienteService.deleteById(id);
+            return "redirect:/admin/manageIngrediente";
         } else {
-            // Nel caso in cui il Ingrediente non esista
             model.addAttribute("messaggioErrore", "Ingrediente non trovato");
             return "admin/indexIngrediente.html";
             }

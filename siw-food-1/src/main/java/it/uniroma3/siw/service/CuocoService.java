@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Cuoco;
+import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.repository.CuocoRepository;
 
 import java.util.ArrayList;
@@ -62,7 +63,10 @@ public class CuocoService {
 	}
 
 
-	public void delete(Cuoco cuoco) {
+	@Transactional
+	public void deleteById(Long id) {
+		Cuoco cuoco = getCuoco(id);
+		CuocoRepository.deleteReferencesInRicettaCuochi(id);
 		CuocoRepository.delete(cuoco);
 	}
 }

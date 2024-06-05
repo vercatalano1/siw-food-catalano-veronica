@@ -177,16 +177,16 @@ public class RicettaController {
 		return ingredientiToAdd;
 	}
 	
-	@DeleteMapping("/admin/ricetta/{id}")
+	@GetMapping("/admin/ricetta/{id}")
     public String deleteRicetta(@PathVariable("id") Long id, Model model) {
         Ricetta ricetta = ricettaService.findById(id);
         if (ricetta != null) {
             ricettaService.delete(ricetta);
             // Redirect alla pagina dell'indice dei servizi dopo la cancellazione
-            return "redirect:/admin/indexRicetta";
+            return "redirect:/ricetta";
         } else {
             // Nel caso in cui il Cuoco non esista
-            model.addAttribute("messaggioErrore", "Ricetta non trovato");
+            model.addAttribute("messaggioErrore", "Ricetta non trovata");
             return "admin/indexRicetta.html";
             }
         }
