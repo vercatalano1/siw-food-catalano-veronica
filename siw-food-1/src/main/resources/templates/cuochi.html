@@ -68,7 +68,9 @@
 		<div th:if="${cuochi==null || cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
 
 		<div th:each="cuoco : ${cuochi}" class="chef-item">
-			<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+			<div class="image-container">
+				<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+			</div>
 			<div class="chef-details">
 				<h2 th:text="${cuoco.nome}+ ' ' + ${cuoco.cognome} ">cuoco</h2>
 				<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}" class="btn">Vedi Profilo</a>
