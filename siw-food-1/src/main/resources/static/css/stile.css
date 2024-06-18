@@ -1,213 +1,397 @@
+:root{
+    --gold: #FFD700; /* Colore dorato */
+}
+
 *{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Satisfy', cursive;
-	outline:none;
-	text-decoration: none;
-	text-transform: none;
-	transition: all .2s linear;
-	
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
 }
 
-p{
-	font-weight:300;
-	color:#111;
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+    background: rgb(0, 0, 0);
 }
 
-
-
-.banner{
-	position:relative;
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	background: url(../images/img3.jpg);
-	background-size: cover;
+section{
+    padding: 2rem 9%;
 }
 
-.banner .content{
-	position:relative;
-	margin-left: 0px;
-	margin-right: 500px;
-	margin-top: 130px;
-	max-width: 900px;
-    text-align: left;
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    color: #fff;
+    padding: 1rem;
+    margin: 2rem 0;
+    background: rgba(255, 215, 0, .05);
 }
 
-.banner .content h2{
-	font-size: 2em;
-	color:#fff;
-	
-}
-
-.banner .content p{
-	position:relative;
-	margin-right: 500px;
-	font-size: 1.5em;
-	color: #fff ;
+.heading span{
+    color: var(--gold);
 }
 
 .btn{
-	font-size: 1em;
-	color:#fff;
-	background: #ff0157;
-	display: inline-block;
-	padding:  10px 30px;
-	margin-top: 20px;
-	text-transform: uppercase;
-	text-decoration: none;
-	letter-spacing: 2px;
-	transition: 0.5s;
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background: #fff;
+    color: #333;
+    padding: .9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background: var(--gold);
 }
 
 header{
-	position: fixed;
-	top:0;
-	left:0;
-	right:0;
-	padding: 20px 100px;
-	z-index: 10000;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	transition: 0.5s;
-    box-shadow:0 .5rem 1rem rgba(0,0,0,.1) ;
-
-}
-
-
-
-header.sticky{
-	background: #fff ;
-	padding: 10px 100px;
-	box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff; /* Cambiato a bianco */
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.1);
 }
 
 header .logo{
-	color:#fff;
-	font-weight: 700;
-	font-size: 3em;
-	text-decoration: none;
+    font-size: 3rem;
+    color: #000; /* Cambiato a nero */
+    font-weight: bolder;
 }
 
 header .logo span{
-	color: #ff0157;
+    color: var(--gold);
 }
 
-header sticky .logo{
-	color:#111;
+header .navbar a{
+    font-size: 3rem;
+    padding: 0 1.5rem;
+    color: #000; /* Cambiato a nero */
 }
 
-header .navigation {
-	position: relative;
-	display: flex;
-	font-size: 30px;
+header .navbar a:hover{
+    color: var(--gold); /* Cambia a dorato al passaggio del mouse */
 }
 
-header .navigation li{
-	list-style: none;
-	margin-left: 40px;
-}
-
-header .navigation li a{
-	text-decoration: none;
-	color:#fff;
-	font-weight: 500;
-}
-header .sticky .navigation li a{
-	color:#111;
+header .icons {
+    display: flex;
+    align-items: center;
 }
 
 header .icons a{
-	height: 4.5rem;
-	width: 4.5rem;
-	line-height: 4.5rem;
-	border-radius: .5rem;
-	font-size: 1.5rem;
-	color: #fff;
-	text-align: center;;
-	margin-right: 2rem;
+    font-size: 2.5rem;
+    color: #000; /* Cambiato a nero */
+    cursor: pointer;
+    margin-right: 1.5rem;
 }
 
-menu-btn{
-	display: none;
+header .icons a:hover{
+    color: var(--gold); /* Cambia a dorato al passaggio del mouse */
 }
 
 header #toggler{
-	display: none;
+    display: none;
 }
 
 header .fa-bars{
-	font-size: 3rem;
-	color: #fff;
-	border-radius: .5rem;
-	padding: .5rem 1.5rem;
-	cursor: pointer;
-	border: .1rem solid rgb(255, 255, 255);
-	display: none;
+    font-size: 3rem;
+    color: #000; /* Cambiato a nero */
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    border: .1rem solid #000; /* Cambiato a nero */
+    display: none;
 }
 
-.header .search-form{
-	position:fixed;
-	top:110%;
-	right: -110%;
-	width: 50rem;
-	height: 4.5rem;
-	background: #fff;
-	border-radius: .5rem;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Allinea alla sinistra */
+    min-height: calc(100vh - 6rem); /* Sottrae l'altezza dell'header */
+    background: url(../images/img3.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-left: 9%; /* Padding sinistro per allineare con il resto del layout */
+    margin-top: 6rem; /* Altezza dell'header */
 }
 
-.header .search-form input{
-	width: 100%;
-	height: 100%;
-	background: none;
-	text-transform: none;
-	font-size: 1.6rem;
-	color:#111;
-	padding:0 1.5rem;
+.home .content {
+    max-width: 45rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.5); /* Fondo trasparente con overlay */
+    backdrop-filter: blur(1px); /* Effetto di sfocatura per leggere il testo */
 }
 
-.header .search-form label{
-	font-size: 2.2rem;
-	padding-right: 1.5rem;
-	color: #fff;
-	cursor: pointer;
+.home .content h3{
+    font-size: 5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
 }
 
-.header .search-form label:hover{
-	color:orange;
+.home .content p{
+    font-size: 2rem;
+    color: #fff;
+    padding: 1rem 0;
+    line-height: 1.5;
 }
 
 .expert .content{
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	flex-direction: row;
-	margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 40px;
 }
 
 .expert .content .box{
-	width: 250px;
-	margin:15px;
+    width: 250px;
+    margin:15px;
 }
 
 .expert .content .box .imgBx{
-	position: relative;
-	height: 100%;
-	height: 300px;
+    position: relative;
+    height: 100%;
+    height: 300px;
 }
 
 .expert .content .box .imgBx img{
-	position: absolute;
-	top:0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+
+/* Stili per la barra di ricerca e l'icona di ricerca */
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input[type="search"] {
+    padding: 0.6rem 1rem;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 3rem 0 0 3rem;
+    outline: none;
+}
+
+.search-form .search-button {
+    background: var(--gold); /* Colore dorato */
+    color: #fff;
+    border: none;
+    border-radius: 0 3rem 3rem 0;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.search-form .search-button:hover {
+    background: rgba(0, 0, 0, 0.5) ; /* Cambio colore al passaggio del mouse */
+}
+
+.search-form .search-button i {
+    font-size: 1.6rem;
+}
+
+.icons a {
+    margin-left: 1rem; /* Spaziatura tra le icone */
+}
+
+
+
+
+
+/* Dropdown per admin nell'header */
+
+header .icons a,
+header .icons .dropdown {
+    margin-right: 1.5rem; /* Spaziatura orizzontale tra le icone */
+}
+
+header .icons .dropdown {
+    position: relative;
+}
+
+/* Stile per l'icona dell'utente nel dropdown */
+
+header .icons .dropdown .user-icon {
+    font-size: 2.5rem;
+    color: #000; /* Cambiato a nero */
+    cursor: pointer;
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem; /* Aggiungi spazio sotto l'icona */
+}
+
+/* Cambia il colore dell'icona al passaggio del mouse */
+
+header .icons .dropdown .user-icon:hover {
+    color: var(--gold); /* Cambia a dorato al passaggio del mouse */
+}
+
+/* Stile per il contenitore del nome utente */
+
+header .icons .dropdown .user-info {
+    text-align: center;
+    font-size: 2.7rem; /* Dimensione più grande per il nome utente */
+    font-style: italic; /* Stile italico per il nome utente */
+    margin-bottom: 1.5rem; /* Spazio sotto il nome utente */
+}
+
+/* Linea separatoria sotto il nome utente */
+
+header .icons .dropdown .user-info::after {
+    content: '';
+    display: block;
+    width: 50%;
+    margin: 0.5rem auto;
+    border-bottom: 1px solid #ccc; /* Colore e stile della linea */
+}
+
+/* Stile per il contenitore delle opzioni nel dropdown */
+
+header .icons .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    top: calc(100% + 1rem); /* Posiziona il dropdown sotto l'icona */
+    left: 50%; /* Centra orizzontalmente il dropdown */
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease; /* Aggiungi transizione per l'opacità */
+    opacity: 0;
+    text-align: center;
+}
+
+/* Stile per le opzioni nel dropdown */
+
+header .icons .dropdown-content a {
+    color: #333;
+    padding: 0.8rem 1rem; /* Padding per le opzioni */
+    display: block;
+    text-align: center;
+    text-decoration: none; /* Rimuovi sottolineatura dai link */
+    font-size: 1.2rem; /* Dimensione più piccola per le opzioni */
+}
+
+/* Cambia il colore di sfondo e testo al passaggio del mouse sui link */
+
+header .icons .dropdown-content a:hover {
+    background-color: var(--gold);
+    color: #fff;
+}
+
+/* Mostra il dropdown quando l'icona è in hover o il dropdown è in hover */
+header .icons .dropdown:hover .dropdown-content,
+header .icons .dropdown-content:hover {
+    display: block;
+    opacity: 1;
+}
+
+/* Imposta una larghezza fissa per il dropdown content */
+header .icons .dropdown-content {
+    width: 200px; /* Imposta una larghezza fissa */
+}
+
+/* Media queries */
+
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    
+    header{
+        padding: 2rem;
+    }
+    
+    section{
+        padding: 2rem;
+    }
+    
+    .home{
+        background-position: left;
+    }
+}    
+    
+@media (max-width:768px){
+    
+    header .fa-bars{
+        display: block;
+    }
+    
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #eee;
+        border-top: .1rem solid rgb(255, 255, 255);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    
+    header #toggler:checked ~ .navbar {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    
+    header .navbar a{
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background: #333;
+        border: .1rem solid rgb(255, 255, 255);
+        display: block;
+    }
+    
+    .home .content h3{
+        font-size: 5rem;
+    }
+    
+    .home .content span{
+        font-size: 2.5rem;
+    }    
+    
+    .icons-container .icons h3{
+        font-size: 2rem;
+    }
+
+    .icons-container .icons span{
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width:450px){
+	html{
+	font-size: 50%;
+	}
+	
+	.heading{
+		font-size: 3rem;
+	}	
+	
+	@media (max-width: 768px) {
+    .search-form {
+        display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
+    }
+  }
+ }

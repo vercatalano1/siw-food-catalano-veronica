@@ -122,10 +122,10 @@ public class RicettaController {
 		return "ricette.html";
 	}
 	
-	@GetMapping("/formSearchRicette")
+	/*@GetMapping("/formSearchRicette")
 	public String formSearchRicette() {
 		return "formSearchRicette.html";
-	}
+	}*/
 
 	@PostMapping("/searchRicette")
 	public String searchRicette(Model model, @RequestParam String nome) {

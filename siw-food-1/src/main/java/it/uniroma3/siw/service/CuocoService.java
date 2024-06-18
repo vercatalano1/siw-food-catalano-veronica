@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Cuoco;
-import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.repository.CuocoRepository;
 
 import java.util.ArrayList;
