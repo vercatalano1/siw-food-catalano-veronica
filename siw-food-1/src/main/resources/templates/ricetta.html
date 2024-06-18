@@ -1,33 +1,101 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ricetta</title>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dettagli ricetta</title>
+
+	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap">
+
+
+	<!--comando per legare un foglio di stile esterno all'html-->
+	<link rel="stylesheet" href="/css/ricetta.css">
+
+	<link rel="shortcut icon" href="/images/icona.png">
 </head>
 
 <body>
-	<h1>Dettagli Ricetta</h1>
+	<header>
 
-    <div th:if="${ricetta}">
-		<div class="ricetta_image">
-			<img th:src="@{'/images/ricette/' + ${ricetta.image}}">
+		<input type="checkbox" name="" id="toggler">
+		<label for="toggler" class="fas fa-bars"></label>
+
+
+		<a href="/" class="logo">Siw-Food<span>.</span></a>
+
+		<nav class="navbar">
+			<a href="/">Home</a>
+			<a href="/ricetta"> Ricette </a>
+			<a href="/cuoco"> Chef </a>
+		</nav>
+
+
+
+		<div class="icons">
+			<!-- Form di ricerca -->
+			<form class="search-form" th:action="@{/searchRicette}" method="post">
+				<input type="search" id="search-box" name="nome" placeholder="Cerca ricette...">
+				<button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+			</form>
+			<div sec:authorize="isAuthenticated()">
+				<div class="dropdown" id="userDropdown">
+					<span class="user-icon fas fa-user"></span>
+					<div class="dropdown-content" id="dropdownContent">
+						<div class="user-info">
+							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
+						</div>
+						<a href="/logout">Logout</a>
+					</div>
+					<div class="arrow-down"></div>
+				</div>
+			</div>
+			<a sec:authorize="!isAuthenticated()" href="/login" class="fas fa-user"></a>
 		</div>
-        <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
-       <p>Descrizione:</p>
-        <div th:utext="${ricetta.descrizione}">Descrizione</div>
-        
-        <div th:if="${ricetta.cuoco != null}">
-			<h3>Cuoco:</h3> <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+
+	</header>
+
+
+
+	<main>
+        <div class="heading">
+            <h1>Dettagli Ricetta</h1>
+            <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
         </div>
-        <h4>Ingredienti:</h4>
-        <ul>
-            <li th:each="ingrediente : ${ricetta.ingredienti}">
-                <span th:text="${ingrediente.nome}">Nome ingrediente</span>
-                <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">Quantità</span>
 
-            </li>
-        </ul>
-    </div>
+         <div class="ricetta-details" th:if="${ricetta}">
+            <div class="left-column">
+			    <p class="descrizione" th:utext="${ricetta.descrizione}">Descrizione</p>
+            
+            <h4>Ingredienti:</h4>
+                <ul class="ingredienti-list">
+                    <li th:each="ingrediente : ${ricetta.ingredienti}">
+                        <span th:text="${ingrediente.nome}">Nome ingrediente</span>
+                        <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">Quantità</span>
+                    </li>
+                </ul>
+            </div>
 
-    <div th:unless="${ricetta}">Non esiste</div>
-  </body>
+            <div class="right-column">
+                 <div class="ricetta-image">
+                    <img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+                </div>
+                <div class="cuoco-info">
+                    <div class="cuoco-image">
+                        <img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco">
+                    </div>
+                    <div class="cuoco-details">
+                        <h3>Chef:</h3>
+                        <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+                    </div>
+                </div>       
+            </div>
+        </div>
+
+        <div th:unless="${ricetta}">Non esiste</div>
+    </main>
+</body>
+
 </html>

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cuochi</title>
+	<title>Dettagli cuoco</title>
 
 	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -12,7 +12,7 @@
 
 
 	<!--comando per legare un foglio di stile esterno all'html-->
-	<link rel="stylesheet" href="/css/cuochi.css">
+	<link rel="stylesheet" href="/css/cuoco.css">
 
 	<link rel="shortcut icon" href="/images/icona.png">
 </head>
@@ -27,9 +27,9 @@
 		<a href="/" class="logo">Siw-Food<span>.</span></a>
 
 		<nav class="navbar">
-			<a href=> Home </a>
-			<a href=/ricetta> Ricette </a>
-			<a href=/cuoco> Chef </a>
+			<a href="/">Home</a>
+			<a href="/ricetta"> Ricette </a>
+			<a href="/cuoco"> Chef </a>
 		</nav>
 
 
@@ -58,34 +58,45 @@
 	</header>
 
 
-     <h1>Profilo dello Chef</h1>
+     <!-- Main content -->
+    <main>
+        <h1>Profilo dello Chef</h1>
 
-    <div th:if="${cuoco}">
-		<div class="immagine_cuoco">
-			<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
-		</div>
-        <p>Nome: <span th:text="${cuoco.nome}">Nome</span></p>
-        <p>Cognome: <span th:text="${cuoco.cognome}">Cognome</span></p>
-        <p>Email: <span th:text="${cuoco.email}">Email</span></p>
-        <p>Data di Nascita: <span th:text="${cuoco.data}">Data di Nascita</span></p>
-        
-        
-        <!--lista delle ricette di questo cuoco, come link che ti porta alla ricetta-->
-        <h2>Ricette</h2>
-        <div th:if="${#lists.isEmpty(cuoco.ricette)}">
-            <p>Il cuoco non ha ricette disponibili.</p>
+        <!-- Profilo del cuoco -->
+        <div th:if="${cuoco}" class="chef-profile">
+                <div class="immagine_cuoco">
+                    <img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+                </div>
+                <div class="chef-details">
+                <p><strong>Nome:</strong> <span th:text="${cuoco.nome}">Nome</span></p>
+                <p><strong>Cognome:</strong> <span th:text="${cuoco.cognome}">Cognome</span></p>
+                <p><strong>Email:</strong> <span th:text="${cuoco.email}">Email</span></p>
+                <p><strong>Data di Nascita:</strong> <span th:text="${cuoco.data}">Data di Nascita</span></p>
+            </div>
+
+            <!-- Lista delle ricette -->
+            <div class="ricette">
+                <h2>Ricette:</h2>
+                <div th:if="${#lists.isEmpty(cuoco.ricette)}">
+                    <p>Il cuoco non ha ricette disponibili.</p>
+                </div>
+                <div th:unless="${#lists.isEmpty(cuoco.ricette)}">
+                    <div class="ricetta-list">
+                        <div th:each="ricetta : ${cuoco.ricette}" class="ricetta-item">
+                            <div class="ricetta-image">
+                                <img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+                            </div>
+                            <a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul th:unless="${#lists.isEmpty(cuoco.ricette)}">
-            <li th:each="ricetta : ${cuoco.ricette}">
-				<div class="ricetta_image">
-						<img th:src="@{'/images/ricette/' + ${ricetta.image}}" >
-					</div>
-                <a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
-            </li>
-        </ul>
-    </div>
-    
-    <div th:unless="${cuoco}">Non esiste</div>
-        
+
+        <!-- Caso in cui non ci sia un cuoco -->
+        <div th:unless="${cuoco}" class="no-cuoco">
+            <p>Il cuoco selezionato non esiste.</p>
+        </div>
+    </main>
   </body>
 </html>
