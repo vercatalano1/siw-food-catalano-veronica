@@ -2,13 +2,15 @@
 <html>
   <head>
     <title>Ricetta</title>
-	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
 <body>
 	<h1>Dettagli Ricetta</h1>
 
     <div th:if="${ricetta}">
+		<div class="ricetta_image">
+			<img th:src="@{'/images/ricette/' + ${ricetta.image}}">
+		</div>
         <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
        <p>Descrizione:</p>
         <div th:utext="${ricetta.descrizione}">Descrizione</div>

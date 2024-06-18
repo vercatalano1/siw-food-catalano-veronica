@@ -2,31 +2,79 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cuochi</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+
+	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap">
+
+
+	<!--comando per legare un foglio di stile esterno all'html-->
+	<link rel="stylesheet" href="/css/cuochi.css">
+
+	<link rel="shortcut icon" href="/images/icona.png">
 </head>
 
 <body>
-	
+
 	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
+
+		<input type="checkbox" name="" id="toggler">
+		<label for="toggler" class="fas fa-bars"></label>
+
+
+		<a href="/" class="logo">Siw-Food<span>.</span></a>
+
+		<nav class="navbar">
+			<a href=> Home </a>
+			<a href=/ricetta> Ricette </a>
+			<a href=/cuoco> Chef </a>
+		</nav>
+
+
+
+		<div class="icons">
+			<!-- Form di ricerca -->
+			<form class="search-form" th:action="@{/searchRicette}" method="post">
+				<input type="search" id="search-box" name="nome" placeholder="Cerca ricette...">
+				<button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+			</form>
+			<div sec:authorize="isAuthenticated()">
+				<div class="dropdown" id="userDropdown">
+					<span class="user-icon fas fa-user"></span>
+					<div class="dropdown-content" id="dropdownContent">
+						<div class="user-info">
+							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
+						</div>
+						<a href="/logout">Logout</a>
+					</div>
+					<div class="arrow-down"></div>
+				</div>
+			</div>
+			<a sec:authorize="!isAuthenticated()" href="/login" class="fas fa-user"></a>
 		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
+
 	</header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1>Cuochi</h1>
-	<div th:if="${cuochi==null || cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
-	<ul>
-		<li th:each="cuoco : ${cuochi}">
-			<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}"
-				th:text="${cuoco.nome}+ ' ' + ${cuoco.cognome} ">cuoco</a>
-		</li>
-	</ul>
+
+
+	<div class="heading">
+		<h1>I nostri Chef</h1>
+	</div>
+	<section class="chef-list">
+		<div th:if="${cuochi==null || cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+
+		<div th:each="cuoco : ${cuochi}" class="chef-item">
+			<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+			<div class="chef-details">
+				<h2 th:text="${cuoco.nome}+ ' ' + ${cuoco.cognome} ">cuoco</h2>
+				<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}" class="btn">Vedi Profilo</a>
+			</div>
+		</div>
+	</section>
 </body>
 
 </html>

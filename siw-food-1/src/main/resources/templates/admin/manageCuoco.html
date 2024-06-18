@@ -22,6 +22,9 @@
 	<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
 	<ul>
 		<li th:each="cuoco : ${cuochi}">
+			<div class="immagine_cuoco">
+			<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+		</div>
 			<span th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">nome</span>
 		<form th:action="@{'/admin/cuoco/' + ${cuoco.id}+ '/delete'}" method="post">
             <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo cuoco?');">Elimina</button>

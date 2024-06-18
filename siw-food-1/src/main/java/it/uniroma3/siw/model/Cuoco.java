@@ -27,7 +27,16 @@ public class Cuoco {
 	private LocalDate data;
 	@NotBlank(message = "{cuoco.email.notblank}")
 	private String email;
+	private String image;
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
 

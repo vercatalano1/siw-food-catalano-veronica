@@ -32,7 +32,7 @@ section{
     color: #fff;
     padding: 1rem;
     margin: 2rem 0;
-    background: rgba(255, 215, 0, .05);
+    background: rgba(255, 0, 0, .05);
 }
 
 .heading span{
@@ -118,66 +118,7 @@ header .fa-bars{
     display: none;
 }
 
-.home {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Allinea alla sinistra */
-    min-height: calc(100vh - 6rem); /* Sottrae l'altezza dell'header */
-    background: url(../images/img3.png) no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding-left: 9%; /* Padding sinistro per allineare con il resto del layout */
-    margin-top: 6rem; /* Altezza dell'header */
-}
 
-.home .content {
-    max-width: 45rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(0, 0, 0, 0.5); /* Fondo trasparente con overlay */
-    backdrop-filter: blur(1px); /* Effetto di sfocatura per leggere il testo */
-}
-
-.home .content h3{
-    font-size: 5rem;
-    color: var(--gold);
-    margin-bottom: 1rem;
-}
-
-.home .content p{
-    font-size: 2rem;
-    color: #fff;
-    padding: 1rem 0;
-    line-height: 1.5;
-}
-
-.expert .content{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin-top: 40px;
-}
-
-.expert .content .box{
-    width: 250px;
-    margin:15px;
-}
-
-.expert .content .box .imgBx{
-    position: relative;
-    height: 100%;
-    height: 300px;
-}
-
-.expert .content .box .imgBx img{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 
 /* Stili per la barra di ricerca e l'icona di ricerca */
@@ -315,6 +256,10 @@ header .icons .dropdown-content {
     width: 200px; /* Imposta una larghezza fissa */
 }
 
+
+
+
+
 /* Media queries */
 
 @media (max-width:991px){
@@ -339,10 +284,6 @@ header .icons .dropdown-content {
     
     header .fa-bars{
         display: block;
-    }
-    
-    .search-form {
-        display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
     
     header .navbar{
@@ -384,6 +325,150 @@ header .icons .dropdown-content {
     }
 }
 
+
+
+/* Chef List Styling */
+
+
+.chef-list {
+    padding: 2rem 9%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1{
+	font-size: 80px;
+	text-align: center;
+	margin-top: 8rem;
+	margin-bottom: 3rem;
+}
+
+.chef-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    width: calc(50% - 1rem);
+}
+
+.chef-item img {
+    border-radius: 50%;
+    width: 30rem;
+    height: 30rem;
+    object-fit: cover;
+    margin-right: 2rem;
+    margin-bottom: 5rem;
+}
+
+.chef-details {
+    flex-grow: 1;
+}
+
+.chef-details h2 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+
+.chef-details .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background: #fff;
+    color: #333;
+    padding: .5rem 2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.chef-details .btn:hover {
+    background: var(--gold);
+}
+
+
+
+
+
+
+/* Media queries */
+
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    
+    header{
+        padding: 2rem;
+    }
+    
+    section{
+        padding: 2rem;
+    }
+    
+    .home{
+        background-position: left;
+    }
+}    
+    
+@media (max-width:768px){
+    
+    header .fa-bars{
+        display: block;
+    }
+    
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #eee;
+        border-top: .1rem solid rgb(255, 255, 255);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    
+    header #toggler:checked ~ .navbar {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    
+    header .navbar a{
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background: #fff;
+        border: .1rem solid var(--gold);
+        display: block;
+    }
+    
+    .home .content h3{
+        font-size: 5rem;
+    }
+    
+    .home .content span{
+        font-size: 2.5rem;
+    }    
+    
+    .icons-container .icons h3{
+        font-size: 2rem;
+    }
+
+    .icons-container .icons span{
+        font-size: 1.7rem;
+    }
+    
+     .chef-item {
+        width: 100%; /* Un elemento per riga su schermi più piccoli */
+    }
+
+    .chef-item img {
+        width: 100%; /* Riempie completamente la larghezza del contenitore */
+        margin-right: 3px; 
+        margin-bottom: 1rem; /* Spazio inferiore tra le immagini */
+    }
+    
+    .search-form {
+        display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
+    }
+}
+
 @media (max-width:450px){
 	html{
 	font-size: 50%;
@@ -391,5 +476,13 @@ header .icons .dropdown-content {
 	
 	.heading{
 		font-size: 3rem;
-	}	
+  }
+ }
+ 
+ 
+@media (max-width: 1200px) {
+    .chef-item {
+        width: calc(50% - 1rem); /* Due elementi per riga su schermi più grandi */
+    }
+
  }
