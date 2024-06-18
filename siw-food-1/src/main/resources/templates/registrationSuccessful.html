@@ -2,24 +2,30 @@
 <html>
 
 <head>
-	<title>SiwFood - Registrazione conclusa</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Siw Food- registrazione conclusa</title>
+
+	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap">
+
+
+	<!--comando per legare un foglio di stile esterno all'html-->
+	<link rel="stylesheet" href="/css/successful.css">
+
+	<link rel="shortcut icon" href="/images/icona.png">
 </head>
+
 
 <body>
 	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
+		<a th:href="${#authorization.expression('isAuthenticated()') ? '/cliente/indexUser' : '/'}" class="logo">
+			Siw-Food<span>.</span></a>
 	</header>
 
-	<div>
-		<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
-	</div>
+	
 	<h1>Congratulazioni ti sei registrato!</h1>
 	<div>
 		<span>Nome: </span>
@@ -34,4 +40,5 @@
 		<span th:text="${user.email}"></span>
 	</div>
 </body>
+
 </html>
