@@ -1,0 +1,138 @@
+:root{
+    --gold: #FFD700; /* Colore dorato */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:  'Raleway', sans-serif;
+    background-image: url(/images/login.png);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: #fff;
+}
+
+body .logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-left: 2rem;
+    margin-top: 3rem;
+}
+
+body .logo span {
+    color: var(--gold);
+}
+
+.wrapper {
+    max-width: 40%;
+    margin:  auto;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.6); /* Rendiamo leggermente più trasparente */
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1rem; 
+    color: black; /* Cambiamo il colore del titolo */
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+.input-box {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none; /* Rimuoviamo il bordo di focus */
+}
+
+span[th\:errors] {
+    display: block;
+    margin-top: 0.5rem;
+    color: rgb(255, 0, 0);
+    font-size: 1rem;
+}
+
+.btn {
+    background: var(--gold);
+    color: rgb(255, 255, 255);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background:  rgb(255, 255, 128);
+}
+
+.login-link p {
+    color: black;
+}
+
+.login-link a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: var(--gold);
+}
+
+
+/*media queries*/
+
+@media (max-width: 991px) {
+    .wrapper {
+        max-width: 60%;
+        padding: 1rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        max-width: 70%;
+        padding: 1rem;
+    }
+
+
+}
+
+@media (max-width: 450px) {
+    .wrapper {
+        max-width: 100%;
+        padding: 0.5rem;
+    }
+
+
+}
