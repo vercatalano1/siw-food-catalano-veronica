@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,49 +57,50 @@
 
 	</header>
 
-<div class="cuoco_main">
-	<h1>Aggiungi un cuoco</h1>
-	<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">
-  		
-  		<div th:if="${#fields.hasGlobalErrors()}">
-  			<span th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</span> 
-  		</div>
-		
-		<div class="nome">
-			<label>Nome:</label> 
-			<span><input type="text" th:field="${cuoco.nome}" /></span>
-		    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
-		    </span>
-		</div>
-		
-		<div class="cognome">
-			<label>Cognome:</label> 
-			<span><input type="text" th:field="${cuoco.cognome}" /></span>
-		    <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">
-		    </span>
-		</div>
-		
-		<div class="email">
-			<label>Email:</label> 
-			<span><input type="text" th:field="${cuoco.email}" /></span>
-		    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-		    </span>
-		</div>
+	<div class="cuoco_main">
+		<h1>Aggiungi un cuoco</h1>
+		<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">
 
-		<div class="data">
-			<label>Data di nascita:</label> <span><input type="date" th:field="${cuoco.data}" /></span>
-		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">
-		    </span>
-		</div>
+			<div th:if="${#fields.hasGlobalErrors()}">
+				<span th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</span>
+			</div>
 
-		<div class="image">
-				 <label>Image:</label> <span><input type="file" id="image" name="image" accept="image/png" /></span>
-		     </div>
-		
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
-	</form>
+			<div class="nome">
+				<label>Nome:</label>
+				<span><input type="text" th:field="${cuoco.nome}" /></span>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+				</span>
+			</div>
+
+			<div class="cognome">
+				<label>Cognome:</label>
+				<span><input type="text" th:field="${cuoco.cognome}" /></span>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">
+				</span>
+			</div>
+
+			<div class="email">
+				<label>Email:</label>
+				<span><input type="text" th:field="${cuoco.email}" /></span>
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+				</span>
+			</div>
+
+			<div class="data">
+				<label>Data di nascita:</label> <span><input type="date" th:field="${cuoco.data}" /></span>
+				<span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">
+				</span>
+			</div>
+
+			<div class="image">
+				<label>Image:</label> <span><input type="file" id="image" name="image" accept="image/png" /></span>
+			</div>
+
+			<div>
+				<span><button type="submit">Conferma</button></span>
+			</div>
+		</form>
+	</div>
 </body>
 
 </html>
