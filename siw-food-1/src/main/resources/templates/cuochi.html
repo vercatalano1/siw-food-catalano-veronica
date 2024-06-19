@@ -69,7 +69,8 @@
 
 		<div th:each="cuoco : ${cuochi}" class="chef-item">
 			<div class="image-container">
-				<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+				<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
+					onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
 			</div>
 			<div class="chef-details">
 				<h2 th:text="${cuoco.nome}+ ' ' + ${cuoco.cognome} ">cuoco</h2>

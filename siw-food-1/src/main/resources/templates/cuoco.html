@@ -65,7 +65,8 @@
         <!-- Profilo del cuoco -->
         <div th:if="${cuoco}" class="chef-profile">
                 <div class="immagine_cuoco">
-                    <img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco">
+                    <img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
+					onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
                 </div>
                 <div class="chef-details">
                 <p><strong>Nome:</strong> <span th:text="${cuoco.nome}">Nome</span></p>

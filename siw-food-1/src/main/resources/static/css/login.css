@@ -33,7 +33,7 @@ body .logo span {
 
 .wrapper {
     max-width: 40%;
-    margin: 20vh auto 10vh;;
+    margin: 20vh auto 10vh;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.6); /* Rendiamo leggermente più trasparente */
     border-radius: 10px;

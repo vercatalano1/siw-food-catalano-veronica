@@ -26,6 +26,15 @@
 
         <h1>Registrazione nuovo utente</h1>
         <form th:action="@{/register}" method="POST">
+            <div class="image">
+				 <label>Immagine del profilo</label> 
+				 <div class="profile-header">
+				     <img th:src="@{'/images/cuochi/' + ${immagine}}" alt="">
+                 </div>
+				 <span>
+					 <input type="file" id="image" name="image" accept="image/png" />
+				</span>
+		    </div>
             <div class="input-box">
                 <label>Nome</label>
                 <input type="text" placeholder="Nome" required th:field="${user.nome}" />
@@ -40,6 +49,11 @@
                 <label>Email</label>
                 <input type="email" placeholder="Email" required th:field="${user.email}" />
                 <span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
+            </div>
+            <div class="input-box">
+                <label>Data di nascita</label>
+                <input type="date" placeholder="data" required th:field="${user.data}" />
+                <span th:if="${#fields.hasErrors('user.data')}" th:errors="${user.data}" th:style="'color:red'"></span>
             </div>
             <div class="input-box">
                 <label>Username</label>
@@ -57,10 +71,10 @@
             <div class="login-link">
                 <p>Hai già un account? <a href="/login">Accedi</a></p>
             </div>
-        </form>
-
-        
+        </form>  
     </div>
+    
+   
 </body>
 
 </html>

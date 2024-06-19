@@ -33,7 +33,7 @@ body .logo span {
 
 .wrapper {
     max-width: 40%;
-    margin:  auto;
+    margin:auto ;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.6); /* Rendiamo leggermente più trasparente */
     border-radius: 10px;
@@ -108,6 +108,59 @@ span[th\:errors] {
     color: var(--gold);
 }
 
+/* Styles for the image upload section */
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+	background-image: url(/images/cuochi/profilo.png);
+    position: relative;
+    background-size: cover; /* Adatta l'immagine all'interno del cerchio mantenendo le proporzioni */
+    background-position: center; /* Centra l'immagine */
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.profile-header span {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 215, 0, 0.8); /* Light gold color */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.profile-header span input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.profile-header span:hover {
+    background-color: rgba(230, 184, 0, 0.8); /* Darker gold color */
+}
 
 /*media queries*/
 

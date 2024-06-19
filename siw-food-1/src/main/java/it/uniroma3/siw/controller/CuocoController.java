@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.CuocoValidator;
 import it.uniroma3.siw.controller.validator.RicettaValidator;
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.CuocoService;
 import jakarta.validation.Valid;
 
@@ -22,6 +26,8 @@ public class CuocoController {
 	private CuocoService CuocoService;
 	@Autowired
 	private CuocoValidator cuocoValidator;
+	@Autowired
+    private CredentialsService credentialsService;
 
 	@GetMapping(value="/admin/formNewCuoco")
 	public String formNewCuoco(Model model) {
