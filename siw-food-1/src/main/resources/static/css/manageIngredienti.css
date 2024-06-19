@@ -19,7 +19,7 @@ html{
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
     overflow-x: hidden;
-    background: #fff
+    background: rgb(0, 0, 0);
 }
 
 section{
@@ -32,6 +32,7 @@ section{
     color: #fff;
     padding: 1rem;
     margin: 2rem 0;
+    background: rgba(255, 0, 0, .05);
 }
 
 .heading span{
@@ -252,12 +253,24 @@ header .icons .dropdown-content:hover {
 }
 
 /* Imposta una larghezza fissa per il dropdown content */
-main {
-    margin: 2rem auto;
-    background-color: #fff;
+header .icons .dropdown-content {
+    width: 200px; /* Imposta una larghezza fissa */
+}
+
+
+/* Main styles */
+body {
+    background-color: #fff; /* Colore di sfondo scuro */
+    color: #333; 
     padding: 2rem;
-    border-radius: 10px;
+    margin: 0;
+    font-size: 2rem;
+}
+
+.container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .heading {
@@ -266,117 +279,86 @@ main {
 }
 
 h1 {
-	font-size: 80px;
-	text-align: center;
-	margin-top: 3rem;
-	color:var(--gold);
-}
-
-h2 {
-    font-size: 4rem;
-    color: #333;
+    font-size: 80px;
+    text-align: center;
+    margin-top: 8rem;
     margin-bottom: 3rem;
+    color: #333;
 }
 
-h4{
-	font-size: 4rem;
-	margin-top: 3rem;
-}
 
-.ricetta-details {
-    display: flex;
-    margin-top: 2rem;
-    gap: 2rem;
-}
-
-.left-column {
-	flex: 0 0 50%;
-    margin-right: 2rem;
-}
-
-.left-column .descrizione {
-    font-size: 2rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-}
-
-.ingredienti-list {
-    margin-top: 1rem;
-    padding-left: 0;
+.ingredient-list {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Due colonne */
+    gap: 2rem; /* Spazio tra gli elementi */
 }
 
-.ingredienti-list li {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
-
-.ingredienti-list span{
-	font-size: 2rem;
-}
-
-.ricetta-image {
-    width: 100%;
-    height:400px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-
-.ricetta-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.ingredient-item {
+    background-color: #fff ; 
+    padding: 1rem;
     border-radius: 10px;
-}
-
-.cuoco-info {
-    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
-.cuoco-image img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1rem;
+.ingredient-content {
+    flex: 1;
 }
 
-.cuoco-details {
-    font-size: 2.5rem;
-    color: #333;
+.ingredient-name {
+    font-size: 1.5rem; /* Testo grande */
+    color: #333; /* Testo nero */
 }
 
-.cuoco-details a:hover {
-    color: var(--gold);
+.ingredient-quantity {
+    font-size: 1.2rem; 
+    color: #333; 
 }
 
+button {
+    padding: 0.5rem 1rem;
+    background-color: var(--gold);
+    color: #333; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color:rgb(255, 255, 128); /* Giallo più chiaro al passaggio del mouse */
+}
+
+
+
+/* Media query per adattarsi a schermi più piccoli */
 @media (max-width: 768px) {
-    main {
-        padding: 1rem;
+
+
+    ul {
+        grid-template-columns: 1fr; /* Una colonna su schermi più piccoli */
     }
-    
-    .ricetta-details {
-        flex-direction: column;
-        gap: 1rem;
+
+    li {
+        flex-direction: column; /* Mostra gli elementi in colonna */
+        text-align: center; /* Allinea il testo al centro */
+        padding: 1rem; /* Aumenta il padding */
     }
-    
-    .ricetta-image {
-        max-width: 100%;
-    }
-    
-    .cuoco-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .cuoco-image img {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
+
+    li span:first-child {
+        margin-bottom: 0.5rem; /* Riduce il margine inferiore per il primo span */
+        margin-right: 0; /* Rimuove il margine a destra */
     }
 }
+
+
+
 
 /* Media queries */
 
@@ -385,17 +367,6 @@ h4{
         font-size: 55%;
     }
     
-    header{
-        padding: 2rem;
-    }
-    
-    section{
-        padding: 2rem;
-    }
-    
-    .home{
-        background-position: left;
-    }
 }    
     
 @media (max-width:768px){
@@ -446,24 +417,7 @@ h4{
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
-    
-        main {
-        padding: 1rem;
-    }
-
-
-    .ricetta-details {
-        flex-direction: column;
-    }
-
-    .ricetta-image {
-        margin-bottom: 1rem;
-    }
-
-    .left-column {
-        margin-right: 0;
-        margin-bottom: 2rem;
-    }
+   
 }
 
 @media (max-width:450px){
@@ -474,4 +428,5 @@ h4{
 	.heading{
 		font-size: 3rem;
   }
+
 }

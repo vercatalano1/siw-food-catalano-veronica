@@ -13,7 +13,7 @@
 
 
 	<!--comando per legare un foglio di stile esterno all'html-->
-	<link rel="stylesheet" href="/css/cuoco.css">
+	<link rel="stylesheet" href="/css/manageIngredienti.css">
 
 	<link rel="shortcut icon" href="/images/icona.png">
 </head>
@@ -58,12 +58,15 @@
 
 	</header>
 
-	<h1>Ingredienti</h1>
-	<div th:unless="${ingredienti == null or ingredienti.isEmpty()}">
-        <ul>
-            <li th:each="ingrediente : ${ingredienti}">
-                <span th:text="${ingrediente.nome}"> </span>
-			    <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
+	<div class="heading">
+        <h1>Ingredienti</h1>
+    </div>
+
+    <div th:unless="${ingredienti == null or ingredienti.isEmpty()}">
+        <ul class="ingredient-list">
+            <li th:each="ingrediente : ${ingredienti}" class="ingredient-item">
+                <span th:text="${ingrediente.nome}"></span>
+                <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}" class="quantity"></span>
             </li>
         </ul>
     </div>

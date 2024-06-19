@@ -26,9 +26,7 @@ public class CuocoController {
 	private CuocoService CuocoService;
 	@Autowired
 	private CuocoValidator cuocoValidator;
-	@Autowired
-    private CredentialsService credentialsService;
-
+	
 	@GetMapping(value="/admin/formNewCuoco")
 	public String formNewCuoco(Model model) {
 		model.addAttribute("cuoco", new Cuoco());
