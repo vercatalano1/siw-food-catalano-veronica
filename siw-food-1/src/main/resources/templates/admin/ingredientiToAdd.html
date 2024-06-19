@@ -2,44 +2,96 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Scelta ingredienti</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+
+	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap">
+
+
+	<!--comando per legare un foglio di stile esterno all'html-->
+	<link rel="stylesheet" href="/css/ingredientiToAdd.css">
+
+	<link rel="shortcut icon" href="/images/icona.png">
 </head>
 
 <body>
 	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
+
+		<input type="checkbox" name="" id="toggler">
+		<label for="toggler" class="fas fa-bars"></label>
+
+
+		<a href="/" class="logo">Siw-Food<span>.</span></a>
+
+		<nav class="navbar">
+			<a href="/">Home</a>
+			<a href="/ricetta">Ricette</a>
+		</nav>
+
+
+
+		<div class="icons">
+			<!-- Form di ricerca -->
+			<form class="search-form" th:action="@{/searchRicette}" method="post">
+				<input type="search" id="search-box" name="nome" placeholder="Cerca ricette...">
+				<button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+			</form>
+			<div class="dropdown" id="userDropdown">
+				<span class="user-icon fas fa-user"></span>
+				<div class="dropdown-content" id="dropdownContent">
+					<div class="user-info">
+						<!-- Mostra il nome admin dinamicamente -->
+
+						<span class="user-name" th:text="${userDetails.username}">Siw Food</span>
+					</div>
+					<!-- Link per logout admin -->
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="arrow-down"></div>
+			</div>
 		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
+
 	</header>
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div> 
-	
-	<h1 th:text="'Ingredienti per la ricetta ' + ${ricetta.nome}"></h1>
-	<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
-	<ul>
-		<li th:each="ingrediente : ${ricetta.ingredienti}">
-			<span th:text="${ingrediente.nome}"> </span>
-			<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
-			<a th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
-		</li>
-	</ul>
-	<div>
-		Ingredienti che si possono aggiungere:
-		<ul>
-			<li th:each="ingrediente : ${ingredientiToAdd}">
-				<span th:text="${ingrediente.nome}"> </span>
-			<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
-				<a th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
-			</li>
-		</ul>
-	</div>
-	<div>
-		<a th:href="@{'/admin/formUpdateRicetta/'+ ${ricetta.id}}"><button type="button">Fine</button></a>
-	</div>
+
+	<main>
+		<div class="heading">
+			<h1>Scelta ingredienti per la ricetta</h1>
+			<h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
+
+            <div class="ingredienti">
+			<h2>Ingredienti già aggiunti:</h2>
+			<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
+			<ul>
+				<li th:each="ingrediente : ${ricetta.ingredienti}">
+					<span th:text="${ingrediente.nome}"> </span>
+					<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
+					<div class="btn-group">
+						<a
+							th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
+					</div>
+				</li>
+			</ul>
+			<div>
+				<h3>Ingredienti che si possono aggiungere:</h3>
+				<ul>
+					<li th:each="ingrediente : ${ingredientiToAdd}">
+						<span th:text="${ingrediente.nome}"> </span>
+						<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
+						<div class="btn-group">
+							<a
+								th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="fine-btn">
+			<a th:href="@{'/admin/formUpdateRicetta/'+ ${ricetta.id}}"><button type="button">Fine</button></a>
+		</div>
 </body>
 
 </html>

@@ -1,5 +1,12 @@
 :root{
-    --gold: #FFD700; /* Colore dorato */
+    --gold: #FFD700; 
+    --dark-bg: #222;
+    --light-bg: #f5f5f5;
+    --border-color: #ccc;
+    --error-color: #e74c3c;
+    --button-hover: rgb(255, 255, 128);
+    --input-focus: rgb(255, 255, 128);
+    --box-shadow: rgba(0, 0, 0, 0.1);	
 }
 
 *{
@@ -258,106 +265,107 @@ header .icons .dropdown-content {
 }
 
 
-/* Main styles */
+
+/*New ricetta*/
+
 body {
-    background-color: #fff; 
-    color: #333; 
-    padding: 2rem;
     margin: 0;
-    font-size: 2rem;
+    padding: 0;
+    position: relative; /* Posizione relativa per contenere il pseudo-elemento */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+body::before {
+    content: '';
+    position: fixed; /* Posizione fissa per coprire l'intera finestra */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/img3.png'); /* Immagine di sfondo */
+    background-size: cover; /* Copre l'intera area */
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1; /* Posiziona sotto gli altri contenuti */
 }
 
-.heading {
+.ricetta_main {
+    max-width: 500px;
+    margin: 10rem auto ;
+    padding: 3rem;
     text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--box-shadow);
+    border: 1px solid var(--border-color);
+    background: rgb(255, 255, 255);
+    position:relative;
+}
+
+.ricetta_main h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+form div {
     margin-bottom: 2rem;
 }
 
-h1 {
-    font-size: 80px;
-    text-align: center;
-    margin-top: 8rem;
-    margin-bottom: 3rem;
-    color: #333;
+label {
+   display: block;
+   font-size: 1.8rem;
+   margin-bottom: .5rem;
+   color: #333;
 }
 
-
-.ingredient-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 2rem; /* Spazio tra gli elementi */
-}
-
-.ingredient-item {
-    background-color: #fff ; 
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: calc(100% - 2rem);
     padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.ingredient-content {
-    flex: 1;
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color:var(--gold);
+    box-shadow: 0 0 5px var(--input-focus);
 }
 
-.ingredient-name {
-    font-size: 1.5rem; 
-    color: #333; 
-}
-
-.ingredient-quantity {
-    font-size: 1.2rem; 
-    color: #333; 
+.ricetta_main span {
+    display: block;
+    margin-top: .3rem;
+    color: var(--error-color);
+    font-size: 1.5rem;
 }
 
 button {
-    padding: 0.5rem 1rem;
-    background-color: var(--gold);
-    color: #333; 
+    display: inline-block;
+    width: 100%;
+    padding: 1.2rem;
     border: none;
     border-radius: 5px;
+    background: var(--gold);
+    color: #333;
+    font-size: 1.6rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
-    background-color:rgb(255, 255, 128); /* Giallo più chiaro al passaggio del mouse */
+.ricetta_main button[type="submit"]:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px);
 }
-
-
-
-/* Media query per adattarsi a schermi più piccoli */
-@media (max-width: 768px) {
-
-
-    ul {
-        grid-template-columns: 1fr; /* Una colonna su schermi più piccoli */
-    }
-
-    li {
-        flex-direction: column; /* Mostra gli elementi in colonna */
-        text-align: center; 
-        padding: 1rem; 
-    }
-
-    li span:first-child {
-        margin-bottom: 0.5rem; 
-        margin-right: 0;
-    }
-}
-
-
 
 
 /* Media queries */
@@ -365,6 +373,18 @@ button:hover {
 @media (max-width:991px){
     html{
         font-size: 55%;
+    }
+    
+    header{
+        padding: 2rem;
+    }
+    
+    section{
+        padding: 2rem;
+    }
+    
+    .home{
+        background-position: left;
     }
     
 }    
@@ -417,7 +437,6 @@ button:hover {
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
-   
 }
 
 @media (max-width:450px){
@@ -428,5 +447,4 @@ button:hover {
 	.heading{
 		font-size: 3rem;
   }
-
 }
