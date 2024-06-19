@@ -91,6 +91,7 @@ header .navbar a:hover{
 header .icons {
     display: flex;
     align-items: center;
+    gap:1rem;
 }
 
 header .icons a{
@@ -399,16 +400,19 @@ h1{
         font-size: 1.7rem;
     }
     
-     .chef-item {
-        width: 100%; /* Un elemento per riga su schermi più piccoli */
+     .image-container {
+        width: 20rem;
+        height: 20rem;
     }
 
-    .chef-item img {
-        width: 100%; /* Riempie completamente la larghezza del contenitore */
-        margin-right: 3px; 
-        margin-bottom: 1rem; /* Spazio inferiore tra le immagini */
+    .chef-item {
+        flex-direction: column;
+        width: 100%;
     }
-    
+
+    .chef-details span {
+        margin: 2rem 0;
+    }
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
@@ -419,15 +423,23 @@ h1{
 	font-size: 50%;
 	}
 	
-	.heading{
-		font-size: 3rem;
-  }
- }
- 
- 
-@media (max-width: 1200px) {
-    .chef-item {
-        width: calc(50% - 1rem); /* Due elementi per riga su schermi più grandi */
+	.heading h1 {
+        font-size: 3rem;
     }
 
+    .image-container {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .chef-details span {
+        font-size: 1.5rem;
+    }
+
+    .chef-details button {
+        padding: .5rem 1rem;
+        font-size: 1.2rem;
+    }
  }
+ 
+ 

@@ -1,5 +1,5 @@
 :root{
-    --gold: #FFD700;
+    --gold: #FFD700; /* Colore dorato */
 }
 
 *{
@@ -13,8 +13,6 @@
     text-decoration: none;
     transition: .2s linear;
 }
-
-
 
 html{
     font-size: 62.5%;
@@ -93,6 +91,7 @@ header .navbar a:hover{
 header .icons {
     display: flex;
     align-items: center;
+    gap:1rem;
 }
 
 header .icons a{
@@ -341,8 +340,6 @@ body::before {
 }
 
 
-
-
 /* Media queries */
 
 @media (max-width:991px){
@@ -411,7 +408,6 @@ body::before {
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
-
 }
 
 @media (max-width:450px){
@@ -422,4 +418,5 @@ body::before {
 	.heading{
 		font-size: 3rem;
   }
- }
+}
+
