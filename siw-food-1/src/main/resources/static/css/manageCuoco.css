@@ -1,5 +1,5 @@
 :root{
-    --gold: #FFD700;
+    --gold: #FFD700; /* Colore dorato */
 }
 
 *{
@@ -13,8 +13,6 @@
     text-decoration: none;
     transition: .2s linear;
 }
-
-
 
 html{
     font-size: 62.5%;
@@ -93,6 +91,7 @@ header .navbar a:hover{
 header .icons {
     display: flex;
     align-items: center;
+    gap:1rem;
 }
 
 header .icons a{
@@ -260,85 +259,83 @@ header .icons .dropdown-content {
 
 
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    position: relative; /* Posizione relativa per contenere il pseudo-elemento */
-}
-
-body::before {
-    content: '';
-    position: fixed; /* Posizione fissa per coprire l'intera finestra */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/images/icona.png'); /* Immagine di sfondo */
-    background-size: contain; /* Copre l'intera area */
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.7; /* Opacità per trasparenza */
-    z-index: -1; /* Posiziona sotto gli altri contenuti */
-}
 
 
-.white-box {
+/* Chef List Styling */
+
+
+.chef-list {
+    padding: 2rem 9%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    min-height: 100vh;
-}
-
-.section {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-.section h1 {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    color: var(--gold);
-    font-weight: bold;
-}
-
-.container {
-    padding: 20px;
-    border-radius: 20px;
-    width: 60%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.2); 
-}
-
-
-.link-container {
-    display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-left: 13rem;
 }
 
-.link-container a {
-    text-decoration: none;
-    color:#333;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-bottom: 30px; 
-    margin-right: 20px;
-    font-size: 2rem; 
-    width: auto; 
-    flex: 1;
-    text-align: center; 
-    transition: background-color 0.3s, transform 0.3s;
+h1{
+	font-size: 80px;
+	text-align: center;
+	margin-top: 8rem;
+	margin-bottom: 3rem;
+	color:var(--gold);
 }
 
-.link-container a:hover {
-    background-color: var(--gold);
-    transform: scale(1.05);
+.chef-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    width: calc(50% - 1rem);
+    margin-right: 1rem;
 }
+
+.chef-item .image-container {
+    border-radius: 50%;
+    width: 30rem;
+    height: 30rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+    margin-bottom: 5rem;
+}
+
+.chef-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chef-details {
+    flex-grow: 1;
+}
+
+.chef-details h2 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+
+.chef-details button {
+    width: 7rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #fff;
+    color: #333;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.chef-details button:hover {
+    background: var(--gold);
+}
+
+
 
 
 
@@ -407,11 +404,22 @@ body::before {
         font-size: 1.7rem;
     }
     
-    
+     .image-container {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .chef-item {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .chef-details span {
+        margin: 2rem 0;
+    }
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
-
 }
 
 @media (max-width:450px){
@@ -419,7 +427,27 @@ body::before {
 	font-size: 50%;
 	}
 	
-	.heading{
-		font-size: 3rem;
-  }
+	.heading h1 {
+        font-size: 3rem;
+    }
+
+    .image-container {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .chef-details span {
+        font-size: 1.5rem;
+    }
+
+    .chef-details button {
+        padding: .5rem 1rem;
+        font-size: 1.2rem;
+    }
  }
+ 
+ 
+
+
+
+

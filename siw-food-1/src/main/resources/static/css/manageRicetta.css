@@ -1,5 +1,5 @@
 :root{
-    --gold: #FFD700;
+    --gold: #FFD700; /* Colore dorato */
 }
 
 *{
@@ -13,8 +13,6 @@
     text-decoration: none;
     transition: .2s linear;
 }
-
-
 
 html{
     font-size: 62.5%;
@@ -93,6 +91,7 @@ header .navbar a:hover{
 header .icons {
     display: flex;
     align-items: center;
+    gap:1rem;
 }
 
 header .icons a{
@@ -259,87 +258,113 @@ header .icons .dropdown-content {
 }
 
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    position: relative; /* Posizione relativa per contenere il pseudo-elemento */
-}
-
-body::before {
-    content: '';
-    position: fixed; /* Posizione fissa per coprire l'intera finestra */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/images/icona.png'); /* Immagine di sfondo */
-    background-size: contain; /* Copre l'intera area */
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.7; /* Opacità per trasparenza */
-    z-index: -1; /* Posiziona sotto gli altri contenuti */
-}
-
-
-.white-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    min-height: 100vh;
-}
-
-.section {
+/* Main styles */
+h1 {
+    font-size: 80px;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-.section h1 {
-    font-size: 4rem;
-    margin-bottom: 15px;
+    margin-top: 8rem;
+    margin-bottom: 3rem;
     color: var(--gold);
-    font-weight: bold;
 }
 
-.container {
-    padding: 20px;
-    border-radius: 20px;
-    width: 60%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.2); 
-}
-
-
-.link-container {
+.ricette-list {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    gap: 7rem;
+    justify-content: center;
 }
 
-.link-container a {
+.ricetta-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.ricetta-item::before,
+.ricetta-item::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: -1;
+}
+
+.ricetta-item::after {
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.ricetta-item:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.ricetta-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    align-self: center;
+}
+
+.ricetta-details h2 {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.ricetta-details a {
+    font-size: 1.8rem;
+    color: #333;
     text-decoration: none;
-    color:#333;
+    margin-bottom: 1rem;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.ricetta-details a:hover {
+    color: var(--gold);
+    text-decoration: underline;
+}
+
+.ricetta-details form {
+    display: flex;
+    justify-content: space-around; /* Adjust spacing between buttons */
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.ricetta-details button {
+    font-size: 1.8rem;
+    padding: 0.8rem 1.5rem;
     background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-bottom: 30px; 
-    margin-right: 20px;
-    font-size: 2rem; 
-    width: auto; 
-    flex: 1;
-    text-align: center; 
-    transition: background-color 0.3s, transform 0.3s;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.link-container a:hover {
+.ricetta-details button:hover {
     background-color: var(--gold);
-    transform: scale(1.05);
+    color: #fff;
 }
-
 
 
 
@@ -350,16 +375,12 @@ body::before {
         font-size: 55%;
     }
     
-    header{
-        padding: 2rem;
+     h1 {
+        font-size: 6rem;
     }
-    
-    section{
-        padding: 2rem;
-    }
-    
-    .home{
-        background-position: left;
+
+    .ricetta-item {
+        width: 100%;
     }
 }    
     
@@ -411,7 +432,23 @@ body::before {
     .search-form {
         display: none; /* Nasconde la barra di ricerca su schermi più piccoli */
     }
+    
+    h1 {
+        font-size: 5rem;
+    }
 
+    .ricetta-item {
+        width: 80%;
+    }
+
+    .ricetta-details h2 {
+        font-size: 2rem;
+    }
+
+    .ricetta-details a,
+    .ricetta-details button {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width:450px){
@@ -422,4 +459,21 @@ body::before {
 	.heading{
 		font-size: 3rem;
   }
- }
+  
+  h1 {
+        font-size: 4rem;
+    }
+
+    .ricetta-item {
+        width: 100%;
+    }
+
+    .ricetta-details h2 {
+        font-size: 1.8rem;
+    }
+
+    .ricetta-details a,
+    .ricetta-details button {
+        font-size: 1.2rem;
+    }
+}

@@ -2,33 +2,84 @@
 <html>
 
 <head>
-	<title>Ricetta</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestione ricette</title>
+
+	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap">
+
+
+	<!--comando per legare un foglio di stile esterno all'html-->
+	<link rel="stylesheet" href="/css/manageRicetta.css">
+
+	<link rel="shortcut icon" href="/images/icona.png">
 </head>
 
 <body>
+
 	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
+
+		<input type="checkbox" name="" id="toggler">
+		<label for="toggler" class="fas fa-bars"></label>
+
+
+		<a href="/" class="logo">Siw-Food<span>.</span></a>
+
+		<nav class="navbar">
+			<a href="/">Home</a>
+			<a href="/ricetta"> Ricette </a>
+		</nav>
+
+
+
+		<div class="icons">
+			<!-- Form di ricerca -->
+			<form class="search-form" th:action="@{/searchRicette}" method="post">
+				<input type="search" id="search-box" name="nome" placeholder="Cerca ricette...">
+				<button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+			</form>
+			<div sec:authorize="isAuthenticated()">
+				<div class="dropdown" id="userDropdown">
+					<span class="user-icon fas fa-user"></span>
+					<div class="dropdown-content" id="dropdownContent">
+						<div class="user-info">
+							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
+						</div>
+						<a href="/logout">Logout</a>
+					</div>
+					<div class="arrow-down"></div>
+				</div>
+			</div>
+			<a sec:authorize="!isAuthenticated()" href="/login" class="fas fa-user"></a>
 		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
+
 	</header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
-	<h1>Ricette</h1>
-	<div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
-	<ul>
-		<li th:each="ricetta : ${ricette}">
-			<span th:text="${ricetta.nome}">nome</span>
-			<a th:href="@{'/admin/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
-		<form th:action="@{'/admin/ricetta/' + ${ricetta.id}}" method="get">
-            <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
-        </form>
-		</li>
-	</ul>
+	<div class="heading">
+		<h1>Gestisci le ricette</h1>
+	</div>
+	<!-- Sezione per visualizzare le ricette -->
+	<section class="ricette-list">
+		<div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
+
+		<div th:each="ricetta : ${ricette}" class="ricetta-item">
+			<div class="ricetta-image">
+				<img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+			</div>
+			<div class="ricetta-details">
+				<h2 th:text="${ricetta.nome}">nome</h2>
+				<a th:href="@{'/admin/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
+				<form th:action="@{'/admin/ricetta/' + ${ricetta.id}}" method="get">
+					<button type="submit"
+						onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
 </body>
 
 </html>

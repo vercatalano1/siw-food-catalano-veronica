@@ -90,6 +90,7 @@ header .navbar a:hover{
 header .icons {
     display: flex;
     align-items: center;
+    gap:1rem;
 }
 
 header .icons a{
