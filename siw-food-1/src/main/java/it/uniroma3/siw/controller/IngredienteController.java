@@ -25,8 +25,9 @@ public class IngredienteController {
 	
 	
 	@GetMapping("/admin/formNewIngrediente")
-	public String formNewIngrediente(Model model) {
-	    model.addAttribute("ingrediente", new Ingrediente());
+	public String formNewIngrediente(@RequestParam(value = "source", required = false)String source, Model model) {
+	    model.addAttribute("source", source);
+		model.addAttribute("ingrediente", new Ingrediente());
 	    return "admin/formNewIngrediente.html";
 	}
 	
@@ -42,15 +43,23 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/admin/ingrediente")
-	public String newIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult, Model model) {
-		this.ingredienteValidator.validate(ingrediente, bindingResult);
-		if (!bindingResult.hasErrors()) {
-			this.ingredienteService.save(ingrediente); 
-            return "redirect:/admin/formNewRicetta";
-		} else {
-			 model.addAttribute("ingrediente", ingrediente);
-			return "admin/formNewIngrediente.html"; 
-		}
+	public String newIngrediente(@RequestParam("source") String source, 
+	                             @Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, 
+	                             BindingResult bindingResult, Model model) {
+	    this.ingredienteValidator.validate(ingrediente, bindingResult);
+	    if (!bindingResult.hasErrors()) {
+	        this.ingredienteService.save(ingrediente); 
+	        if ("formNewRicetta".equals(source)) {
+	            return "redirect:/admin/formNewRicetta";
+	        } else if ("indexIngrediente".equals(source)) {
+	            return "/admin/indexAdmin.html";
+	        } else {
+	            return "/admin/indexAdmin.html"; // una pagina di default se il valore di source non corrisponde a nessuna condizione
+	        }
+	    } else {
+	        model.addAttribute("ingrediente", ingrediente);
+	        return "admin/formNewIngrediente.html"; 
+	    }
 	}
 
 	

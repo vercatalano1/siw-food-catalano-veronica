@@ -290,7 +290,7 @@ body::before {
 
 .ingrediente_main {
     max-width: 500px;
-    margin: 9rem auto 1rem;
+    margin: 20rem auto ;
     padding: 3rem;
     text-align: center;
     background: #fff;
@@ -298,6 +298,7 @@ body::before {
     box-shadow: 0 0 10px var(--box-shadow);
     border: 1px solid var(--border-color);
     background: rgb(255, 255, 255);
+    position:relative;
 }
 
 .ingrediente_main h1 {
@@ -385,6 +386,7 @@ button {
     .home{
         background-position: left;
     }
+    
 }    
     
 @media (max-width:768px){

@@ -44,8 +44,9 @@
 		     </div>
 		
 		<label>Ingredienti:</label> 
-		<a th:href="@{'/admin/formNewIngrediente'}">
-		    <button type="button">crea</button></a>
+		<a th:href="@{/admin/formNewIngrediente(source='formNewRicetta')}">
+            <button type="button">crea</button>
+        </a>
 		
 		<a th:href="@{'/admin/saveAndRedirectToIngredients'}">
 			<input type="hidden" name="redirectFrom" value="formNewRicetta">
