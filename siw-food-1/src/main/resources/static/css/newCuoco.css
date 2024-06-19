@@ -1,5 +1,12 @@
 :root{
-    --gold: #FFD700; /* Colore dorato */
+    --gold: #FFD700; 
+    --dark-bg: #222;
+    --light-bg: #f5f5f5;
+    --border-color: #ccc;
+    --error-color: #e74c3c;
+    --button-hover: rgb(255, 255, 128);
+    --input-focus: rgb(255, 255, 128);
+    --box-shadow: rgba(0, 0, 0, 0.1);	
 }
 
 *{
@@ -259,6 +266,8 @@ header .icons .dropdown-content {
 
 
 
+/*New cuoco*/
+
 body {
     margin: 0;
     padding: 0;
@@ -272,71 +281,93 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/images/icona.png'); /* Immagine di sfondo */
-    background-size: contain; /* Copre l'intera area */
+    background-image: url('/images/img3.png'); /* Immagine di sfondo */
+    background-size: cover; /* Copre l'intera area */
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.7; /* Opacità per trasparenza */
     z-index: -1; /* Posiziona sotto gli altri contenuti */
 }
 
-
-.white-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    min-height: 100vh;
-}
-
-.section {
+.cuoco_main {
+    max-width: 500px;
+    margin: 9rem auto 1rem;
+    padding: 3rem;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--box-shadow);
+    border: 1px solid var(--border-color);
+    background: rgb(255, 255, 255);
 }
 
-.section h1 {
-    font-size: 4rem;
-    margin-bottom: 15px;
+.cuoco_main h1 {
+    text-align: center;
+    font-size: 3rem;
     color: var(--gold);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+form div {
+    margin-bottom: 2rem;
+}
+
+label {
+   display: block;
+   font-size: 1.8rem;
+   margin-bottom: .5rem;
+   color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color:var(--gold);
+    box-shadow: 0 0 5px var(--input-focus);
+}
+
+.cuoco_main span {
+    display: block;
+    margin-top: .3rem;
+    color: var(--error-color);
+    font-size: 1.5rem;
+}
+
+button {
+    display: inline-block;
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--gold);
+    color: #333;
+    font-size: 1.6rem;
+    cursor: pointer;
+    text-transform: uppercase;
     font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.container {
-    padding: 20px;
-    border-radius: 20px;
-    width: 60%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.2); 
+.cuoco_main button[type="submit"]:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px);
 }
 
 
-.link-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
 
-.link-container a {
-    text-decoration: none;
-    color:#333;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-bottom: 30px; 
-    margin-right: 20px;
-    font-size: 2rem; 
-    width: auto; 
-    flex: 1;
-    text-align: center; 
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.link-container a:hover {
-    background-color: var(--gold);
-    transform: scale(1.05);
-}
 
 
 /* Media queries */
@@ -418,4 +449,3 @@ body::before {
 		font-size: 3rem;
   }
 }
-
