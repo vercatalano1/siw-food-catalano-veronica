@@ -58,7 +58,7 @@
 
 
 	<div class="heading">
-        <h1>Gestisci ingredienti</h1>
+        <h1>Gestisci gli Ingredienti</h1>
     </div>
 
     <div th:if="${ingredienti==null || ingredienti.isEmpty()}">
@@ -68,7 +68,6 @@
     <ul class="ingredient-list">
         <li th:each="ingrediente : ${ingredienti}" class="ingredient-item">
             <span th:text="${ingrediente.nome}"></span>
-            <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"></span>
             <form th:action="@{'/admin/ingrediente/' + ${ingrediente.id} + '/delete'}" method="post">
                 <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo ingrediente?');">Elimina</button>
             </form>

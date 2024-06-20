@@ -290,7 +290,7 @@ body::before {
 
 .ricetta_main {
     max-width: 500px;
-    margin: 15rem auto ;
+    margin: 17rem auto 1rem;
     padding: 3rem;
     text-align: center;
     background: #fff;

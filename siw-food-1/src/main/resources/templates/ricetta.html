@@ -60,42 +60,57 @@
 
 
 	<main>
-        <div class="heading">
-            <h1>Dettagli Ricetta</h1>
-            <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
-        </div>
+		<div class="heading">
+			<h1>Dettagli Ricetta</h1>
+			<h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
+		</div>
 
-         <div class="ricetta-details" th:if="${ricetta}">
-            <div class="left-column">
-			    <p class="descrizione" th:utext="${ricetta.descrizione}">Descrizione</p>
-            
-            <h4>Ingredienti:</h4>
-                <ul class="ingredienti-list">
-                    <li th:each="ingrediente : ${ricetta.ingredienti}">
-                        <span th:text="${ingrediente.nome}">Nome ingrediente</span>
-                        <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">Quantità</span>
-                    </li>
-                </ul>
-            </div>
+		<div class="ricetta-details" th:if="${ricetta}">
+			<div class="left-column">
+				<p class="descrizione" th:utext="${ricetta.descrizione}">Descrizione</p>
 
-            <div class="right-column">
-                 <div class="ricetta-image">
-                    <img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
-                </div>
-                <div class="cuoco-info">
-                    <div class="cuoco-image">
-                        <img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco">
-                    </div>
-                    <div class="cuoco-details">
-                        <h3>Chef:</h3>
-                        <a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}" th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
-                    </div>
-                </div>       
-            </div>
-        </div>
+				<h4>Ingredienti:</h4>
+				<ul class="ingredienti-list">
+					<li th:each="ingrediente : ${ricetta.ingredienti}">
+						<span th:text="${ingrediente.nome}">Nome ingrediente</span>
+						<span th:if="${ingrediente.quantità != null}"
+							th:text="${ingrediente.quantità + 'g'}">Quantità</span>
+					</li>
+				</ul>
+			</div>
 
-        <div th:unless="${ricetta}">Non esiste</div>
-    </main>
+			<div class="right-column">
+				<div class="ricetta-image">
+					<img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+				</div>
+
+				<div class="cuoco-info">
+					<div th:if="${ricetta.cuoco}">
+						<div class="cuoco-image">
+							<img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco"
+								onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
+						</div>
+						<div class="cuoco-details">
+							<h3>Chef:</h3>
+							<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
+								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+						</div>
+					</div>
+
+					<div th:unless="${ricetta.cuoco}">
+						<div class="cuoco-image">
+							<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
+						</div>
+						<div class="cuoco-details">
+							<h3>chef non asseganto</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:unless="${ricetta}">Non esiste</div>
+	</main>
 </body>
 
 </html>
