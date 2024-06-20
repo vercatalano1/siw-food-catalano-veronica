@@ -262,8 +262,6 @@ header .icons .dropdown-content {
 
 
 /* Chef List Styling */
-
-
 .chef-list {
     padding: 2rem 9%;
     display: flex;
@@ -282,7 +280,7 @@ h1{
 .chef-item {
     display: flex;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     width: calc(50% - 1rem);
     margin-right: 1rem;
 }
@@ -296,7 +294,7 @@ h1{
     align-items: center;
     justify-content: center;
     margin-right: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .chef-item img {
@@ -313,22 +311,17 @@ h1{
     font-size: 2rem;
     color: var(--gold);
     margin-bottom: 1rem;
-    margin-top: 4rem;
 }
 
 .chef-details button {
-    width: 7rem;
-    height: 4rem;
-    border-radius: 50%;
+	display: inline-block;
+    border-radius: 5rem;
     background: #fff;
     color: #333;
-    padding: .5rem;
+    padding: .5rem 2rem;
     cursor: pointer;
     font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s, color 0.3s;
+    margin-bottom: 5rem;
 }
 
 .chef-details button:hover {

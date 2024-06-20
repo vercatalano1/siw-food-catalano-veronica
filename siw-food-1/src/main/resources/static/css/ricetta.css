@@ -290,7 +290,7 @@ h4{
 }
 
 .left-column {
-	flex: 0 0 50%;
+	width: 50%;
     margin-right: 2rem;
 }
 
@@ -298,6 +298,7 @@ h4{
     font-size: 2rem;
     line-height: 1.7;
     margin-bottom: 2rem;
+    overflow-wrap: break-word;
 }
 
 .ingredienti-list {
@@ -331,14 +332,14 @@ h4{
 }
 
 .cuoco-info {
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: flex;
     align-items: center;
 }
 
 .cuoco-image img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;

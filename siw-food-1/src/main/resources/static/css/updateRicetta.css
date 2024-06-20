@@ -287,14 +287,16 @@ h4{
     display: flex;
     margin-top: 2rem;
     gap: 2rem;
+    position: relative;
 }
 
 .left-column {
-	max-width: 50%;
+	width: 50%;
     margin-right: 2rem;
     background-color: #f0f0f0; /* Grigio per la parte per variare gli ingredienti */
     padding: 2rem;
     border-radius: 10px;
+    position: relative;
 }
 
 .left-column .descrizione {
@@ -347,28 +349,28 @@ h4{
 }
 
 .cuoco-info {
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: flex;
     align-items: center;
 }
 
 .cuoco-image img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
 }
 
 .cuoco-details {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #333;
 }
 
 .fine-btn {
-    position: relative; /* Imposta il posizionamento fisso */
-    right: 2rem; /* Distanza da destra */
-    text-align: right; /* Allinea il testo a destra */
+    position: absolute;
+    bottom: 0; 
+    right: 0;
 }
 
 
@@ -393,6 +395,9 @@ button:active, .btn:active {
     background: var(--gold);
     color: #000;
 }
+
+
+
 
 @media (max-width: 768px) {
     main {

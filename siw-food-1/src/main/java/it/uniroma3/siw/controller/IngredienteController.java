@@ -63,11 +63,11 @@ public class IngredienteController {
 	}
 
 	
-	@GetMapping("/ingredienti")
+	/*@GetMapping("/ingredienti")
 	public String getIngredienti(Model model) {
 		model.addAttribute("ingredienti", this.ingredienteService.findAll());
 		return "ingredienti.html";
-	}
+	}*/
 	
 	@PostMapping("/admin/ingrediente/{id}/delete")
     public String deleteIngrediente(@PathVariable("id") Long id, Model model) {

@@ -58,12 +58,12 @@ public class RicettaController {
 		return "admin/formUpdateRicetta.html";
 	}
 
-	@GetMapping("/admin/addCuoco/{id}")
+	/*@GetMapping("/admin/addCuoco/{id}")
 	public String addCuoco(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("cuochi", cuocoService.getAllCuocos());
 		model.addAttribute("ricetta", ricettaService.findById(id));
 		return "admin/cuochiToAdd.html";
-	}
+	}*/
 
 	@GetMapping(value = "/admin/formNewRicetta")
 	public String formNewRicetta(Model model) {

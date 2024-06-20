@@ -60,90 +60,108 @@
 
 
 	<main>
-    <div class="heading">
-        <h1>Aggiorna Ricetta</h1>
-        <h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
-    </div>
+		<div class="heading">
+			<h1>Aggiorna Ricetta</h1>
+			<h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
+		</div>
 
-    <div class="ricetta-details" th:if="${ricetta}">
-        <div class="left-column">
-            <p class="descrizione" th:utext="${ricetta.descrizione}">Descrizione</p>
+		<div class="ricetta-details" th:if="${ricetta}">
+			<div class="left-column">
+				<p class="descrizione" th:utext="${ricetta.descrizione}">Descrizione</p>
 
-            <h4>Ingredienti</h4>
-            <form th:action="@{/admin/saveIngredientiQuantita}" method="post" id="ingredientiQuantitaForm">
-                <input type="hidden" name="ricettaId" th:value="${ricetta.id}" />
-                <ul class="ingredienti-list">
-                    <li th:each="ingrediente : ${ricetta.ingredienti}">
-                        <label th:for="'quantità_' + ${ingrediente.id}" th:text="${ingrediente.nome}">Nome
-                            ingrediente</label>
-                        <input type="number" th:id="'quantità_' + ${ingrediente.id}"
-                            th:name="'ingredienti[' + ${ingrediente.id} + '].quantita'"
-                            th:value="${ingrediente.quantità != null ? ingrediente.quantità : ''}" min="0" step="any"
-                            oninput="this.value = !!this.value && !isNaN(this.value) ? Math.abs(this.value) : null" />
-                        <span>g</span>
-                    </li>
-                </ul>
-                <button type="submit">Salva</button>
-            </form>
+				<h4>Ingredienti</h4>
+				<form th:action="@{/admin/saveIngredientiQuantita}" method="post" id="ingredientiQuantitaForm">
+					<input type="hidden" name="ricettaId" th:value="${ricetta.id}" />
+					<ul class="ingredienti-list">
+						<li th:each="ingrediente : ${ricetta.ingredienti}">
+							<label th:for="'quantità_' + ${ingrediente.id}" th:text="${ingrediente.nome}">Nome
+								ingrediente</label>
+							<input type="number" th:id="'quantità_' + ${ingrediente.id}"
+								th:name="'ingredienti[' + ${ingrediente.id} + '].quantita'"
+								th:value="${ingrediente.quantità != null ? ingrediente.quantità : ''}" min="0"
+								step="any"
+								oninput="this.value = !!this.value && !isNaN(this.value) ? Math.abs(this.value) : null" />
+							<span>g</span>
+						</li>
+					</ul>
+					<button type="submit">Salva</button>
+				</form>
 
-            <a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
-                <button type="button">Aggiungi ingredienti</button>
-            </a>
-        </div>
+				<a th:href="@{/admin/formNewIngrediente(source='formUpdateRicetta', ricettaId=${ricetta.id})}">
+					<button type="button">Crea ingrediente</button>
+				</a>
+				<a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
+					<button type="button">Aggiungi ingredienti</button>
+				</a>
+			</div>
 
-        <div class="right-column">
-            <div class="ricetta-image">
-                <img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
-            </div>
 
-            <div class="cuoco-info">
-                <div class="cuoco-details">
 
-                    <div th:unless="${ricetta.cuoco}">
-                        <h3>Chef:</h3>
-                        <select id="cuocoSelect" onchange="aggiungiCuoco()">
-                            <option value="">Seleziona un cuoco</option>
-                            <!-- Itera sulla lista dei cuochi disponibili -->
-                            <option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
-                                th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
-                        </select>
-                        <!-- Immagine di default del profilo -->
-                        <div class="cuoco-image">
-                            <img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
-                        </div>
-                    </div>
+			<div class="right-column">
+				<div class="ricetta-image">
+					<img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+				</div>
 
-                    <div th:if="${ricetta.cuoco}">
-                        <div class="cuoco-image">
-                            <img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco"
-                                onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-                        </div>
-                        <h3>Chef: </h3>
-                        <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
-                    </div>
-                </div>
-            </div>
+				<div class="cuoco-info">
+					<div class="cuoco-details">
+						<div th:unless="${ricetta.cuoco}">
+							<!-- Immagine di default del profilo -->
+							<div class="cuoco-image">
+								<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
+							</div>
+							<h3>Chef:</h3>
+							<select id="cuocoSelect" onchange="aggiornaImmagineCuoco()">
+								<option value="" data-image="/images/cuochi/profilo.png">Seleziona un cuoco</option>
+								<!-- Itera sulla lista dei cuochi disponibili -->
+								<option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
+									th:data-image="@{${cuoco.image != null && cuoco.image != '' ? '/images/cuochi/' + cuoco.image : '/images/cuochi/profilo.png'}}"
+									th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
+							</select>
 
-            <div class="fine-btn">
-                <a th:href="@{'/ricetta/' + ${ricetta.id}}">
-                    <button type="button">Termina</button>
-                </a>
-            </div>
-        </div>
-    </div>
-</main>
+							<button type="button" onclick="salvaCuoco()">Salva</button>
+						</div>
 
-		<script th:inline="javascript">
-			function aggiungiCuoco() {
-				var selectElement = document.getElementById('cuocoSelect');
-				var selectedCuocoId = selectElement.value;
+						<div th:if="${ricetta.cuoco}">
+							<div class="cuoco-image">
+								<img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco"
+									onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
+							</div>
+							<h3>Chef: </h3>
+							<span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
+						</div>
+					</div>
+				</div>
 
-				if (selectedCuocoId) {
-					var aggiornaUrl = '/admin/setCuocoToRicetta/' + selectedCuocoId + '/' + /*[[${ricetta.id}]]*/ 'RICETTA_ID';
-					window.location.href = aggiungiUrl;
-				}
+				<div class="fine-btn">
+					<a th:href="@{'/ricetta/' + ${ricetta.id}}">
+						<button type="button">Termina</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script th:inline="javascript">
+		function aggiornaImmagineCuoco() {
+			var selectElement = document.getElementById('cuocoSelect');
+			var selectedOption = selectElement.options[selectElement.selectedIndex];
+			var cuocoImage = selectedOption.getAttribute('data-image');
+
+			// Aggiorna l'immagine del cuoco
+			document.getElementById('cuocoImage').src = cuocoImage || '/images/cuochi/profilo.png';
+		}
+
+		function salvaCuoco() {
+			var selectElement = document.getElementById('cuocoSelect');
+			var selectedCuocoId = selectElement.value;
+			var ricettaId = /*[[${ricetta.id}]]*/ 'RICETTA_ID'; // Thymeleaf will replace this with the actual ID
+
+			if (selectedCuocoId) {
+				var salvaUrl = '/admin/setCuocoToRicetta/' + selectedCuocoId + '/' + ricettaId;
+				window.location.href = salvaUrl;
 			}
-		</script>
+		}
+	</script>
 
 </body>
 
