@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Cuoco {
@@ -23,6 +24,7 @@ public class Cuoco {
 	private String nome;
 	@NotBlank(message = "{cuoco.cognome.notblank}")
 	private String cognome;
+	@NotNull(message = "{cuoco.data.notnull}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	@NotBlank(message = "{cuoco.email.notblank}")

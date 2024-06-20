@@ -22,6 +22,7 @@ public class Ricetta {
 	@NotBlank(message = "{ricetta.descrizione.notblank}")
 	@Column(columnDefinition = "TEXT")
 	private String descrizione;
+	@NotBlank(message = "{ricetta.image.notblank}")
 	private String image;
 	
 	public String getImage() {
@@ -30,6 +31,7 @@ public class Ricetta {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
 	@ManyToOne
 	private Cuoco cuoco;
 	@ManyToMany

@@ -78,7 +78,9 @@
 			</div>
 
 			<div class="image">
-				<label>Image:</label> <span><input type="file" id="image" name="image" accept="image/png" /></span>
+				<label>Image:</label>
+				<span><input type="file" id="image" name="image" accept="image/png" /></span>
+				<span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
 			</div>
 
 

@@ -64,11 +64,10 @@
 
 			<div class="ingredienti">
 				<h2>Ingredienti già aggiunti:</h2>
-				<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
+				<p th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</p>
 				<ul>
 					<li th:each="ingrediente : ${ricetta.ingredienti}">
 						<span th:text="${ingrediente.nome}"> </span>
-						<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
 						<div class="btn-group">
 							<a
 								th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
@@ -80,7 +79,6 @@
 					<ul>
 						<li th:each="ingrediente : ${ingredientiToAdd}">
 							<span th:text="${ingrediente.nome}"> </span>
-							<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">
 							</span>
 							<div class="btn-group">
 								<a

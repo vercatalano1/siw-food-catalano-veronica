@@ -296,7 +296,7 @@ h1{
     align-items: center;
     justify-content: center;
     margin-right: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .chef-item img {
@@ -313,18 +313,17 @@ h1{
     font-size: 2rem;
     color: var(--gold);
     margin-bottom: 1rem;
-    margin-top: 4rem;
 }
 
 .chef-details .btn {
     display: inline-block;
-    margin-top: 1rem;
     border-radius: 5rem;
     background: #fff;
     color: #333;
     padding: .5rem 2rem;
     cursor: pointer;
     font-size: 1.5rem;
+    margin-bottom: 5rem;
 }
 
 .chef-details .btn:hover {
