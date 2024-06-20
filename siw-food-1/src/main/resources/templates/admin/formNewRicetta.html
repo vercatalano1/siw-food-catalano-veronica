@@ -61,7 +61,7 @@
 		<h1>Aggiungi una ricetta</h1>
 		<form id="ricettaForm" th:action="@{/admin/ricetta}" method="POST" th:object="${ricetta}">
 			<div th:if="${#fields.hasGlobalErrors()}">
-				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				<span th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</span>
 			</div>
 
 			<div class="nome">

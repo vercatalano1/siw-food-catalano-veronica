@@ -2,12 +2,12 @@ package it.uniroma3.siw.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +53,7 @@ public class RicettaController {
 		Ricetta ricetta = this.ricettaService.findById(ricettaId);
 		ricetta.setCuoco(cuoco);
 		this.ricettaService.save(ricetta);
-
+		model.addAttribute("cuochi", cuocoService.getAllCuocos()); 
 		model.addAttribute("ricetta", ricetta);
 		return "admin/formUpdateRicetta.html";
 	}
@@ -75,7 +75,10 @@ public class RicettaController {
 	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
 		Ricetta ricetta = ricettaService.findById(id);
 		List<Ingrediente> ingredienti = ricetta.getIngredienti();
+		List<Cuoco> cuochi = cuocoService.getAllCuocos();
+		
 		model.addAttribute("ricetta", ricetta);
+		model.addAttribute("cuochi", cuochi);
 		model.addAttribute("ingredienti", ingredienti);
 		return "admin/formUpdateRicetta.html";
 	}
@@ -107,15 +110,42 @@ public class RicettaController {
 	}
 
 	@GetMapping("/admin/updateIngredienti/{id}")
-	public String updateIngredienti(@PathVariable("id") Long id,
-			@RequestParam(value = "redirectFrom", required = false) String redirectFrom, Model model) {
+	public String updateIngredienti(@PathVariable("id") Long id,Model model) {
 
 		List<Ingrediente> ingredientiToAdd = this.ingredientiToAdd(id);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 		model.addAttribute("ricetta", this.ricettaService.findById(id));
-		model.addAttribute("redirectFrom", redirectFrom);
 		return "admin/ingredientiToAdd.html";
 	}
+	
+	
+	@PostMapping("/admin/saveIngredientiQuantita")
+	public String saveIngredientiQuantita(@RequestParam("ricettaId") Long ricettaId,
+	                                      @RequestParam Map<String, String> ingredientiQuantita,
+	                                      Model model) {
+	    Ricetta ricetta = ricettaService.findById(ricettaId);
+
+	    // Aggiorna le quantità degli ingredienti
+	    for (Ingrediente ingrediente : ricetta.getIngredienti()) {
+	        String quantitaString = ingredientiQuantita.get("ingredienti[" + ingrediente.getId() + "].quantita");
+	        if (quantitaString != null && !quantitaString.isEmpty()) {
+	            int quantita = Integer.parseInt(quantitaString);
+	            System.out.println("Aggiornamento quantità: " + ingrediente.getNome() + " a " + quantita);
+	            ingrediente.setQuantità(quantita);
+	            ingredienteService.save(ingrediente);
+	        }
+	    }
+
+	    ricettaService.save(ricetta);
+	    model.addAttribute("cuochi", cuocoService.getAllCuocos());
+
+	    // Aggiungi l'oggetto ricetta aggiornato al model per renderlo disponibile nella vista
+	    model.addAttribute("ricetta", ricetta);
+
+	    // Ritorna il nome della vista da caricare dopo il submit del form
+	    return "admin/formUpdateRicetta";
+	}
+	
 
 	@PostMapping("/admin/ricetta")
 	public String newRicetta(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult,
@@ -126,7 +156,7 @@ public class RicettaController {
 			this.ricettaService.save(ricetta);
 			Ricetta savedRicetta = this.ricettaService.save(ricetta);
 			model.addAttribute("ricetta", savedRicetta);
-			return "redirect:/admin/updateIngredienti/" + savedRicetta.getId() + "?redirectFrom=formNewRicetta";
+			return "redirect:/admin/updateIngredienti/" + savedRicetta.getId();
 		} else {
 			return "admin/formNewRicetta.html";
 		}

@@ -91,10 +91,8 @@
 				</div>
 			</div>
 			<div class="fine-btn">
-				<a th:href="@{'/admin/formUpdateRicetta/' + ${ricetta.id}}"
-					th:if="${redirectFrom != 'formNewRicetta'}"><button type="button">Fine</button></a>
-				<a th:href="@{'/admin/formNewRicetta'}" th:if="${redirectFrom == 'formNewRicetta'}"><button
-						type="button">Fine</button></a>
+				<a th:href="@{'/admin/formUpdateRicetta/' + ${ricetta.id}}">
+					<button type="button">Fine</button></a>	
 			</div>
 </body>
 
