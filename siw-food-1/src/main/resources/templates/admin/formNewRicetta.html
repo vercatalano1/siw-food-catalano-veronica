@@ -59,7 +59,7 @@
 
 	<div class="ricetta_main">
 		<h1>Aggiungi una ricetta</h1>
-		<form th:action="@{/admin/ricetta}" method="POST" th:object="${ricetta}">
+		<form id="ricettaForm" th:action="@{/admin/ricetta}" method="POST" th:object="${ricetta}">
 			<div th:if="${#fields.hasGlobalErrors()}">
 				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 			</div>
@@ -81,20 +81,12 @@
 				<label>Image:</label> <span><input type="file" id="image" name="image" accept="image/png" /></span>
 			</div>
 
-			<label>Ingredienti:</label>
-			<a th:href="@{/admin/formNewIngrediente(source='formNewRicetta')}">
-				<button type="button">crea</button>
-			</a>
-
-			<a th:href="@{'/admin/saveAndRedirectToIngredients'}">
-				<input type="hidden" name="redirectFrom" value="formNewRicetta">
-				<button type="button">Modifica</button>
-			</a>
 
 			<div>
-				<span><button type="submit">Conferma</button></span>
+				<span><button type="submit">Conferma e aggiungi ingredienti </button></span>
 			</div>
 		</form>
+
 	</div>
 </body>
 

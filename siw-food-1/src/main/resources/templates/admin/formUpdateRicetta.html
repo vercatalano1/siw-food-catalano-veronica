@@ -27,32 +27,39 @@
 			<br>
 			<div th:utext="${ricetta.descrizione}">Descrizione</div>
 		</div>
-		
+
 		<div th:unless="${ricetta.cuoco}">
 			<span>Cuoco: nessun cuoco assegnato</span>
 			<button th:onclick="'location.href=\'/admin/addCuoco/' + ${ricetta.id} + '\';'">Aggiungi</button>
-        </div>
-        <div th:if="${ricetta.cuoco}">
-            <h3>Cuoco: </h3>
-            <span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
-        </div>
+		</div>
+		<div th:if="${ricetta.cuoco}">
+			<h3>Cuoco: </h3>
+			<span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo Cracco</span>
+		</div>
 
 		<div th:if="${ricetta}">
 			<h4>Ingredienti: </h4>
-			
-        <ul>
-            <li th:each="ingrediente : ${ricetta.ingredienti}">
-                <span th:text="${ingrediente.nome}">Nome ingrediente </span>
-                <span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">Quantità</span>
-            </li>
-        </ul>
-	    <a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
-			<input type="hidden" name="redirectFrom" value="formUpdateRicetta">
+
+			<ul>
+				<li th:each="ingrediente : ${ricetta.ingredienti}">
+					<span th:text="${ingrediente.nome}">Nome ingrediente </span>
+					<span th:if="${ingrediente.quantità != null}"
+						th:text="${ingrediente.quantità + 'g'}">Quantità</span>
+				</li>
+			</ul>
+			<a th:href="@{'/admin/updateIngredienti/' + ${ricetta.id}}">
+				<input type="hidden" name="redirectFrom" value="formUpdateRicetta">
 				<button type="button">Modifica</button>
-		</a>
-		
+			</a>
+
 		</div>
 		<div th:unless="${ricetta.ingredienti}">Nessun ingrediente associato a questa ricetta</div>
+
+		<div class="fine-btn">
+			<a th:href="@{'/ricetta/' + ${ricetta.id}}">
+				<button type="button">Termina</button>
+			</a>
+		</div>
 </body>
 
 </html>

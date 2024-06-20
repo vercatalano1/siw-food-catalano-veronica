@@ -62,36 +62,40 @@
 			<h1>Scelta ingredienti per la ricetta</h1>
 			<h2 th:text="${ricetta.nome}">Nome Ricetta</h2>
 
-            <div class="ingredienti">
-			<h2>Ingredienti già aggiunti:</h2>
-			<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
-			<ul>
-				<li th:each="ingrediente : ${ricetta.ingredienti}">
-					<span th:text="${ingrediente.nome}"> </span>
-					<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
-					<div class="btn-group">
-						<a
-							th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
-					</div>
-				</li>
-			</ul>
-			<div>
-				<h3>Ingredienti che si possono aggiungere:</h3>
+			<div class="ingredienti">
+				<h2>Ingredienti già aggiunti:</h2>
+				<div th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</div>
 				<ul>
-					<li th:each="ingrediente : ${ingredientiToAdd}">
+					<li th:each="ingrediente : ${ricetta.ingredienti}">
 						<span th:text="${ingrediente.nome}"> </span>
 						<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}"> </span>
 						<div class="btn-group">
 							<a
-								th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
+								th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
 						</div>
 					</li>
 				</ul>
+				<div>
+					<h3>Ingredienti che si possono aggiungere:</h3>
+					<ul>
+						<li th:each="ingrediente : ${ingredientiToAdd}">
+							<span th:text="${ingrediente.nome}"> </span>
+							<span th:if="${ingrediente.quantità != null}" th:text="${ingrediente.quantità + 'g'}">
+							</span>
+							<div class="btn-group">
+								<a
+									th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="fine-btn">
-			<a th:href="@{'/admin/formUpdateRicetta/'+ ${ricetta.id}}"><button type="button">Fine</button></a>
-		</div>
+			<div class="fine-btn">
+				<a th:href="@{'/admin/formUpdateRicetta/' + ${ricetta.id}}"
+					th:if="${redirectFrom != 'formNewRicetta'}"><button type="button">Fine</button></a>
+				<a th:href="@{'/admin/formNewRicetta'}" th:if="${redirectFrom == 'formNewRicetta'}"><button
+						type="button">Fine</button></a>
+			</div>
 </body>
 
 </html>
