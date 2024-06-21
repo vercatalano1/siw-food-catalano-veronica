@@ -82,5 +82,12 @@ public class CuocoController {
             }
         }
 
+	
+	
+	/*cuoco*/
+	@GetMapping(value="/cuoco/indexUser")
+	public String indexUser() {
+		return "cuoco/indexUser.html";
+	}
 
 }

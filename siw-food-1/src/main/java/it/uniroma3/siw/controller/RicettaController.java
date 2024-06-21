@@ -65,10 +65,10 @@ public class RicettaController {
 		return "admin/cuochiToAdd.html";
 	}*/
 
-	@GetMapping(value = "/admin/formNewRicetta")
+	@GetMapping(value = "/user/formNewRicetta")
 	public String formNewRicetta(Model model) {
 		model.addAttribute("ricetta", new Ricetta());
-		return "admin/formNewRicetta.html";
+		return "user/formNewRicetta.html";
 	}
 
 	@GetMapping("/admin/formUpdateRicetta/{id}")

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +25,11 @@
 		<label for="toggler" class="fas fa-bars"></label>
 
 
-		<a href="/" class="logo">Siw-Food<span>.</span></a>
+		<a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}"
+			class="logo">Siw-Food<span>.</span></a>
 
 		<nav class="navbar">
-			<a href="/">Home</a>
+			<a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}">Home</a>
 			<a href="/ricetta"> Ricette </a>
 			<a href="/cuoco"> Chef </a>
 		</nav>
@@ -47,6 +49,8 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
+						<a href="/cuoco/profile">Profilo</a>
+						<a href="/user/formNewRicetta">Crea una ricetta</a>
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>
@@ -57,47 +61,47 @@
 
 	</header>
 
+	<!-- Main content -->
+	<main>
+		<h1>Profilo dello Chef</h1>
 
-     <!-- Main content -->
-    <main>
-        <h1>Profilo dello Chef</h1>
-
-        <!-- Profilo del cuoco -->
-        <div th:if="${cuoco}" class="chef-profile">
-                <div class="immagine_cuoco">
-                    <img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
+		<!-- Profilo del cuoco -->
+		<div th:if="${cuoco}" class="chef-profile">
+			<div class="immagine_cuoco">
+				<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
 					onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-                </div>
-                <div class="chef-details">
-                <p><strong>Nome:</strong> <span th:text="${cuoco.nome}">Nome</span></p>
-                <p><strong>Cognome:</strong> <span th:text="${cuoco.cognome}">Cognome</span></p>
-                <p><strong>Email:</strong> <span th:text="${cuoco.email}">Email</span></p>
-                <p><strong>Data di Nascita:</strong> <span th:text="${cuoco.data}">Data di Nascita</span></p>
-            </div>
+			</div>
+			<div class="chef-details">
+				<p><strong>Nome:</strong> <span th:text="${cuoco.nome}">Nome</span></p>
+				<p><strong>Cognome:</strong> <span th:text="${cuoco.cognome}">Cognome</span></p>
+				<p><strong>Email:</strong> <span th:text="${cuoco.email}">Email</span></p>
+				<p><strong>Data di Nascita:</strong> <span th:text="${cuoco.data}">Data di Nascita</span></p>
+			</div>
 
-            <!-- Lista delle ricette -->
-            <div class="ricette">
-                <h2>Ricette:</h2>
-                <div th:if="${#lists.isEmpty(cuoco.ricette)}">
-                    <p>Il cuoco non ha ricette disponibili.</p>
-                </div>
-                <div th:unless="${#lists.isEmpty(cuoco.ricette)}">
-                    <div class="ricetta-list">
-                        <div th:each="ricetta : ${cuoco.ricette}" class="ricetta-item">
-                            <div class="ricetta-image">
-                                <img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
-                            </div>
-                            <a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<!-- Lista delle ricette -->
+			<div class="ricette">
+				<h2>Ricette:</h2>
+				<div th:if="${#lists.isEmpty(cuoco.ricette)}">
+					<p>Il cuoco non ha ricette disponibili.</p>
+				</div>
+				<div th:unless="${#lists.isEmpty(cuoco.ricette)}">
+					<div class="ricetta-list">
+						<div th:each="ricetta : ${cuoco.ricette}" class="ricetta-item">
+							<div class="ricetta-image">
+								<img th:src="@{'/images/ricette/' + ${ricetta.image}}" alt="Immagine della ricetta">
+							</div>
+							<a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- Caso in cui non ci sia un cuoco -->
-        <div th:unless="${cuoco}" class="no-cuoco">
-            <p>Il cuoco selezionato non esiste.</p>
-        </div>
-    </main>
-  </body>
+		<!-- Caso in cui non ci sia un cuoco -->
+		<div th:unless="${cuoco}" class="no-cuoco">
+			<p>Il cuoco selezionato non esiste.</p>
+		</div>
+	</main>
+</body>
+
 </html>

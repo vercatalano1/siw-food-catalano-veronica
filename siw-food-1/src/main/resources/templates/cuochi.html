@@ -26,10 +26,11 @@
 		<label for="toggler" class="fas fa-bars"></label>
 
 
-		<a href="/" class="logo">Siw-Food<span>.</span></a>
+		<a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}"
+			class="logo">Siw-Food<span>.</span></a>
 
 		<nav class="navbar">
-			<a href="/">Home</a>
+		   <a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}">Home</a>
 			<a href="/ricetta"> Ricette </a>
 			<a href="/cuoco"> Chef </a>
 		</nav>
@@ -49,6 +50,8 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
+						<a href="/cuoco/profile">Profilo</a>
+						<a href="/user/formNewRicetta">Crea una ricetta</a>
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>

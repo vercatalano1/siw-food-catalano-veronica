@@ -63,7 +63,7 @@ public class AuthenticationController {
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/indexAdmin.html";
         }
-        return "index.html";
+        return "cuoco/indexUser.html";
     }
 
 	@PostMapping(value = { "/register" })
