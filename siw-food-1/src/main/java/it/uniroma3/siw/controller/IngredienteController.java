@@ -24,13 +24,13 @@ public class IngredienteController {
 	private IngredienteValidator ingredienteValidator;
 	
 	
-	@GetMapping("/admin/formNewIngrediente")
+	@GetMapping("/user/formNewIngrediente")
 	public String formNewIngrediente(@RequestParam(value = "source", required = false) String source,
 	                                 @RequestParam(value = "ricettaId", required = false) Long ricettaId, Model model) {
 	    model.addAttribute("source", source);
 	    model.addAttribute("ricettaId", ricettaId);
 	    model.addAttribute("ingrediente", new Ingrediente());
-	    return "admin/formNewIngrediente.html";
+	    return "user/formNewIngrediente.html";
 	}
 	
 	@GetMapping("/admin/manageIngrediente")
@@ -44,7 +44,7 @@ public class IngredienteController {
 		return "admin/indexIngrediente.html";
 	}
 	
-	@PostMapping("/admin/ingrediente")
+	@PostMapping("/user/ingrediente")
 	public String newIngrediente(@RequestParam("source") String source,
 	                             @RequestParam(value = "ricettaId", required = false) Long ricettaId,
 	                             @Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,
@@ -55,7 +55,7 @@ public class IngredienteController {
 	        if ("indexIngrediente".equals(source)) {
 	            return "admin/indexAdmin.html";
 	        } else if ("formUpdateRicetta".equals(source) && ricettaId != null) {
-	            return "redirect:/admin/formUpdateRicetta/" + ricettaId;
+	            return "redirect:/user/formUpdateRicetta/" + ricettaId;
 	        } else {
 	            return "admin/indexAdmin.html"; // pagina di default
 	        }
@@ -63,7 +63,7 @@ public class IngredienteController {
 	        model.addAttribute("ingrediente", ingrediente);
 	        model.addAttribute("source", source);
 	        model.addAttribute("ricettaId", ricettaId);
-	        return "admin/formNewIngrediente.html";
+	        return "user/formNewIngrediente.html";
 	    }
 	}
 

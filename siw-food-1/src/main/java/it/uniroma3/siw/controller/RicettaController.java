@@ -55,7 +55,7 @@ public class RicettaController {
 		this.ricettaService.save(ricetta);
 		model.addAttribute("cuochi", cuocoService.getAllCuocos()); 
 		model.addAttribute("ricetta", ricetta);
-		return "admin/formUpdateRicetta.html";
+		return "user/formUpdateRicetta.html";
 	}
 
 	/*@GetMapping("/admin/addCuoco/{id}")
@@ -71,7 +71,7 @@ public class RicettaController {
 		return "user/formNewRicetta.html";
 	}
 
-	@GetMapping("/admin/formUpdateRicetta/{id}")
+	@GetMapping("/user/formUpdateRicetta/{id}")
 	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
 		Ricetta ricetta = ricettaService.findById(id);
 		List<Ingrediente> ingredienti = ricetta.getIngredienti();
@@ -80,7 +80,7 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("cuochi", cuochi);
 		model.addAttribute("ingredienti", ingredienti);
-		return "admin/formUpdateRicetta.html";
+		return "user/formUpdateRicetta.html";
 	}
 
 	@GetMapping("/ricetta/{id}")
@@ -109,17 +109,17 @@ public class RicettaController {
 		return "foundRicette.html";
 	}
 
-	@GetMapping("/admin/updateIngredienti/{id}")
+	@GetMapping("/user/updateIngredienti/{id}")
 	public String updateIngredienti(@PathVariable("id") Long id,Model model) {
 
 		List<Ingrediente> ingredientiToAdd = this.ingredientiToAdd(id);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 		model.addAttribute("ricetta", this.ricettaService.findById(id));
-		return "admin/ingredientiToAdd.html";
+		return "user/ingredientiToAdd.html";
 	}
 	
 	
-	@PostMapping("/admin/saveIngredientiQuantita")
+	@PostMapping("/user/saveIngredientiQuantita")
 	public String saveIngredientiQuantita(@RequestParam("ricettaId") Long ricettaId,
 	                                      @RequestParam Map<String, String> ingredientiQuantita,
 	                                      Model model) {
@@ -143,11 +143,11 @@ public class RicettaController {
 	    model.addAttribute("ricetta", ricetta);
 
 	    // Ritorna il nome della vista da caricare dopo il submit del form
-	    return "admin/formUpdateRicetta";
+	    return "user/formUpdateRicetta";
 	}
 	
 
-	@PostMapping("/admin/ricetta")
+	@PostMapping("/user/ricetta")
 	public String newRicetta(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult,
 			Model model) {
 
@@ -156,13 +156,13 @@ public class RicettaController {
 			this.ricettaService.save(ricetta);
 			Ricetta savedRicetta = this.ricettaService.save(ricetta);
 			model.addAttribute("ricetta", savedRicetta);
-			return "redirect:/admin/updateIngredienti/" + savedRicetta.getId();
+			return "redirect:/user/updateIngredienti/" + savedRicetta.getId();
 		} else {
-			return "admin/formNewRicetta.html";
+			return "user/formNewRicetta.html";
 		}
 	}
 
-	@GetMapping("/admin/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
+	@GetMapping("/user/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
 	public String addIngredienteToRicetta(@PathVariable("ingredienteId") Long ingredienteId,
 			@PathVariable("ricettaId") Long ricettaId, Model model) {
 		Ricetta ricetta = this.ricettaService.findById(ricettaId);
@@ -176,10 +176,10 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 
-		return "admin/ingredientiToAdd.html";
+		return "user/ingredientiToAdd.html";
 	}
 
-	@GetMapping("/admin/removeIngredienteFromRicetta/{ingredienteId}/{ricettaId}")
+	@GetMapping("/user/removeIngredienteFromRicetta/{ingredienteId}/{ricettaId}")
 	public String removeIngredienteFromRicetta(@PathVariable("ingredienteId") Long ingredienteId,
 			@PathVariable("ricettaId") Long ricettaId, Model model) {
 		Ricetta ricetta = this.ricettaService.findById(ricettaId);
@@ -193,7 +193,7 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 
-		return "admin/ingredientiToAdd.html";
+		return "user/ingredientiToAdd.html";
 	}
 
 	private List<Ingrediente> ingredientiToAdd(Long ricettaId) {
