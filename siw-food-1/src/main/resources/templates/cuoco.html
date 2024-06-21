@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Dettagli cuoco</title>
+	<title>Dettagli chef</title>
 
 	<!--comando per legare una libreria che migliora le performance e riduce i tempi di caricamento-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -25,11 +25,12 @@
 		<label for="toggler" class="fas fa-bars"></label>
 
 
-		<a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}"
-			class="logo">Siw-Food<span>.</span></a>
+		<a sec:authorize="isAuthenticated()" href="/success" class="logo">Siw-Food<span>.</span></a>
+		<a sec:authorize="!isAuthenticated()" href="/" class="logo">Siw-Food<span>.</span></a>
 
 		<nav class="navbar">
-			<a th:href="${#authorization.expression('isAuthenticated()') ? '/cuoco/indexUser' : '/'}">Home</a>
+			<a sec:authorize="isAuthenticated()" href="/success">Home</a>
+			<a sec:authorize="!isAuthenticated()" href="/">Home</a>
 			<a href="/ricetta"> Ricette </a>
 			<a href="/cuoco"> Chef </a>
 		</nav>
@@ -49,8 +50,10 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
-						<a href="/cuoco/profile">Profilo</a>
-						<a href="/user/formNewRicetta">Crea una ricetta</a>
+						<div th:if="${userRole == 'DEFAULT'}">
+							<a href="/chef/profile">Profilo</a>
+							<a href="/user/formNewRicetta">Crea una ricetta</a>
+						</div>
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>
