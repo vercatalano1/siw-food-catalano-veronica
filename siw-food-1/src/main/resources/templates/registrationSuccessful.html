@@ -25,7 +25,8 @@
 			Siw-Food<span>.</span></a>
 	</header>
 
-	
+
+
 	<h1>Congratulazioni ti sei registrato!</h1>
 	<div>
 		<span>Nome: </span>
@@ -36,8 +37,13 @@
 		<span th:text="${user.cognome}"></span>
 	</div>
 	<div>
+		<span>Data di nascita: </span>
+		<span th:text="${user.data}"></span>
+	</div>
+	<div>
 		<span>Email: </span>
 		<span th:text="${user.email}"></span>
+
 	</div>
 </body>
 

@@ -1,61 +1,71 @@
-:root{
-    --gold: #FFD700; /* Colore dorato */
+:root {
+	--gold: #FFD700;
+	/* Colore dorato */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
-    background-color: #000; 
-    color: #fff; 
+	font-family: 'Raleway', sans-serif;
+	background-color: #000;
+	color: #fff;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 2rem 9%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	background-color: #333;
+	color: #fff;
+	padding: 2rem 9%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 header a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 10px;
+	color: #fff;
+	text-decoration: none;
+	margin-left: 10px;
 }
 
 header a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
 }
 
 .logo span {
-    color: var(--gold);
+	color: var(--gold);
 }
 
 h1 {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 2rem;
+	text-align: center;
+	margin-top: 50px;
+	font-size: 2rem;
 }
 
 div {
-    margin: 10px auto;
-    text-align: center;
+	margin: 10px auto;
+	text-align: center;
 }
 
-span {
-    font-weight: bold;
-    margin-right: 5px;
+div span:first-child {
+	color: var(--gold);
+	/* Testo dorato per le etichette */
+	font-weight: bold;
+	display: inline-block;
+	min-width: 120px;
+	/* Larghezza minima per uniformità */
+}
+
+div span:last-child {
+	display: inline-block;
+
 }

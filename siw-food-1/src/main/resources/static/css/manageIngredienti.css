@@ -32,7 +32,7 @@ section{
     color: #fff;
     padding: 1rem;
     margin: 2rem 0;
-    background: rgba(255, 0, 0, .05);
+    
 }
 
 .heading span{
@@ -50,8 +50,14 @@ section{
     font-size: 1.7rem;
 }
 
-.btn:hover{
+button:hover, .btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+button:active, .btn:active {
     background: var(--gold);
+    color: #000;
 }
 
 header{
@@ -333,6 +339,26 @@ button {
 
 button:hover {
     background-color:rgb(255, 255, 128); /* Giallo più chiaro al passaggio del mouse */
+}
+
+
+.fine-btn {
+    text-align: center;
+}
+
+.fine-btn a button {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+button:hover, .btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+button:active, .btn:active {
+    background: var(--gold);
+    color: #000;
 }
 
 

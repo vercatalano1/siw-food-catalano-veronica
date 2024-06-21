@@ -80,7 +80,7 @@ span[th\:errors] {
 
 .btn {
     background: var(--gold);
-    color: rgb(255, 255, 255);
+    color:#333;
     padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
@@ -90,8 +90,15 @@ span[th\:errors] {
 }
 
 .btn:hover {
-    background:  rgb(255, 255, 128);
+    background: #333;
+    color: #fff;
 }
+
+.btn:active {
+    background: var(--gold);
+    color: #000;
+}
+
 
 .login-link p {
     color: black;
@@ -105,7 +112,8 @@ span[th\:errors] {
 }
 
 .login-link a:hover {
-    color: var(--gold);
+    color: #fff;
+    text-decoration: underline;
 }
 
 /* Styles for the image upload section */
@@ -148,6 +156,12 @@ span[th\:errors] {
     transition: background-color 0.3s ease;
 }
 
+.profile-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* mantiene l'aspetto proporzionale e ritaglia l'immagine */
+}
+
 .profile-header span input[type="file"] {
     opacity: 0;
     width: 100%;
@@ -158,9 +172,7 @@ span[th\:errors] {
     cursor: pointer;
 }
 
-.profile-header span:hover {
-    background-color: rgba(230, 184, 0, 0.8); /* Darker gold color */
-}
+
 
 /*media queries*/
 

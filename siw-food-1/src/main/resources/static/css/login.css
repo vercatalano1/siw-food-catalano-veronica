@@ -32,7 +32,7 @@ body .logo span {
 }
 
 .wrapper {
-    max-width: 40%;
+    max-width: 30%;
     margin: 20vh auto 10vh;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.6); /* Rendiamo leggermente più trasparente */
@@ -83,7 +83,7 @@ input[type="password"] {
 
 .btn {
     background: var(--gold);
-    color: rgb(255, 255, 255);
+    color:#333;
     padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
@@ -93,7 +93,13 @@ input[type="password"] {
 }
 
 .btn:hover {
-    background:  rgb(255, 255, 128);
+    background: #333;
+    color: #fff;
+}
+
+.btn:active {
+    background: var(--gold);
+    color: #000;
 }
 
 .register-link p {
@@ -107,6 +113,7 @@ input[type="password"] {
 }
 
 .register-link a:hover {
+	color: #fff;
     text-decoration: underline;
 }
 
@@ -115,7 +122,7 @@ input[type="password"] {
 
 @media (max-width: 991px) {
     .wrapper {
-        max-width: 80%;
+        max-width: 50%;
         padding: 1rem;
     }
 
@@ -123,14 +130,14 @@ input[type="password"] {
 
 @media (max-width: 768px) {
     .wrapper {
-        max-width: 90%;
+        max-width: 60%;
         padding: 1rem;
     }
 }
 
 @media (max-width: 450px) {
     .wrapper {
-        max-width: 100%;
+        max-width: 40%;
         padding: 0.5rem;
     }
 }

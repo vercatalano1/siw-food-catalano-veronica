@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
- <head>
+<head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,21 +58,26 @@
 
 
 	<div class="heading">
-        <h1>Gestisci gli Ingredienti</h1>
-    </div>
+		<h1>Gestisci gli Ingredienti</h1>
+	</div>
 
-    <div th:if="${ingredienti==null || ingredienti.isEmpty()}">
-        <p>Non ci sono ingredienti nel sistema.</p>
-    </div>
+	<div th:if="${ingredienti==null || ingredienti.isEmpty()}">
+		<p>Non ci sono ingredienti nel sistema.</p>
+	</div>
 
-    <ul class="ingredient-list">
-        <li th:each="ingrediente : ${ingredienti}" class="ingredient-item">
-            <span th:text="${ingrediente.nome}"></span>
-            <form th:action="@{'/admin/ingrediente/' + ${ingrediente.id} + '/delete'}" method="post">
-                <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo ingrediente?');">Elimina</button>
-            </form>
-        </li>
-    </ul>
+	<ul class="ingredient-list">
+		<li th:each="ingrediente : ${ingredienti}" class="ingredient-item">
+			<span th:text="${ingrediente.nome}"></span>
+			<form th:action="@{'/admin/ingrediente/' + ${ingrediente.id} + '/delete'}" method="post">
+				<button type="submit"
+					onclick="return confirm('Sei sicuro di voler eliminare questo ingrediente?');">Elimina</button>
+			</form>
+		</li>
+	</ul>
+	<div class="fine-btn">
+		<a th:href="@{'/'}">
+			<button type="button">Fine</button></a>
+	</div>
 </body>
 
 </html>
