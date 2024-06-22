@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +46,7 @@ public class RicettaController {
 		return "admin/manageRicetta.html";
 	}
 
-	@GetMapping("/admin/setCuocoToRicetta/{cuocoId}/{ricettaId}")
+	@GetMapping("/user/setCuocoToRicetta/{cuocoId}/{ricettaId}")
 	public String setCuocoToricetta(@PathVariable("cuocoId") Long cuocoId, @PathVariable("ricettaId") Long ricettaId,
 			Model model) {
 
@@ -97,6 +98,8 @@ public class RicettaController {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "ricette.html";
 	}
+	
+	
 
 	/*
 	 * @GetMapping("/formSearchRicette") public String formSearchRicette() { return
@@ -205,18 +208,24 @@ public class RicettaController {
 		return ingredientiToAdd;
 	}
 
-	@GetMapping("/admin/ricetta/{id}")
-	public String deleteRicetta(@PathVariable("id") Long id, Model model) {
-		Ricetta ricetta = ricettaService.findById(id);
-		if (ricetta != null) {
-			ricettaService.delete(ricetta);
-			// Redirect alla pagina dell'indice dei servizi dopo la cancellazione
-			return "redirect:/ricetta";
-		} else {
-			// Nel caso in cui il Cuoco non esista
-			model.addAttribute("messaggioErrore", "Ricetta non trovata");
-			return "admin/indexRicetta.html";
-		}
+	@GetMapping("/user/ricetta/{id}")
+	public String deleteRicetta(@PathVariable("id") Long id, 
+	                            @RequestParam(name = "from", required = false) String from, 
+	                            Model model) {
+	    Ricetta ricetta = ricettaService.findById(id);
+	    if (ricetta != null) {
+	        ricettaService.delete(ricetta);
+	        // Redirect alla pagina di origine dopo la cancellazione
+	        if ("profile".equals(from)) {
+	            return "chef/profile.html";
+	        } else {
+	            return "admin/manageRicetta.html";
+	        }
+	    } else {
+	        // Nel caso in cui la Ricetta non esista
+	        model.addAttribute("messaggioErrore", "Ricetta non trovata");
+	        return "admin/indexRicetta.html";
+	    }
 	}
 
 }

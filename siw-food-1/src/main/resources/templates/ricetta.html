@@ -30,7 +30,7 @@
 			<a sec:authorize="isAuthenticated()" href="/success">Home</a>
 			<a sec:authorize="!isAuthenticated()" href="/">Home</a>
 			<a href="/ricetta"> Ricette </a>
-			<a href="/cuoco"> Chef </a>
+			<a th:href="${userRole == 'DEFAULT' ? '/chef/cuochiUser' : '/cuoco'}">Chef</a>
 		</nav>
 
 
@@ -97,8 +97,12 @@
 						</div>
 						<div class="cuoco-details">
 							<h3>Chef:</h3>
-							<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
-								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+							<span th:if="${userRole != 'DEFAULT'}">
+								<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
+									th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+							</span>
+							<span th:if="${userRole == 'DEFAULT'}"
+								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></span>
 						</div>
 					</div>
 
