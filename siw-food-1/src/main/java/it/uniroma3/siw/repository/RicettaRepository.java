@@ -24,5 +24,7 @@ public interface RicettaRepository extends CrudRepository<Ricetta, Long>{
     @Query("UPDATE Ricetta r SET r.cuoco = :cuoco WHERE r.nome = :nomeRicetta")
     void associaCuocoARicetta(@Param("nomeRicetta") String nomeRicetta, @Param("cuoco") Cuoco cuochi);
 
+	public List<Ricetta> findByCuoco(Cuoco cuoco);
+
 
 }

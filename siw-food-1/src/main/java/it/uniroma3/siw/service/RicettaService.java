@@ -53,5 +53,9 @@ public class RicettaService {
 	public void delete(Ricetta ricetta) {
 		 ricettaRepository.delete(ricetta);
 	}
+
+	public List<Ricetta> findByCuoco(Cuoco cuoco) {
+		return ricettaRepository.findByCuoco(cuoco);
+	}
 	
 }

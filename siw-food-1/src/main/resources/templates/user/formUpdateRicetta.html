@@ -50,11 +50,11 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
 						</div>
-						<div th:if="${userRole== 'DEFAULT'}"  >
+						<div th:if="${userRole== 'DEFAULT'}">
 							<a href="chef/profile">Profilo</a>
-						    <a href="/user/formNewRicetta">Crea una ricetta</a>
+							<a href="/user/formNewRicetta">Crea una ricetta</a>
 						</div>
-						
+
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>
@@ -112,7 +112,7 @@
 
 				<div class="cuoco-info">
 					<div class="cuoco-details">
-						<div th:if="${userRole == 'ADMIN'}">
+						<!--<div th:if="${userRole == 'ADMIN'}">-->
 							<div th:unless="${ricetta.cuoco}">
 								<!-- Immagine di default del profilo -->
 								<div class="cuoco-image">
@@ -144,26 +144,16 @@
 
 
 
-						<div th:if="${userRole == 'DEFAULT'}">
-							<div class="cuoco-image">
-								<img th:src="@{'/images/cuochi/' + ${defaultCuoco.image}}"
-									alt="Immagine del cuoco di default"
-									onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-							</div>
-							<h3>Chef:</h3>
-							<span th:text="${defaultCuoco.nome + ' ' + defaultCuoco.cognome}">Nome Cuoco</span>
+						<!--<div class="cuoco-image" th:unless="${userRole == 'ADMIN'}">-->
+        
+        
+						<div class="fine-btn">
+							<a th:href="@{'/ricetta/' + ${ricetta.id}}">
+								<button type="button">Termina</button>
+							</a>
 						</div>
-
 					</div>
 				</div>
-
-				<div class="fine-btn">
-					<a th:href="@{'/ricetta/' + ${ricetta.id}}">
-						<button type="button">Termina</button>
-					</a>
-				</div>
-			</div>
-		</div>
 	</main>
 
 
@@ -184,7 +174,7 @@
 			var ricettaId = /*[[${ricetta.id}]]*/ 'RICETTA_ID'; // Thymeleaf will replace this with the actual ID
 
 			if (selectedCuocoId) {
-				var salvaUrl = '/admin/setCuocoToRicetta/' + selectedCuocoId + '/' + ricettaId;
+				var salvaUrl = '/user/setCuocoToRicetta/' + selectedCuocoId + '/' + ricettaId;
 				window.location.href = salvaUrl;
 			}
 		}

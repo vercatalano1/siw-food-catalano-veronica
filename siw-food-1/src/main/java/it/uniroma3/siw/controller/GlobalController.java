@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Cuoco;
 
 @ControllerAdvice
 public class GlobalController {
@@ -37,4 +38,6 @@ public class GlobalController {
         }
         return Credentials.DEFAULT_ROLE;
     }
+    
+    
 }

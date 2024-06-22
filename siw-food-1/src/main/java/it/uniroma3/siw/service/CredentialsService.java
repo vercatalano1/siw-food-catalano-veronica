@@ -33,9 +33,17 @@ public class CredentialsService {
 
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
-        credentials.setRole(Credentials.DEFAULT_ROLE);
+        credentials.setRole(Credentials.ADMIN_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }
+
+	public Credentials findCuocoByUsername(String username) {
+		return credentialsRepository.findCuocoByUsername(username);
+	}
+
+	public void save(Credentials credentials) {
+		this.credentialsRepository.save(credentials);
+	}
 }
 

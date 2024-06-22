@@ -87,5 +87,11 @@ public class CuocoController {
 	public String indexUser() {
 		return "chef/indexUser.html";
 	}
+	
+	@GetMapping("/chef/cuochiUser")
+	public String getChef(Model model) {
+		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
+		return "chef/cuochiUser.html";
+	}
 
 }
