@@ -210,7 +210,6 @@ header .icons .dropdown .user-info::after {
 /* Stile per il contenitore delle opzioni nel dropdown */
 
 header .icons .dropdown .dropdown-content {
-    display: none;
     position: absolute;
     background-color: #fff;
     min-width: 160px;
@@ -367,12 +366,18 @@ p{
 }
 
 .ingredienti .btn-group a:hover {
-    background-color:rgb(255, 255, 128); 
+    background: #fff;
+}
+
+.ingredienti .btn-group a:active {
+     background: var(--gold);
+    color: #000; 
 }
 
 .fine-btn {
     text-align: center;
 }
+
 
 .fine-btn a button {
     font-size: 3rem;
@@ -386,10 +391,16 @@ p{
     text-decoration: none;
 }
 
+
 .fine-btn a button:hover {
-    background-color: rgb(255, 255, 128);  
+    background: #333;
+    color:#fff;
 }
 
+.fine-btn a button:active {
+     background: var(--gold);
+    color: #000; 
+}
 
 
 

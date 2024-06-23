@@ -210,7 +210,6 @@ header .icons .dropdown .user-info::after {
 /* Stile per il contenitore delle opzioni nel dropdown */
 
 header .icons .dropdown .dropdown-content {
-    display: none;
     position: absolute;
     background-color: #fff;
     min-width: 160px;

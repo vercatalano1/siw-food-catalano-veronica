@@ -113,47 +113,47 @@
 				<div class="cuoco-info">
 					<div class="cuoco-details">
 						<!--<div th:if="${userRole == 'ADMIN'}">-->
-							<div th:unless="${ricetta.cuoco}">
-								<!-- Immagine di default del profilo -->
-								<div class="cuoco-image">
-									<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
-								</div>
-								<h3>Chef:</h3>
-								<select id="cuocoSelect" onchange="aggiornaImmagineCuoco()">
-									<option value="" data-image="/images/cuochi/profilo.png">Seleziona un cuoco</option>
-									<!-- Itera sulla lista dei cuochi disponibili -->
-									<option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
-										th:data-image="@{${cuoco.image != null && cuoco.image != '' ? '/images/cuochi/' + cuoco.image : '/images/cuochi/profilo.png'}}"
-										th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
-								</select>
-
-								<button type="button" onclick="salvaCuoco()">Salva</button>
+						<div th:unless="${ricetta.cuoco}">
+							<!-- Immagine di default del profilo -->
+							<div class="cuoco-image">
+								<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
 							</div>
+							<h3>Chef:</h3>
+							<select id="cuocoSelect" onchange="aggiornaImmagineCuoco()">
+								<option value="" data-image="/images/cuochi/profilo.png">Seleziona un cuoco</option>
+								<!-- Itera sulla lista dei cuochi disponibili -->
+								<option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
+									th:data-image="@{${cuoco.image != null && cuoco.image != '' ? '/images/cuochi/' + cuoco.image : '/images/cuochi/profilo.png'}}"
+									th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
+							</select>
 
-
-							<div th:if="${ricetta.cuoco}">
-								<div class="cuoco-image">
-									<img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco"
-										onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-								</div>
-								<h3>Chef: </h3>
-								<span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo
-									Cracco</span>
-							</div>
+							<button type="button" onclick="salvaCuoco()">Salva</button>
 						</div>
 
 
-
-						<!--<div class="cuoco-image" th:unless="${userRole == 'ADMIN'}">-->
-        
-        
-						<div class="fine-btn">
-							<a th:href="@{'/ricetta/' + ${ricetta.id}}">
-								<button type="button">Termina</button>
-							</a>
+						<div th:if="${ricetta.cuoco}">
+							<div class="cuoco-image">
+								<img th:src="@{'/images/cuochi/' + ${ricetta.cuoco.image}}" alt="Immagine del cuoco"
+									onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
+							</div>
+							<h3>Chef: </h3>
+							<span th:text="${ricetta.cuoco.nome} + ' ' + ${ricetta.cuoco.cognome}">Carlo
+								Cracco</span>
 						</div>
 					</div>
+
+
+
+					<!--<div class="cuoco-image" th:unless="${userRole == 'ADMIN'}">-->
+
+
+					<div class="fine-btn">
+						<a th:href="@{'/ricetta/' + ${ricetta.id}}">
+							<button type="button">Termina</button>
+						</a>
+					</div>
 				</div>
+			</div>
 	</main>
 
 

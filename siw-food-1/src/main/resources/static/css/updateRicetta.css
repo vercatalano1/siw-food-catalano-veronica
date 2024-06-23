@@ -142,7 +142,6 @@ header .fa-bars{
     border-radius: 0 3rem 3rem 0;
     padding: 0.6rem 1.5rem;
     cursor: pointer;
-    outline: none;
 }
 
 .search-form .search-button:hover {
@@ -210,7 +209,6 @@ header .icons .dropdown .user-info::after {
 /* Stile per il contenitore delle opzioni nel dropdown */
 
 header .icons .dropdown .dropdown-content {
-    display: none;
     position: absolute;
     background-color: #fff;
     min-width: 160px;
@@ -314,7 +312,7 @@ h4{
 
 .ingredienti-list li {
     margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     line-height: 1.6;
 }
 

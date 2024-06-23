@@ -211,7 +211,6 @@ header .icons .dropdown .user-info::after {
 /* Stile per il contenitore delle opzioni nel dropdown */
 
 header .icons .dropdown .dropdown-content {
-    display: none;
     position: absolute;
     background-color: #fff;
     min-width: 160px;
@@ -258,16 +257,33 @@ header .icons .dropdown-content {
 }
 
 
-
-
-
-
 /*Profilo modifica*/
+body {
+    margin: 0;
+    padding: 0;
+    position: relative; /* Posizione relativa per contenere il pseudo-elemento */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Posizione fissa per coprire l'intera finestra */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/img3.png'); /* Immagine di sfondo */
+    background-size: cover; /* Copre l'intera area */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity:0.8;
+    z-index: -1; /* Posiziona sotto gli altri contenuti */
+}
+
 
 .container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 9rem;
+    padding: 8rem;
 }
 
 .profile-header {
@@ -277,13 +293,14 @@ header .icons .dropdown-content {
 }
 
 .profile-name {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .profile-name h2 {
     text-align: center;
-    font-size: 3rem;
-    color: #fff;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: bold;
     margin-bottom: 2rem;
 }
 
@@ -292,10 +309,10 @@ header .icons .dropdown-content {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .profile-details form {
-    display: flex;
     flex-direction: column;
 }
 
@@ -304,8 +321,15 @@ header .icons .dropdown-content {
 }
 
 .profile-details label {
-    font-weight: bold;
+	display: block;
     font-size: 1.7rem;
+    color: #333;
+}
+
+.profile-details input[type="text"]:focus,
+.profile-details input[type="file"]:focus {
+    border-color:var(--gold);
+    box-shadow: 0 0 5px var(--input-focus);
 }
 
 .profile-details input[type="text"],
@@ -319,31 +343,30 @@ header .icons .dropdown-content {
     margin-top: 0.5rem;
 }
 
-.profile-details button {
+button{
+    display: inline-block;
     width: 100%;
-    padding: 1rem;
-    font-size: 1.8rem;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
     border: none;
-    border-radius: 0.5rem;
-    background-color: var(--pink);
-    color: #fff;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.profile-details button:hover {
-    background-color: #c8357c; /* Cambia colore al passaggio del mouse */
-}
-
-.profile-details button[type="button"] {
-    background-color: #ccc;
+    border-radius: 5px;
+    background: var(--gold);
     color: #333;
-    margin-top: 0.5rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.profile-details button[type="button"]:hover {
-    background-color: #999; /* Cambia colore al passaggio del mouse */
+button:hover, .btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+button:active, .btn:active {
+    background: var(--gold);
+    color: #000;
 }
 
 

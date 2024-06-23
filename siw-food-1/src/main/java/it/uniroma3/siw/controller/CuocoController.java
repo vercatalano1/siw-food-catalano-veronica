@@ -2,18 +2,17 @@ package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.uniroma3.siw.controller.validator.CuocoValidator;
-import it.uniroma3.siw.controller.validator.RicettaValidator;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.service.CredentialsService;
@@ -26,6 +25,8 @@ public class CuocoController {
 	private CuocoService CuocoService;
 	@Autowired
 	private CuocoValidator cuocoValidator;
+	@Autowired
+    private CredentialsService credentialsService;
 	
 	@GetMapping(value="/admin/formNewCuoco")
 	public String formNewCuoco(Model model) {
@@ -68,19 +69,30 @@ public class CuocoController {
 		return "cuochi.html";
 	}
 	
+	
 	@PostMapping("/admin/cuoco/{id}/delete")
-    public String deleteCuoco(@PathVariable("id") Long id, Model model) {
-        Cuoco Cuoco = CuocoService.getCuoco(id);
-        if (Cuoco != null) {
-            CuocoService.deleteById(id);
-            // Redirect alla pagina dell'indice dei servizi dopo la cancellazione
-            return "redirect:/cuoco";
-        } else {
-            // Nel caso in cui il Cuoco non esista
-            model.addAttribute("messaggioErrore", "Cuoco non trovato");
-            return "admin/indexCuoco.html";
-            }
-        }
+	public String deleteCuoco(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+	    // Ottenere le credenziali dell'utente autenticato
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String username = authentication.getName();
+	    Credentials credentials = credentialsService.getCredentials(username);
+
+	    // Ottenere il cuoco da eliminare
+	    Cuoco cuocoToDelete = CuocoService.getCuoco(id);
+
+	    // Verifica se l'utente autenticato sta tentando di eliminare il suo stesso cuoco
+	    if (credentials.getCuoco() != null && credentials.getCuoco().getId().equals(cuocoToDelete.getId())) {
+	        redirectAttributes.addFlashAttribute("error", "Non puoi eliminare te stesso!");
+	        redirectAttributes.addFlashAttribute("cuocoId", id);
+	        return "redirect:/admin/manageCuoco"; // Reindirizza con parametro error
+	    }
+
+	    // Esegui l'eliminazione diretta del cuoco
+	    CuocoService.deleteById(id);
+	    return "redirect:/cuoco"; // Reindirizza alla pagina di gestione dei cuochi dopo l'eliminazione
+	}
+	
+	
 
 	/*chef*/
 	@GetMapping(value="/chef/indexUser")

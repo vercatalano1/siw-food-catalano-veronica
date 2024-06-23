@@ -211,7 +211,6 @@ header .icons .dropdown .user-info::after {
 /* Stile per il contenitore delle opzioni nel dropdown */
 
 header .icons .dropdown .dropdown-content {
-    display: none;
     position: absolute;
     background-color: #fff;
     min-width: 160px;
@@ -287,7 +286,7 @@ header .icons .dropdown-content {
 }
 
 .found_ricetta li {
-    font-size: 2rem; /* Modifica la dimensione del testo per ciascun elemento della lista */
+    font-size: 2rem; 
 }
 
 .found_ricetta li a {
