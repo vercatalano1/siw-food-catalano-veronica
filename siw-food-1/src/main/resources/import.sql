@@ -41,10 +41,10 @@ insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'),
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Burro', '45');
 
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Vino rosso', '500');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Susine', null);
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Susine', '32');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Guancia di maiale', '8');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipolla', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Carota', null);
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipolla', '1');
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Carota', '1');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Sedano', null);
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Farina 00', null);
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Zucchero', null);
@@ -61,15 +61,15 @@ insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'),
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Sfoglia per lasagna', '180');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Gorgonzola', '120');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cavolfiore', '100');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Noci di burro', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipollotto', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Rametto si salvia', null);
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Noci di burro', '3');
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipollotto', '1');
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Rametto si salvia', '1');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Paprica', null);
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Curcuma', null);
 
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Astice', '600');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Caviale Oscietra', '75');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Radici di zenzero', null);
+insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Radici di zenzero', '1');
 insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Succo di limone', null);
 
 
