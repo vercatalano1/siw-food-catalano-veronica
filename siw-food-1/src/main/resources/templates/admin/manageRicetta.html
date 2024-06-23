@@ -72,8 +72,7 @@
 			<div class="ricetta-details">
 				<h2 th:text="${ricetta.nome}">nome</h2>
 				<a th:href="@{'/user/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
-				<form th:action="@{'/user/ricetta/' + ${ricetta.id}}" method="get">
-					<input type="hidden" name="from" value="manageRicetta">
+				<form th:action="@{'/admin/ricetta/' + ${ricetta.id}}" method="get">
 					<button type="submit"
 						onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
 				</form>

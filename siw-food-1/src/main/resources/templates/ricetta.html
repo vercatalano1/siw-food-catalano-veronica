@@ -97,7 +97,7 @@
 						</div>
 						<div class="cuoco-details">
 							<h3>Chef:</h3>
-							<span th:if="${userRole != 'DEFAULT'}">
+							<span th:if="${userRole != 'DEFAULT' or userRole == null}">
 								<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
 									th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
 							</span>

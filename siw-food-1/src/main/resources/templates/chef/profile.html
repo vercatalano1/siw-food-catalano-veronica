@@ -46,7 +46,7 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
 						</div>
-
+                        <a href="/chef/profile">Profilo</a>
 						<a href="/user/formNewRicetta">Crea una ricetta</a>
 						<a href="/logout">Logout</a>
 					</div>
@@ -99,8 +99,7 @@
 						<a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
 
 						<a th:href="@{'/user/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
-						<form th:action="@{'/user/ricetta/' + ${ricetta.id}}" method="get">
-							<input type="hidden" name="from" value="profile">
+						<form th:action="@{'/chef/ricetta/' + ${ricetta.id}}" method="get">
 							<button type="submit"
 								onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
 						</form>

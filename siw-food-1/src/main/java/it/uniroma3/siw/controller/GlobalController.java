@@ -36,7 +36,7 @@ public class GlobalController {
                        .findFirst()
                        .orElse(Credentials.DEFAULT_ROLE);
         }
-        return Credentials.DEFAULT_ROLE;
+        return null;
     }
     
     

@@ -285,6 +285,7 @@ body::before {
     background-size: cover; /* Copre l'intera area */
     background-repeat: no-repeat;
     background-position: center;
+    opacity:0.8;
     z-index: -1; /* Posiziona sotto gli altri contenuti */
 }
 

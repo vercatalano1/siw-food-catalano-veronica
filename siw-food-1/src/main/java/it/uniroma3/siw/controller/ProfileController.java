@@ -74,20 +74,20 @@ public class ProfileController {
     }
 
     
-    /*@GetMapping("/Cuoco/cancellaRecensione/{id}")
-    public String cancellaRecensione(@PathVariable("id") Long id, Authentication authentication, Model model) {
+    @GetMapping("/chef/ricetta/{id}")
+    public String cancellaricetta(@PathVariable("id") Long id, Authentication authentication, Model model) {
         String username = authentication.getName();
         Credentials credentials = credentialsService.findCuocoByUsername(username);
         
-        // Verifica che la recensione da cancellare appartenga all'utente autenticato
-        Recensione recensione = recensioneService.findById(id);
-        if (recensione != null && recensione.getCuoco().getId().equals(credentials.getCuoco().getId())) {
-            recensioneService.delete(recensione);
-            return "redirect:/Cuoco/profile";
+        // Verifica che la ricetta da cancellare appartenga all'utente autenticato
+        Ricetta ricetta = ricettaService.findById(id);
+        if (ricetta != null && ricetta.getCuoco().getId().equals(credentials.getCuoco().getId())) {
+            ricettaService.delete(ricetta);
+            return "redirect:/chef/profile";
         } else {
-            // Gestione errore se l'utente prova a cancellare una recensione non sua
-            model.addAttribute("errore", "Non hai il permesso per cancellare questa recensione.");
-            return "redirect:/Cuoco/profile";
+            // Gestione errore se l'utente prova a cancellare una ricetta non sua
+            model.addAttribute("errore", "Non hai il permesso per cancellare questa ricetta.");
+            return "redirect:/chef/profile";
         }
-    }*/
+    }
 }
