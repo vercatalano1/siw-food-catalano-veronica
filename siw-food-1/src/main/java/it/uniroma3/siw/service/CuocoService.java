@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.repository.CuocoRepository;
 
@@ -68,4 +69,7 @@ public class CuocoService {
 		CuocoRepository.deleteReferencesInRicettaCuochi(id);
 		CuocoRepository.delete(cuoco);
 	}
+
+
+
 }

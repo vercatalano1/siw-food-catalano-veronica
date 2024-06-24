@@ -161,7 +161,6 @@ header .fa-bars{
 
 
 
-
 /* Dropdown per admin nell'header */
 
 header .icons a,
@@ -363,6 +362,35 @@ h1 {
 .ricetta-details button:hover {
     background-color: var(--gold);
     color: #333;
+}
+
+
+
+.fine-btn {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.fine-btn a button {
+    font-size: 1.8rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.fine-btn a button:hover {
+    background: var(--gold);
+    color:#333;
+}
+
+.fine-btn a button:active{
+    background: var(--gold);
+    color: #000;
 }
 
 

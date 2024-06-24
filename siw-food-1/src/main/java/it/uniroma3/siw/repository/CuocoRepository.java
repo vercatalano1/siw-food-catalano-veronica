@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 
 public interface CuocoRepository extends CrudRepository<Cuoco, Long>{
@@ -16,4 +17,6 @@ public interface CuocoRepository extends CrudRepository<Cuoco, Long>{
 	@Modifying
     @Query(value = "UPDATE ricetta SET cuoco_id = NULL WHERE cuoco_id = :cuocoId", nativeQuery=true)
     void deleteReferencesInRicettaCuochi(@Param("cuocoId") Long cuocoId);
+
+
 }

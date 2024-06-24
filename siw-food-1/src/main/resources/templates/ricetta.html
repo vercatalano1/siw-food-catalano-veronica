@@ -30,7 +30,7 @@
 			<a sec:authorize="isAuthenticated()" href="/success">Home</a>
 			<a sec:authorize="!isAuthenticated()" href="/">Home</a>
 			<a href="/ricetta"> Ricette </a>
-			<a th:href="${userRole == 'DEFAULT' ? '/chef/cuochiUser' : '/cuoco'}">Chef</a>
+			<a href="/cuoco">Chef</a>
 		</nav>
 
 
@@ -77,7 +77,7 @@
 				<h4>Ingredienti:</h4>
 				<ul class="ingredienti-list">
 					<li th:each="ingrediente : ${ricetta.ingredienti}">
-						<span th:text="${ingrediente.nome}">Nome ingrediente</span>
+						<span th:text="${ingrediente.nome} + ' '">Nome ingrediente</span>
 						<span th:if="${ingrediente.quantità != null}"
 							th:text="${ingrediente.quantità + 'g'}">Quantità</span>
 					</li>
@@ -97,12 +97,12 @@
 						</div>
 						<div class="cuoco-details">
 							<h3>Chef:</h3>
-							<span th:if="${userRole != 'DEFAULT' or userRole == null}">
+							<!--<span th:if="${userRole != 'DEFAULT' or userRole == null}">-->
 								<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
 									th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
-							</span>
+							<!--</span>
 							<span th:if="${userRole == 'DEFAULT'}"
-								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></span>
+								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></span>-->
 						</div>
 					</div>
 

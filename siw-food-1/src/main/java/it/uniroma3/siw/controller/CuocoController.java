@@ -89,7 +89,7 @@ public class CuocoController {
 
 	    // Esegui l'eliminazione diretta del cuoco
 	    CuocoService.deleteById(id);
-	    return "redirect:/cuoco"; // Reindirizza alla pagina di gestione dei cuochi dopo l'eliminazione
+	    return "redirect:/admin/manageCuoco"; // Reindirizza alla pagina di gestione dei cuochi dopo l'eliminazione
 	}
 	
 	

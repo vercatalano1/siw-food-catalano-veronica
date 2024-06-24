@@ -62,25 +62,29 @@
 		<h1>Gestisci gli Chef</h1>
 	</div>
 	<section class="chef-list">
-    <div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
-    <div th:each="cuoco : ${cuochi}" class="chef-item">
-        <div class="image-container">
-            <img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
-                 onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-        </div>
-        <div class="chef-details">
-            <h2 th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">Nome Cognome</h2>
-            <form th:action="@{'/admin/cuoco/' + ${cuoco.id} + '/delete'}" method="post">
-                <!-- Mostra un messaggio di errore se l'utente sta cercando di eliminare se stesso -->
-                <p th:if="${cuoco.id == cuocoId}" th:text="${error}" class="error-message"></p>
+		<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+		<div th:each="cuoco : ${cuochi}" class="chef-item">
+			<div class="image-container">
+				<img th:src="@{'/images/cuochi/' + ${cuoco.image}}" alt="Immagine del cuoco"
+					onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
+			</div>
+			<div class="chef-details">
+				<h2 th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">Nome Cognome</h2>
+				<form th:action="@{'/admin/cuoco/' + ${cuoco.id} + '/delete'}" method="post">
+					<!-- Mostra un messaggio di errore se l'utente sta cercando di eliminare se stesso -->
+					<p th:if="${cuoco.id == cuocoId}" th:text="${error}" class="error-message"></p>
 
-                <!-- Mostra il pulsante di eliminazione solo se non è l'utente autenticato -->
-                <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo cuoco?');"
-                        th:unless="${cuoco.id == cuocoId}">Elimina</button>
-            </form>
-        </div>
-    </div>
-</section>
+					<!-- Mostra il pulsante di eliminazione solo se non è l'utente autenticato -->
+					<button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo cuoco?');"
+						th:unless="${cuoco.id == cuocoId}">Elimina</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<div class="fine-btn">
+		<a th:href="@{'/cuoco'}">
+			<button type="button">Fine</button></a>
+	</div>
 
 
 </body>

@@ -31,7 +31,7 @@
 			<a sec:authorize="isAuthenticated()" href="/success">Home</a>
 			<a sec:authorize="!isAuthenticated()" href="/">Home</a>
 			<a href="/ricetta"> Ricette </a>
-			<a th:href="${userRole == 'DEFAULT' ? '/chef/cuochiUser' : '/cuoco'}">Chef</a>
+			<a href="/cuoco">Chef</a>
 		</nav>
 
 

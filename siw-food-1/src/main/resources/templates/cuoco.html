@@ -67,6 +67,7 @@
 	<!-- Main content -->
 	<main>
 		<h1>Profilo dello Chef</h1>
+		<h2 th:text="${cuoco.nome + ' ' + cuoco.cognome}">Nome cuoco</h2>
 
 		<!-- Profilo del cuoco -->
 		<div th:if="${cuoco}" class="chef-profile">

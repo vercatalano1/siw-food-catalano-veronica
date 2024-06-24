@@ -268,8 +268,14 @@ h1{
 	font-size: 80px;
 	text-align: center;
 	margin-top: 8rem;
-	margin-bottom: 3rem;
 	color:var(--gold);
+}
+
+h2 {
+    font-size: 4rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3rem;
 }
 
 .chef-profile {
@@ -315,8 +321,8 @@ h1{
 }
 
 .ricette h2 {
-    font-size: 3rem;
-    margin-bottom: 3rem;
+    font-size: 4rem;
+    margin-bottom: 5rem;
     color: var(--gold);
 }
 

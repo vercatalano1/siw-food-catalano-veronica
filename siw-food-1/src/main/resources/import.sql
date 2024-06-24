@@ -1,5 +1,5 @@
 insert into cuoco (id, nome, cognome, data, email, image ) VALUES (nextval('cuoco_seq'), 'Max', 'Mariola', '11-04-1969', 'maxmariola@gmail.com', 'mariola.png');
-insert into cuoco (id, nome, cognome, data, email, image ) values(nextval('cuoco_seq'), 'Carlo', 'Cracco', '08-10-1965', ' carlocracco@gmial.com','cracco.png' );
+insert into cuoco (id, nome, cognome, data, email, image ) values(nextval('cuoco_seq'), 'Carlo', 'Cracco', '08-10-1965', ' carlocracco@gmail.com','cracco.png' );
 insert into cuoco (id, nome, cognome, data, email, image ) values(nextval('cuoco_seq'), 'Antonia', 'Klugmann', '02-09-1979', 'antoniaklugmann@gmail.com','klugmann.png');
 insert into cuoco (id, nome, cognome, data, email, image ) values(nextval('cuoco_seq'), 'Enrico', 'Bartolini', '24-11-1979', 'enricobartolini@gmail.com','bartolini.png');
 insert into cuoco (id, nome, cognome, data, email, image ) values(nextval('cuoco_seq'), 'Bruno', 'Barbieri', '12-01-1962', 'brunobarbieri@gmail.com','barbieri.png');

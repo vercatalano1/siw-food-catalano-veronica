@@ -112,24 +112,25 @@
 
 				<div class="cuoco-info">
 					<div class="cuoco-details">
-						<!--<div th:if="${userRole == 'ADMIN'}">-->
+
 						<div th:unless="${ricetta.cuoco}">
-							<!-- Immagine di default del profilo -->
-							<div class="cuoco-image">
-								<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
+							<div th:if="${userRole == 'ADMIN'}">
+								<!-- Immagine di default del profilo -->
+								<div class="cuoco-image">
+									<img id="cuocoImage" src="/images/cuochi/profilo.png" alt="Immagine del cuoco">
+								</div>
+								<h3>Chef:</h3>
+								<select id="cuocoSelect" onchange="aggiornaImmagineCuoco()">
+									<option value="" data-image="/images/cuochi/profilo.png">Seleziona un cuoco</option>
+									<!-- Itera sulla lista dei cuochi disponibili -->
+									<option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
+										th:data-image="@{${cuoco.image != null && cuoco.image != '' ? '/images/cuochi/' + cuoco.image : '/images/cuochi/profilo.png'}}"
+										th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
+								</select>
+
+								<button type="button" onclick="salvaCuoco()">Salva</button>
 							</div>
-							<h3>Chef:</h3>
-							<select id="cuocoSelect" onchange="aggiornaImmagineCuoco()">
-								<option value="" data-image="/images/cuochi/profilo.png">Seleziona un cuoco</option>
-								<!-- Itera sulla lista dei cuochi disponibili -->
-								<option th:each="cuoco : ${cuochi}" th:value="${cuoco.id}"
-									th:data-image="@{${cuoco.image != null && cuoco.image != '' ? '/images/cuochi/' + cuoco.image : '/images/cuochi/profilo.png'}}"
-									th:text="${cuoco.nome + ' ' + cuoco.cognome}"></option>
-							</select>
-
-							<button type="button" onclick="salvaCuoco()">Salva</button>
 						</div>
-
 
 						<div th:if="${ricetta.cuoco}">
 							<div class="cuoco-image">
@@ -142,9 +143,6 @@
 						</div>
 					</div>
 
-
-
-					<!--<div class="cuoco-image" th:unless="${userRole == 'ADMIN'}">-->
 
 
 					<div class="fine-btn">
