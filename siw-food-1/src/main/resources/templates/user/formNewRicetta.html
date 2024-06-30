@@ -49,11 +49,11 @@
 						<div class="user-info">
 							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
 						</div>
-						<div th:if="${userRole== 'DEFAULT'}"  >
+						<div th:if="${userRole== 'DEFAULT'}">
 							<a href="/chef/profile">Profilo</a>
-						    <a href="/user/formNewRicetta">Crea una ricetta</a>
+							<a href="/user/formNewRicetta">Crea una ricetta</a>
 						</div>
-						
+
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>
@@ -80,10 +80,18 @@
 				</span>
 			</div>
 
+			<!-- Campo descrizione -->
 			<div class="descrizione">
-				<label>Descrizione:</label> <span><input type="text" th:field="${ricetta.descrizione}" /></span>
-				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">
-				</span>
+				<label for="descrizione">Descrizione:</label>
+				<textarea id="descrizione" th:field="*{descrizione}" rows="4"></textarea>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+			</div>
+
+			<!-- Campo procedimento -->
+			<div class="procedimento">
+				<label for="procedimento">Procedimento:</label>
+				<textarea id="procedimento" th:field="*{procedimento}" rows="10"></textarea>
+				<span th:if="${#fields.hasErrors('procedimento')}" th:errors="*{procedimento}"></span>
 			</div>
 
 			<div class="image">

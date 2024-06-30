@@ -22,9 +22,21 @@ public class Ricetta {
 	@NotBlank(message = "{ricetta.descrizione.notblank}")
 	@Column(columnDefinition = "TEXT")
 	private String descrizione;
+	@NotBlank(message = "{ricetta.procedimento.notblank}")
+	@Column(columnDefinition = "TEXT")
+	private String procedimento;
 	@NotBlank(message = "{ricetta.image.notblank}")
 	private String image;
 	
+	
+	
+	public String getProcedimento() {
+		return procedimento;
+	}
+	public void setProcedimento(String procedimento) {
+		this.procedimento = procedimento;
+	}
+
 	public String getImage() {
 		return image;
 	}
