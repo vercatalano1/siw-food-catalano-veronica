@@ -47,13 +47,13 @@
 					<span class="user-icon fas fa-user"></span>
 					<div class="dropdown-content" id="dropdownContent">
 						<div class="user-info">
-							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
+							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
-						<div th:if="${userRole== 'DEFAULT'}"  >
+						<div th:if="${userRole== 'DEFAULT'}">
 							<a href="/chef/profile">Profilo</a>
-						    <a href="/user/formNewRicetta">Crea una ricetta</a>
+							<a href="/user/formNewRicetta">Crea una ricetta</a>
 						</div>
-						
+
 						<a href="/logout">Logout</a>
 					</div>
 					<div class="arrow-down"></div>
@@ -99,7 +99,7 @@
 			</div>
 			<div class="fine-btn">
 				<a th:href="@{'/user/formUpdateRicetta/' + ${ricetta.id}}">
-					<button type="button">Fine</button></a>	
+					<button type="button">Fine</button></a>
 			</div>
 </body>
 

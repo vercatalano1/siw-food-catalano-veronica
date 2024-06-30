@@ -48,7 +48,7 @@
 					<span class="user-icon fas fa-user"></span>
 					<div class="dropdown-content" id="dropdownContent">
 						<div class="user-info">
-							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
+							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
 						<div th:if="${userRole== 'DEFAULT'}">
 							<a href="/chef/profile">Profilo</a>
@@ -153,35 +153,35 @@
 				</div>
 			</div>
 		</div>
-			<h4>Procedimento:</h4>
-			<div class="procedimento" id="procedimento" th:data-procedimento="${ricetta.procedimento}"></div>
-			
+		<h4>Procedimento:</h4>
+		<div class="procedimento" id="procedimento" th:data-procedimento="${ricetta.procedimento}"></div>
+
 	</main>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var procedimentoContainer = document.getElementById('procedimento');
-            var procedimentoText = procedimentoContainer.getAttribute('data-procedimento');
-            var steps = procedimentoText.split('.');
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var procedimentoContainer = document.getElementById('procedimento');
+			var procedimentoText = procedimentoContainer.getAttribute('data-procedimento');
+			var steps = procedimentoText.split('.');
 
-            steps.forEach(function (step, index) {
-                var stepElement = document.createElement('div');
-                stepElement.classList.add('step');
+			steps.forEach(function (step, index) {
+				var stepElement = document.createElement('div');
+				stepElement.classList.add('step');
 
-                var stepNumber = document.createElement('div');
-                stepNumber.classList.add('step-number');
-                stepNumber.textContent = index + 1;
+				var stepNumber = document.createElement('div');
+				stepNumber.classList.add('step-number');
+				stepNumber.textContent = index + 1;
 
-                var stepText = document.createElement('div');
-                stepText.classList.add('step-text');
-                stepText.innerHTML = step.trim();
+				var stepText = document.createElement('div');
+				stepText.classList.add('step-text');
+				stepText.innerHTML = step.trim();
 
-                stepElement.appendChild(stepNumber);
-                stepElement.appendChild(stepText);
-                procedimentoContainer.appendChild(stepElement);
-            });
-        });
-    </script>
+				stepElement.appendChild(stepNumber);
+				stepElement.appendChild(stepText);
+				procedimentoContainer.appendChild(stepElement);
+			});
+		});
+	</script>
 
 	<script th:inline="javascript">
 		function aggiornaImmagineCuoco() {
