@@ -98,8 +98,8 @@
 						<div class="cuoco-details">
 							<h3>Chef:</h3>
 							<!--<span th:if="${userRole != 'DEFAULT' or userRole == null}">-->
-								<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
-									th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
+							<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
+								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
 							<!--</span>
 							<span th:if="${userRole == 'DEFAULT'}"
 								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></span>-->
@@ -118,33 +118,33 @@
 			</div>
 		</div>
 		<h4>Procedimento:</h4>
-			<div class="procedimento" id="procedimento" th:data-procedimento="${ricetta.procedimento}"></div>
+		<div class="procedimento" id="procedimento" th:data-procedimento="${ricetta.procedimento}"></div>
 		<div th:unless="${ricetta}">Non esiste</div>
 	</main>
 	<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var procedimentoContainer = document.getElementById('procedimento');
-            var procedimentoText = procedimentoContainer.getAttribute('data-procedimento');
-            var steps = procedimentoText.split('.');
+		document.addEventListener('DOMContentLoaded', function () {
+			var procedimentoContainer = document.getElementById('procedimento');
+			var procedimentoText = procedimentoContainer.getAttribute('data-procedimento');
+			var steps = procedimentoText.split('.');
 
-            steps.forEach(function (step, index) {
-                var stepElement = document.createElement('div');
-                stepElement.classList.add('step');
+			steps.forEach(function (step, index) {
+				var stepElement = document.createElement('div');
+				stepElement.classList.add('step');
 
-                var stepNumber = document.createElement('div');
-                stepNumber.classList.add('step-number');
-                stepNumber.textContent = index + 1;
+				var stepNumber = document.createElement('div');
+				stepNumber.classList.add('step-number');
+				stepNumber.textContent = index + 1;
 
-                var stepText = document.createElement('div');
-                stepText.classList.add('step-text');
-                stepText.innerHTML = step.trim();
+				var stepText = document.createElement('div');
+				stepText.classList.add('step-text');
+				stepText.innerHTML = step.trim();
 
-                stepElement.appendChild(stepNumber);
-                stepElement.appendChild(stepText);
-                procedimentoContainer.appendChild(stepElement);
-            });
-        });
-    </script>
+				stepElement.appendChild(stepNumber);
+				stepElement.appendChild(stepText);
+				procedimentoContainer.appendChild(stepElement);
+			});
+		});
+	</script>
 </body>
 
 </html>

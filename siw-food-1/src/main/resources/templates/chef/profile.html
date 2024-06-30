@@ -44,9 +44,9 @@
 					<span class="user-icon fas fa-user"></span>
 					<div class="dropdown-content" id="dropdownContent">
 						<div class="user-info">
-							<span class="user-name" th:text="${userDetails.username}">Marik Events</span>
+							<span class="user-name" th:text="${userDetails.username}">SiwFood</span>
 						</div>
-                        <a href="/chef/profile">Profilo</a>
+						<a href="/chef/profile">Profilo</a>
 						<a href="/user/formNewRicetta">Crea una ricetta</a>
 						<a href="/logout">Logout</a>
 					</div>
@@ -64,27 +64,27 @@
 
 
 	<!-- Main content -->
-	<main>	
+	<main>
 		<h1 th:text="${nome + ' ' + cognome}">Nome cuoco</h1>
 		<h2>gestisci il tuo profilo</h2>
 
 		<!-- Profilo del cuoco -->
 		<div class="container">
 			<div class="chef-profile">
-			<div class="immagine_cuoco">
-				<img id="profileImage" th:src="@{'/images/cuochi/' + ${immagine}}" alt="Immagine del cuoco"
-					onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
-			</div>
+				<div class="immagine_cuoco">
+					<img id="profileImage" th:src="@{'/images/cuochi/' + ${immagine}}" alt="Immagine del cuoco"
+						onerror="this.onerror=null; this.src='/images/cuochi/profilo.png';">
+				</div>
 
-			<div class="chef-details">
-				<p><strong>Nome:</strong> <span th:text="${nome}">Nome</span></p>
-				<p><strong>Cognome:</strong> <span th:text="${cognome}">Cognome</span></p>
-				<p><strong>Email:</strong> <span th:text="${email}">Email</span></p>
-				<p><strong>Data di Nascita:</strong> <span th:text="${data}">Data di Nascita</span></p>
-				<button onclick="location.href='/chef/modifica';">Modifica </button>
+				<div class="chef-details">
+					<p><strong>Nome:</strong> <span th:text="${nome}">Nome</span></p>
+					<p><strong>Cognome:</strong> <span th:text="${cognome}">Cognome</span></p>
+					<p><strong>Email:</strong> <span th:text="${email}">Email</span></p>
+					<p><strong>Data di Nascita:</strong> <span th:text="${data}">Data di Nascita</span></p>
+					<button onclick="location.href='/chef/modifica';">Modifica </button>
 
+				</div>
 			</div>
-		</div>
 		</div>
 
 		<!-- Lista delle ricette -->
@@ -102,7 +102,7 @@
 						<a th:href="@{/ricetta/{id}(id=${ricetta.id})}" th:text="${ricetta.nome}">Nome Ricetta</a>
 
 						<a th:href="@{'/user/formUpdateRicetta' + '/' + ${ricetta.id}}">Aggiorna</a>
-						
+
 						<form th:action="@{'/chef/ricetta/' + ${ricetta.id}}" method="get">
 							<button type="submit"
 								onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
