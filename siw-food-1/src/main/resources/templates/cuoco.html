@@ -86,7 +86,7 @@
 			<div class="ricette">
 				<h2>Ricette:</h2>
 				<div th:if="${#lists.isEmpty(cuoco.ricette)}">
-					<p>Il cuoco non ha ricette disponibili.</p>
+					<p>Lo chef non ha ricette disponibili.</p>
 				</div>
 				<div th:unless="${#lists.isEmpty(cuoco.ricette)}">
 					<div class="ricetta-list">
@@ -103,7 +103,7 @@
 
 		<!-- Caso in cui non ci sia un cuoco -->
 		<div th:unless="${cuoco}" class="no-cuoco">
-			<p>Il cuoco selezionato non esiste.</p>
+			<p>Lo chef selezionato non esiste.</p>
 		</div>
 	</main>
 </body>
