@@ -1,0 +1,135 @@
+Chef:
+
+nome: giorgio
+cognome: locatelli
+email: giorgiolocatelli@gmail.com
+data: 7-04-1963
+foto: locatelli.png
+
+
+nome: antonino 
+cognome: cannavacciuolo
+email:antoninocannavacciuolo@gmail.com
+data: 16-04-1975
+foto: cannavacciuolo.png
+
+
+nome: massimo 
+cognome: bottura
+email:massimobottura@gmail.com
+data: 30-09-1962
+foto: bottura.png
+
+nome: marianna
+cognome: vitale
+email:mariannavitale@gmail.com
+data: 19-06-1980
+foto: vitale.png
+
+
+
+
+profilo.png
+
+
+
+Ricette:
+
+nome:Pasta al pesto di menta e briciole di pane
+descrizione:La ricetta combina la delicatezza della menta fresca con la croccantezza delle briciole di pane tostate, creando un contrasto di sapori e consistenze.
+Perfetto per un pranzo o una cena leggera, è una variante originale delle classiche ricette di pasta al pesto.
+
+procedimento:frullate in un blender o in un potente robot da cucina il basilico, il prezzemolo, la menta, il pane raffermo, l’aglio.
+Aggiungete 2 cucchiai di olio, il parmigiano, 1 cucchiaio di sale e mescolate.
+Portate a bollore una pentola con acqua salata a fiamma media. 
+Scolate i fusilli al dente, unite il pesto e cospargete col parmigiano grattugiato. 
+Decorate a piacere con erbe fresche
+
+ingredienti: pasta 600g, 30g parmigiano reggiano, sale, basilico 200g
+120g menta, 50g prezzemolo, 25g pane sbriciolato, aglio, olio evo
+immagine:pesto.png
+cuoco:bottura
+
+
+
+
+nome:Spaghettoni con anemoni di mare
+descrizione:Gli spaghettoni con anemoni di mare sono un piatto prelibato e sofisticato, che cattura l'essenza del mare in ogni boccone. Questa ricetta esalta la delicata dolcezza e 
+la consistenza unica degli anemoni di mare, saltati rapidamente con aglio, olio extravergine d'oliva e un tocco di peperoncino. Gli spaghettoni al dente si amalgamano perfettamente 
+con questo sugo marino, creando un'esperienza culinaria indimenticabile, ideale per chi desidera assaporare un piatto di mare autentico e raffinato.
+
+procedimento:In una padella far rosolare in olio evo 1 spicchio d'aglio e il peperoncino, quindi unire gli anemoni di mare e far cuocere a fiamma bassissima finché non iniziano a sciogliersi. 
+Aggiungere 1 mestolo d'acqua calda, frullare il tutto e tenere da parte. 
+Nella stessa padella far rosolare l'altro spicchio d'aglio nell'olio evo, quindi aggiungere i pomodorini tagliati a metà e farli cuocere alcuni minuti. 
+Lessare gli spaghettoni in abbondante acqua salata, scolarli al dente, poi trasferirli nella padella, saltarli, unire l'emulsione di anemoni e mantecare
+
+ingredienti:360g spaghetti, 250g anemoni di mare, 80g pomodorini, aglio, olio, sale, peperoncino
+immagine:spaghettoni.png
+cuoco:vitale
+
+
+
+
+nome:Scaloppine ai carciofi
+descrizione:Le scaloppine ai carciofi sono un piatto raffinato e gustoso, perfetto per chi ama i sapori delicati e autentici 
+della cucina italiana. Questa ricetta combina la tenerezza delle scaloppine di vitello con il gusto unico dei carciofi, creando un connubio 
+di sapori irresistibile.
+
+procedimento:In una padella, soffriggere olio e aglio e aggiungere i carciofi (precedentemente puliti e tagliati a julienne). 
+Lasciar cuocere per 10 minuti circa e poi unire anche qualche foglia di menta, peperoncino e una noce di burro. 
+Aggiustare di sale e pepe. 
+Infarinare le scaloppine e cuocerle in padella con del burro e della salvia. 
+Nel mentre aggiungere anche il vino bianco, il fondo bruno e del sale.  
+A cottura terminata, impiattarle e guarnirle con i carciofi e dell’altra salvia. 
+Condire anche con il loro sughetto 
+
+ingredienti:400g fettine, 4 carciofi, farina00, vino bianco
+peperoncino, menta, rametto di salvia, aglio, 2 noci di burro, olio evo, sale, pepe
+
+immagine:scaloppine.png
+cuoco:barbieri
+
+
+
+/*casi d'uso*/
+utente generico:
+operazioni di lettura:
+-visualizzazione tutti i cuochi con il relativo profilo
+-visualizzazione tutte le ricette con i relativi ingredienti e il cuoco che l'ha proposta
+-visualizzazione di una ricetta mediante ricerca
+
+
+utente registrato (ossia un cuoco):
+operazioni di lettura:
+-tutte le operazioni di lettura dell'utente generico
+
+operazioni di aggiornamento:
+-modifica i suoi dati e la foto profilo
+-aggiornamento delle sue ricette: può aggiungere, cancellare degli ingredienti e può modificare le loro quantità.
+
+
+operazioni di inserimento:
+-aggiunta di una ricetta specificando il nome, una descrizione, il procedimento, un immagine e selezionando gli ingredienti con le relative quantità
+
+operazioni di cancellazione:
+-cancellazione delle sue ricette
+
+
+
+utente registrato con il ruolo di admin:
+operazioni di lettura:
+-tutte le operazioni di lettura dell'utente generico
+
+operazioni di aggiornamento:
+-aggiornamento delle ricette: può selezionare il cuoco che ha proposto la ricetta, se non è specificato, può aggiungere, cancellare degli ingredienti e 
+può modificare le loro quantità.
+
+operazioni di inserimento:
+-aggiunta di un ingrediente specificando il nome
+-aggiunta di un cuoco specificando il nome, il cognome, la mail, la data di nascita ed un'immagine opzionale
+-aggiunta di una ricetta specificando il nome, una descrizione, il procedimento, un immagine e selezionando gli ingredienti con le relative quantità e il cuoco che la propone.
+
+operazioni di cancellazione:
+-cancellazione di ingredienti
+-cancellazione dei cuochi, senza poter eliminare se stesso
+-cancellazione delle ricette

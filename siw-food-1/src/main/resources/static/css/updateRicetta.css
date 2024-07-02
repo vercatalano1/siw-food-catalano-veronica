@@ -460,9 +460,6 @@ button:active,
 
 
 @media (max-width: 768px) {
-	main {
-		padding: 1rem;
-	}
 
 	.ricetta-details {
 		flex-direction: column;
