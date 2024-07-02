@@ -277,6 +277,13 @@ header .icons .dropdown-content:hover {
 }
 
 /* Imposta una larghezza fissa per il dropdown content */
+header .icons .dropdown-content {
+	width: 200px;
+	/* Imposta una larghezza fissa */
+}
+
+
+/* Imposta una larghezza fissa per il dropdown content */
 main {
 	margin: 2rem auto;
 	background-color: #fff;

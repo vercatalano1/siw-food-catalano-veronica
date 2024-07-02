@@ -20,7 +20,7 @@ html {
 	scroll-behavior: smooth;
 	scroll-padding-top: 6rem;
 	overflow-x: hidden;
-	background: rgb(0, 0, 0);
+	background: #fff
 }
 
 section {
@@ -33,7 +33,6 @@ section {
 	color: #fff;
 	padding: 1rem;
 	margin: 2rem 0;
-	background: rgba(255, 0, 0, .05);
 }
 
 .heading span {
@@ -276,14 +275,6 @@ header .icons .dropdown-content:hover {
 	display: block;
 	opacity: 1;
 }
-
-/* Imposta una larghezza fissa per il dropdown content */
-header .icons .dropdown-content {
-	width: 200px;
-	/* Imposta una larghezza fissa */
-}
-
-
 
 
 

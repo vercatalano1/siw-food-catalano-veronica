@@ -284,6 +284,7 @@ header .icons .dropdown-content {
 }
 
 
+
 /*Profilo modifica*/
 body {
 	margin: 0;
@@ -417,6 +418,14 @@ button:active,
 	header {
 		padding: 2rem;
 	}
+	
+		section {
+		padding: 2rem;
+	}
+
+	.home {
+		background-position: left;
+	}
 
 }
 
@@ -475,6 +484,9 @@ button:active,
 	html {
 		font-size: 50%;
 	}
-
+	
+	.heading {
+		font-size: 3rem;
+	}
 
 }
