@@ -277,6 +277,12 @@ header .icons .dropdown-content:hover {
 }
 
 /* Imposta una larghezza fissa per il dropdown content */
+header .icons .dropdown-content {
+	width: 200px;
+	/* Imposta una larghezza fissa */
+}
+
+/* Imposta una larghezza fissa per il dropdown content */
 main {
 	margin: 2rem auto;
 	background-color: #fff;
@@ -499,6 +505,7 @@ button:active,
 	.home {
 		background-position: left;
 	}
+
 }
 
 @media (max-width:768px) {
@@ -568,6 +575,11 @@ button:active,
 		margin-right: 0;
 		margin-bottom: 2rem;
 	}
+
+	.ingredienti-list {
+		padding-left: 1.5rem;
+		/* Riduce l'indentazione per schermi più piccoli */
+	}
 }
 
 @media (max-width:450px) {
@@ -577,5 +589,10 @@ button:active,
 
 	.heading {
 		font-size: 3rem;
+	}
+
+	.ingredienti-list {
+		padding-left: 1rem;
+		/* Riduce l'indentazione per schermi più piccoli */
 	}
 }

@@ -429,6 +429,18 @@ h1 {
 	html {
 		font-size: 55%;
 	}
+	
+		header {
+		padding: 2rem;
+	}
+
+	section {
+		padding: 2rem;
+	}
+
+	.home {
+		background-position: left;
+	}
 
 	h1 {
 		font-size: 6rem;
