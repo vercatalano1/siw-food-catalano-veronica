@@ -287,6 +287,7 @@ header .icons .dropdown-content {
 
 
 
+
 .home {
 	display: flex;
 	align-items: center;
@@ -381,11 +382,6 @@ header .icons .dropdown-content {
 		display: block;
 	}
 
-	.search-form {
-		display: none;
-		/* Nasconde la barra di ricerca su schermi più piccoli */
-	}
-
 	header .navbar {
 		position: absolute;
 		top: 100%;
@@ -422,6 +418,12 @@ header .icons .dropdown-content {
 
 	.icons-container .icons span {
 		font-size: 1.7rem;
+	}
+
+
+	.search-form {
+		display: none;
+		/* Nasconde la barra di ricerca su schermi più piccoli */
 	}
 }
 
