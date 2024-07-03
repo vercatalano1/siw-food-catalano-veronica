@@ -23,7 +23,7 @@ operazioni di inserimento:
 - aggiunta di una ricetta specificando il nome, la descrizione, il procedimento, l'immagine e selezionando gli ingredienti con le relative quantità
 
 operazioni di cancellazione:
--cancellazione delle sue ricette
+- cancellazione delle sue ricette
 
 
 
