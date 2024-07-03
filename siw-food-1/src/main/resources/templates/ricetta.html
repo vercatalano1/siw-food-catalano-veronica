@@ -82,6 +82,7 @@
 							th:text="${ingrediente.quantità + 'g'}">Quantità</span>
 					</li>
 				</ul>
+				<p th:if="${#lists.isEmpty(ricetta.ingredienti)}" class="no-ingredienti">Non ci sono ingredienti per questa ricetta.</p>
 			</div>
 
 			<div class="right-column">

@@ -92,6 +92,9 @@
 								oninput="this.value = !!this.value && !isNaN(this.value) ? Math.abs(this.value) : null" />
 							<span>g</span>
 						</li>
+						<li th:if="${#lists.isEmpty(ricetta.ingredienti)}">
+							<p class="no-ingredienti">Non ci sono ingredienti per questa ricetta.</p>
+						</li>
 					</ul>
 					<button type="submit">Salva</button>
 				</form>

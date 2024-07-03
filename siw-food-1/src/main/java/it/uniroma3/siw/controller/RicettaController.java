@@ -146,9 +146,12 @@ public class RicettaController {
 	        if (quantitaString != null && !quantitaString.isEmpty()) {
 	            int quantita = Integer.parseInt(quantitaString);
 	            System.out.println("Aggiornamento quantità: " + ingrediente.getNome() + " a " + quantita);
-	            ingrediente.setQuantità(quantita);
-	            ingredienteService.save(ingrediente);
+	            ingrediente.setQuantità(quantita);  
 	        }
+	        else {
+	            ingrediente.setQuantità(null); // Imposta null se il valore è vuoto
+	        }
+	        ingredienteService.save(ingrediente);
 	    }
 
 	    ricettaService.save(ricetta);
