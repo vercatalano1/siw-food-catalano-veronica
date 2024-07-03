@@ -21,6 +21,7 @@ operazioni di aggiornamento:
 
 operazioni di inserimento:
 - aggiunta di una ricetta specificando il nome, la descrizione, il procedimento, l'immagine e selezionando gli ingredienti con le relative quantità
+- aggiunta di un ingrediente specificando il nome
 
 operazioni di cancellazione:
 - cancellazione delle sue ricette
