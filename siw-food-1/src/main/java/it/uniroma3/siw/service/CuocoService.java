@@ -57,10 +57,8 @@ public class CuocoService {
             result.add(Cuoco);
         return result;
     }
+    
 
-	public boolean existsByNomeAndCognome(String nome, String cognome) {
-		return CuocoRepository.existsByNomeAndCognome(nome,cognome);
-	}
 
 
 	@Transactional

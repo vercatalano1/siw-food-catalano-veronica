@@ -28,7 +28,10 @@ public class Ricetta {
 	@NotBlank(message = "{ricetta.image.notblank}")
 	private String image;
 	
-	
+	@ManyToOne
+	private Cuoco cuoco;
+	@ManyToMany
+	private List<Ingrediente> ingredienti;
 	
 	public String getProcedimento() {
 		return procedimento;
@@ -44,10 +47,7 @@ public class Ricetta {
 		this.image = image;
 	}
 	
-	@ManyToOne
-	private Cuoco cuoco;
-	@ManyToMany
-	private List<Ingrediente> ingredienti;
+	
 	
 	public Long getId() {
 		return id;

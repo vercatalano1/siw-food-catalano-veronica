@@ -17,7 +17,7 @@ public class CuocoValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		Cuoco Cuoco = (Cuoco)o;
 		if (Cuoco.getNome()!=null 
-				&& CuocoRepository.existsByNomeAndCognome(Cuoco.getNome(), Cuoco.getCognome())) {
+				&& CuocoRepository.existsByNomeIgnoreCaseAndCognomeIgnoreCaseAndData(Cuoco.getNome(), Cuoco.getCognome(),Cuoco.getData())) {
 			errors.reject("Cuoco.duplicate");
 		}
 	}

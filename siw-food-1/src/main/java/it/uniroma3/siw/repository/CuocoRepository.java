@@ -1,16 +1,17 @@
 package it.uniroma3.siw.repository;
 
+import java.time.LocalDate;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 
 public interface CuocoRepository extends CrudRepository<Cuoco, Long>{
 
-	public boolean existsByNomeAndCognome(String nome, String cognome);
+	public boolean existsByNomeIgnoreCaseAndCognomeIgnoreCaseAndData(String nome, String cognome, LocalDate data);
 
 	public Cuoco findByNomeAndCognome(String nomeCuoco, String cognomeCuoco);
 

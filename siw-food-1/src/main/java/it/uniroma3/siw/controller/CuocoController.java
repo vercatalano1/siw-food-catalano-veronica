@@ -40,6 +40,11 @@ public class CuocoController {
 		return "admin/manageCuoco.html";
 	}
 	
+	@GetMapping("/admin/indexAdmin")
+	public String indexAdmin(){
+		return "admin/indexAdmin.html";
+	}
+	
 	@GetMapping(value="/admin/indexCuoco")
 	public String indexCuoco() {
 		return "admin/indexCuoco.html";
@@ -51,7 +56,7 @@ public class CuocoController {
 		if (!bindingResult.hasErrors()) {
 			this.CuocoService.saveCuoco(cuoco); 
 			model.addAttribute("cuoco", cuoco);
-			return "cuoco.html";
+			return "redirect:/cuoco/" + cuoco.getId();
 		} else {
 			return "admin/formNewCuoco.html"; 
 		}
@@ -100,10 +105,5 @@ public class CuocoController {
 		return "chef/indexUser.html";
 	}
 	
-	@GetMapping("/chef/cuochiUser")
-	public String getChef(Model model) {
-		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
-		return "chef/cuochiUser.html";
-	}
 
 }

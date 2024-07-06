@@ -53,11 +53,11 @@ public class IngredienteController {
 	    if (!bindingResult.hasErrors()) {
 	        this.ingredienteService.save(ingrediente);
 	        if ("indexIngrediente".equals(source)) {
-	            return "admin/indexAdmin.html";
+	            return "redirect:/admin/indexAdmin";
 	        } else if ("formUpdateRicetta".equals(source) && ricettaId != null) {
 	            return "redirect:/user/formUpdateRicetta/" + ricettaId;
 	        } else {
-	            return "admin/indexAdmin.html"; // pagina di default
+	            return "redirect:/admin/indexAdmin"; // pagina di default
 	        }
 	    } else {
 	        model.addAttribute("ingrediente", ingrediente);
@@ -68,11 +68,6 @@ public class IngredienteController {
 	}
 
 	
-	/*@GetMapping("/ingredienti")
-	public String getIngredienti(Model model) {
-		model.addAttribute("ingredienti", this.ingredienteService.findAll());
-		return "ingredienti.html";
-	}*/
 	
 	@PostMapping("/admin/ingrediente/{id}/delete")
     public String deleteIngrediente(@PathVariable("id") Long id, Model model) {
@@ -82,7 +77,7 @@ public class IngredienteController {
             return "redirect:/admin/manageIngrediente";
         } else {
             model.addAttribute("messaggioErrore", "Ingrediente non trovato");
-            return "admin/indexIngrediente.html";
+            return "redirect:/admin/indexIngrediente";
             }
         }
 	

@@ -17,7 +17,7 @@ public class IngredienteValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		Ingrediente Ingrediente = (Ingrediente)o;
 		if (Ingrediente.getNome()!=null 
-				&& IngredienteRepository.existsByNome(Ingrediente.getNome())) {
+				&& IngredienteRepository.existsByNomeIgnoreCase(Ingrediente.getNome())) {
 			errors.reject("Ingrediente.duplicate");
 		}
 	}

@@ -10,7 +10,7 @@ import it.uniroma3.siw.model.Ingrediente;
 
 public interface IngredienteRepository extends CrudRepository<Ingrediente, Long>{
 
-	public boolean existsByNome(String nome);
+	public boolean existsByNomeIgnoreCase(String nome);
 	
 
 	@Query(value= "select * "

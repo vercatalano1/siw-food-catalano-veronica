@@ -15,9 +15,9 @@ import jakarta.transaction.Transactional;
 
 public interface RicettaRepository extends CrudRepository<Ricetta, Long>{
 
-	public boolean existsByNome(String nome);
+	public boolean existsByNomeIgnoreCase(String nome);
 	
-	public List<Ricetta> findByNome(String nome);
+	public List<Ricetta> findByNomeContainingIgnoreCase(String partialNome);	
 	
 	@Transactional
     @Modifying

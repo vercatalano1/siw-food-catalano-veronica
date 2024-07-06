@@ -32,10 +32,7 @@ public class IngredienteService {
 		// TODO Auto-generated method stub
 		ingredienteRepository.save(Ingrediente);
 	}
-
-	public boolean existsByNome(String nome) {
-		return ingredienteRepository.existsByNome(nome);
-	}
+	
 
 	@Transactional
 	public void deleteById(Long id) {

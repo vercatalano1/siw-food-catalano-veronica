@@ -55,13 +55,6 @@ public class RicettaController {
 	}
 
 
-	/*@GetMapping("/admin/addCuoco/{id}")
-	public String addCuoco(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("cuochi", cuocoService.getAllCuocos());
-		model.addAttribute("ricetta", ricettaService.findById(id));
-		return "admin/cuochiToAdd.html";
-	}*/
-
 	@GetMapping(value = "/user/formNewRicetta")
 	public String formNewRicetta(Model model) {
 		model.addAttribute("ricetta", new Ricetta());
@@ -111,18 +104,14 @@ public class RicettaController {
 		return "ricette.html";
 	}
 	
-	
 
-	/*
-	 * @GetMapping("/formSearchRicette") public String formSearchRicette() { return
-	 * "formSearchRicette.html"; }
-	 */
 
 	@PostMapping("/searchRicette")
-	public String searchRicette(Model model, @RequestParam String nome) {
-		model.addAttribute("ricette", this.ricettaService.findBynome(nome));
-		return "foundRicette.html";
-	}
+    public String searchRicette(Model model, @RequestParam String nome) {
+        List<Ricetta> ricette = ricettaService.findByPartialNome(nome);
+        model.addAttribute("ricette", ricette);
+        return "foundRicette.html";
+    }
 
 	@GetMapping("/user/updateIngredienti/{id}")
 	public String updateIngredienti(@PathVariable("id") Long id,Model model) {
@@ -222,7 +211,7 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 
-		return "user/ingredientiToAdd.html";
+		return "redirect:/user/updateIngredienti/" + ricetta.getId();
 	}
 
 	@GetMapping("/user/removeIngredienteFromRicetta/{ingredienteId}/{ricettaId}")
@@ -239,7 +228,7 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 
-		return "user/ingredientiToAdd.html";
+		return "redirect:/user/updateIngredienti/" + ricetta.getId();
 	}
 
 	private List<Ingrediente> ingredientiToAdd(Long ricettaId) {

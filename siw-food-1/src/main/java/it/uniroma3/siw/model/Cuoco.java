@@ -31,6 +31,10 @@ public class Cuoco {
 	private String email;
 	private String image;
 	
+	@OneToMany(mappedBy="cuoco")
+	private List<Ricetta> ricette;
+	
+	
 	public String getImage() {
 		return image;
 	}
@@ -38,9 +42,6 @@ public class Cuoco {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	@OneToMany(mappedBy="cuoco")
-	private List<Ricetta> ricette;
 
 
 	public String getEmail() {
