@@ -5,8 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
+import it.uniroma3.siw.repository.CredentialsRepository;
 import it.uniroma3.siw.repository.CuocoRepository;
 
 import java.util.ArrayList;
@@ -21,6 +21,8 @@ public class CuocoService {
 
     @Autowired
     protected CuocoRepository CuocoRepository;
+    @Autowired
+    private CredentialsRepository credentialsRepository;
 
     /**
      * This method retrieves a Cuoco from the DB based on its ID.
@@ -64,10 +66,10 @@ public class CuocoService {
 	@Transactional
 	public void deleteById(Long id) {
 		Cuoco cuoco = getCuoco(id);
+		// Elimina tutte le credenziali associate al cuoco
+        credentialsRepository.deleteByCuocoId(id);
 		CuocoRepository.deleteReferencesInRicettaCuochi(id);
 		CuocoRepository.delete(cuoco);
 	}
-
-
 
 }

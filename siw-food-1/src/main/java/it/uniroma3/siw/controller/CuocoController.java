@@ -37,10 +37,18 @@ public class CuocoController {
 	}
 
 	@GetMapping(value = "/admin/manageCuoco")
-	public String manageCuoco(Model model) {
-		model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
-		return "admin/manageCuoco.html";
+	public String manageCuoco(Model model, Principal principal) {
+	    if (principal != null) {
+	        String username = principal.getName();
+	        Credentials credentials = credentialsService.getCredentials(username);
+	        if (credentials != null && credentials.getCuoco() != null) {
+	            model.addAttribute("cuocoId", credentials.getCuoco().getId());
+	        }
+	    }
+	    model.addAttribute("cuochi", this.CuocoService.getAllCuocos());
+	    return "admin/manageCuoco.html";
 	}
+
 
 	@GetMapping("/admin/indexAdmin")
 	public String indexAdmin() {
@@ -89,26 +97,26 @@ public class CuocoController {
 
 	@PostMapping("/admin/cuoco/{id}/delete")
 	public String deleteCuoco(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-		// Ottenere le credenziali dell'utente autenticato
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String username = authentication.getName();
-		Credentials credentials = credentialsService.getCredentials(username);
+	    // Ottenere le credenziali dell'utente autenticato
+	    /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String username = authentication.getName();
+	    Credentials credentials = credentialsService.getCredentials(username);
 
-		// Ottenere il cuoco da eliminare
-		Cuoco cuocoToDelete = CuocoService.getCuoco(id);
+	    // Ottenere il cuoco da eliminare
+	    Cuoco cuocoToDelete = CuocoService.getCuoco(id);
 
-		// Verifica se l'utente autenticato sta tentando di eliminare il suo stesso
-		// cuoco
-		if (credentials.getCuoco() != null && credentials.getCuoco().getId().equals(cuocoToDelete.getId())) {
-			redirectAttributes.addFlashAttribute("error", "Non puoi eliminare te stesso!");
-			redirectAttributes.addFlashAttribute("cuocoId", id);
-			return "redirect:/admin/manageCuoco"; // Reindirizza con parametro error
-		}
+	    // Verifica se l'utente autenticato sta tentando di eliminare il suo stesso cuoco
+	    if (credentials.getCuoco() != null && credentials.getCuoco().getId().equals(cuocoToDelete.getId())) {
+	        redirectAttributes.addFlashAttribute("error", "Non puoi eliminare te stesso!");
+	        redirectAttributes.addFlashAttribute("cuocoId", id);
+	        return "redirect:/admin/manageCuoco"; // Reindirizza con parametro error
+	    }*/
 
-		// Esegui l'eliminazione diretta del cuoco
-		CuocoService.deleteById(id);
-		return "redirect:/admin/manageCuoco"; // Reindirizza alla pagina di gestione dei cuochi dopo l'eliminazione
+	    // Esegui l'eliminazione diretta del cuoco
+	    CuocoService.deleteById(id);
+	    return "redirect:/admin/manageCuoco"; // Reindirizza alla pagina di gestione dei cuochi dopo l'eliminazione
 	}
+
 
 	/* chef */
 	@GetMapping(value = "/chef/indexUser")

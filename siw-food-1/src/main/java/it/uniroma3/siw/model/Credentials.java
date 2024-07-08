@@ -21,7 +21,7 @@ public class Credentials {
 	private String role;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private Cuoco Cuoco;
+	private Cuoco cuoco;
 	
 	public String getUsername() {
 		return username;
@@ -36,11 +36,11 @@ public class Credentials {
 	}
 
 	public Cuoco getCuoco() {
-		return Cuoco;
+		return cuoco;
 	}
 
 	public void setCuoco(Cuoco Cuoco) {
-		this.Cuoco = Cuoco;
+		this.cuoco = Cuoco;
 	}
 	
 	public void setUsername(String username) {
