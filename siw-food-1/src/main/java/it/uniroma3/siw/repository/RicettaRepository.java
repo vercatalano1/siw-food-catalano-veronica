@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import it.uniroma3.siw.model.Cuoco;
-import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.model.Ricetta;
 import jakarta.transaction.Transactional;
 
@@ -17,7 +16,7 @@ public interface RicettaRepository extends CrudRepository<Ricetta, Long>{
 
 	public boolean existsByNomeIgnoreCase(String nome);
 	
-	public List<Ricetta> findByNomeStartingWithIgnoreCase(String nome);	
+	public List<Ricetta> findByNome(String nome);	
 	
 	@Transactional
     @Modifying

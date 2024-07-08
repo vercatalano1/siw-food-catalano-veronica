@@ -88,7 +88,7 @@
 							<input type="number" th:id="'quantita_' + ${ricettaIngrediente.ingrediente.id}"
 								th:name="'ingredienti[' + ${ricettaIngrediente.ingrediente.id} + '].quantita'"
 								th:value="${ricettaIngrediente.quantità != null ? ricettaIngrediente.quantità : ''}"
-								min="0" step="any"
+								min="1" step="any"
 								oninput="this.value = !!this.value && !isNaN(this.value) ? Math.abs(this.value) : null" />
 							<span>g</span>
 						</li>

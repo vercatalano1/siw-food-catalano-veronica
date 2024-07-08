@@ -75,21 +75,11 @@ public class RicettaController {
 	}
 
 	@GetMapping("/user/formUpdateRicetta/{id}")
-	public String formUpdateRicetta(@PathVariable("id") Long id, Model model, Principal principal) {
+	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
 		Ricetta ricetta = ricettaService.findById(id);
 		List<RicettaIngrediente> ingredienti = ricetta.getIngredienti();
 		List<Cuoco> cuochi = cuocoService.getAllCuocos();
 
-		String username = principal.getName();
-		// Trova le credenziali corrispondenti all'username
-		Credentials credentials = credentialsService.getCredentials(username);
-		String userRole = credentials.getRole();
-		if (Credentials.DEFAULT_ROLE.equals(userRole)) {
-			// Trova il cuoco corrispondente alle credenziali
-			Cuoco currentCuoco = credentials.getCuoco();
-			if (currentCuoco != ricetta.getCuoco())
-				return "redirect:/chef/profile";
-		}
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("cuochi", cuochi);
 		model.addAttribute("ingredienti", ingredienti);
@@ -113,7 +103,7 @@ public class RicettaController {
 
 	@PostMapping("/searchRicette")
 	public String searchRicette(Model model, @RequestParam String nome) {
-		List<Ricetta> ricette = ricettaService.findByPartialNome(nome);
+		List<Ricetta> ricette = ricettaService.findByNome(nome);
 		model.addAttribute("ricette", ricette);
 		return "foundRicette.html";
 	}

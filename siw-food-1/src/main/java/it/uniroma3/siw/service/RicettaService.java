@@ -38,8 +38,8 @@ public class RicettaService {
 	}
 
 	@Transactional
-	public List<Ricetta> findByPartialNome(String nome) {
-        return ricettaRepository.findByNomeStartingWithIgnoreCase(nome);
+	public List<Ricetta> findByNome(String nome) {
+        return ricettaRepository.findByNome(nome);
     }
 	
 	@Transactional

@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class RicettaIngrediente {
 	@JoinColumn(name = "ingrediente_id")
 	private Ingrediente ingrediente;
 
+	@Column(nullable=true)
 	@Min(value = 1, message = "{ricettaingrediente.quantità.min}")
 	private Integer quantità;
 
