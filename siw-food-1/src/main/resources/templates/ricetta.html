@@ -99,12 +99,11 @@
 						</div>
 						<div class="cuoco-details">
 							<h3>Chef:</h3>
-							<!--<span th:if="${userRole != 'DEFAULT' or userRole == null}">-->
-							<a th:href="@{/cuoco/{id}(id=${ricetta.cuoco.id})}"
+							<a th:if="${currentCuoco != null}"
+								th:href="${#strings.equals(currentCuoco.id, cuoco.id)} ? '/chef/profile' : '/cuoco/' + ${cuoco.id}"
 								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
-							<!--</span>
-							<span th:if="${userRole == 'DEFAULT'}"
-								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></span>-->
+							<a th:if="${currentCuoco == null}" th:href="'/cuoco/' + ${cuoco.id}"
+								th:text="${ricetta.cuoco.nome + ' ' + ricetta.cuoco.cognome}"></a>
 						</div>
 					</div>
 

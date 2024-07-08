@@ -82,7 +82,10 @@
 			</div>
 			<div class="chef-details">
 				<h2 th:text="${cuoco.nome}+ ' ' + ${cuoco.cognome} ">cuoco</h2>
-				<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}" class="btn">Vedi Profilo</a>
+				<a th:if="${currentCuoco != null}"
+					th:href="${#strings.equals(currentCuoco.id, cuoco.id)} ? '/chef/profile' : '/cuoco/' + ${cuoco.id}"
+					class="btn">Vedi Profilo</a>
+				<a th:if="${currentCuoco == null}" th:href="'/cuoco/' + ${cuoco.id}" class="btn">Vedi Profilo</a>
 			</div>
 		</div>
 	</section>
