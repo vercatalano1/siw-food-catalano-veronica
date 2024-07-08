@@ -17,7 +17,7 @@ public interface RicettaRepository extends CrudRepository<Ricetta, Long>{
 
 	public boolean existsByNomeIgnoreCase(String nome);
 	
-	public List<Ricetta> findByNomeContainingIgnoreCase(String partialNome);	
+	public List<Ricetta> findByNomeStartingWithIgnoreCase(String nome);	
 	
 	@Transactional
     @Modifying

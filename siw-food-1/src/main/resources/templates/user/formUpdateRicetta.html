@@ -82,13 +82,13 @@
 				<form th:action="@{/user/saveIngredientiQuantita}" method="post" id="ingredientiQuantitaForm">
 					<input type="hidden" name="ricettaId" th:value="${ricetta.id}" />
 					<ul class="ingredienti-list">
-						<li th:each="ingrediente : ${ricetta.ingredienti}">
-							<label th:for="'quantità_' + ${ingrediente.id}" th:text="${ingrediente.nome}">Nome
-								ingrediente</label>
-							<input type="number" th:id="'quantità_' + ${ingrediente.id}"
-								th:name="'ingredienti[' + ${ingrediente.id} + '].quantita'"
-								th:value="${ingrediente.quantità != null ? ingrediente.quantità : ''}" min="0"
-								step="any"
+						<li th:each="ricettaIngrediente : ${ricetta.ingredienti}">
+							<label th:for="'quantita_' + ${ricettaIngrediente.ingrediente.id}"
+								th:text="${ricettaIngrediente.ingrediente.nome}">Nome ingrediente</label>
+							<input type="number" th:id="'quantita_' + ${ricettaIngrediente.ingrediente.id}"
+								th:name="'ingredienti[' + ${ricettaIngrediente.ingrediente.id} + '].quantita'"
+								th:value="${ricettaIngrediente.quantità != null ? ricettaIngrediente.quantità : ''}"
+								min="0" step="any"
 								oninput="this.value = !!this.value && !isNaN(this.value) ? Math.abs(this.value) : null" />
 							<span>g</span>
 						</li>
@@ -98,6 +98,8 @@
 					</ul>
 					<button type="submit">Salva</button>
 				</form>
+
+
 
 				<a th:href="@{/user/formNewIngrediente(source='formUpdateRicetta', ricettaId=${ricetta.id})}">
 					<button type="button">Crea ingrediente</button>

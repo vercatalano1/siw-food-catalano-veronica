@@ -1,15 +1,17 @@
 package it.uniroma3.siw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -30,9 +32,17 @@ public class Ricetta {
 	
 	@ManyToOne
 	private Cuoco cuoco;
-	@ManyToMany
-	private List<Ingrediente> ingredienti;
+	@OneToMany(mappedBy = "ricetta", cascade = CascadeType.ALL)
+	private List<RicettaIngrediente> ingredienti = new ArrayList<>();
 	
+	
+	
+	public List<RicettaIngrediente> getIngredienti() {
+		return ingredienti;
+	}
+	public void setIngredienti(List<RicettaIngrediente> ingredienti) {
+		this.ingredienti = ingredienti;
+	}
 	public String getProcedimento() {
 		return procedimento;
 	}
@@ -46,7 +56,6 @@ public class Ricetta {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
 	
 	
 	public Long getId() {
@@ -73,12 +82,9 @@ public class Ricetta {
 	public void setCuoco(Cuoco cuochi) {
 		this.cuoco = cuochi;
 	}
-	public List<Ingrediente> getIngredienti() {
-		return ingredienti;
-	}
-	public void setIngredienti(List<Ingrediente> ingredienti) {
-		this.ingredienti = ingredienti;
-	}
+
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cuoco, descrizione, id, ingredienti, nome);

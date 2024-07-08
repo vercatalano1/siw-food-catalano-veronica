@@ -20,23 +20,26 @@ public class RicettaService {
 	@Autowired
 	private  CuocoRepository cuocoRepository;
 	
-	
+	@Transactional
 	public Ricetta findById(Long id) {
 		return ricettaRepository.findById(id).get();
 	}	
 
+	@Transactional
 	public Iterable<Ricetta> findAll() {
 		return ricettaRepository.findAll();
 	}
 
+	@Transactional
 	public  Ricetta save(Ricetta Ricetta) {
 		// TODO Auto-generated method stub
 		return ricettaRepository.save(Ricetta);
 		
 	}
 
-	public List<Ricetta> findByPartialNome(String partialNome) {
-        return ricettaRepository.findByNomeContainingIgnoreCase(partialNome);
+	@Transactional
+	public List<Ricetta> findByPartialNome(String nome) {
+        return ricettaRepository.findByNomeStartingWithIgnoreCase(nome);
     }
 	
 	@Transactional
@@ -47,10 +50,12 @@ public class RicettaService {
         ricettaRepository.associaCuocoARicetta(nomeRicetta, cuoco);
     }
 
+	@Transactional
 	public void delete(Ricetta ricetta) {
 		 ricettaRepository.delete(ricetta);
 	}
 
+	@Transactional
 	public List<Ricetta> findByCuoco(Cuoco cuoco) {
 		return ricettaRepository.findByCuoco(cuoco);
 	}

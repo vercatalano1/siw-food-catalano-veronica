@@ -16,18 +16,22 @@ public class IngredienteService {
 	@Autowired
 	private IngredienteRepository ingredienteRepository;
 	
+	@Transactional
 	public Ingrediente findById(Long id) {
 		return ingredienteRepository.findById(id).get();
 	}
 	
+	@Transactional
 	public Iterable<Ingrediente> findAll() {
 		return ingredienteRepository.findAll();
 	}
 	
+	@Transactional
 	public Iterable<Ingrediente> findIngredientiNotInRicetta(@Param("id") Long id){
 		 return ingredienteRepository.findIngredientiNotInRicetta(id);
 	}
 
+	@Transactional
 	public void save(Ingrediente Ingrediente) {
 		// TODO Auto-generated method stub
 		ingredienteRepository.save(Ingrediente);

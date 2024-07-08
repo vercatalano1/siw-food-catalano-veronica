@@ -75,11 +75,10 @@
 				<h2>Ingredienti già aggiunti:</h2>
 				<p th:if="${ricetta.ingredienti.isEmpty()}">Non ci sono ingredienti per questa ricetta</p>
 				<ul>
-					<li th:each="ingrediente : ${ricetta.ingredienti}">
-						<span th:text="${ingrediente.nome}"> </span>
+					<li th:each="ricettaIngrediente : ${ricetta.ingredienti}">
+						<span th:text="${ricettaIngrediente.ingrediente.nome}">Nome Ingrediente</span>
 						<div class="btn-group">
-							<a
-								th:href="@{'/user/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Cancella</a>
+							<a th:href="@{'/user/removeIngredienteFromRicetta/'+ ${ricettaIngrediente.ingrediente.id} + '/' + ${ricetta.id}}">Cancella</a>
 						</div>
 					</li>
 				</ul>
@@ -87,11 +86,9 @@
 					<h3>Ingredienti che si possono aggiungere:</h3>
 					<ul>
 						<li th:each="ingrediente : ${ingredientiToAdd}">
-							<span th:text="${ingrediente.nome}"> </span>
-							</span>
+							<span th:text="${ingrediente.nome}">Nome Ingrediente</span>
 							<div class="btn-group">
-								<a
-									th:href="@{'/user/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">Aggiungi</a>
+								<a th:href="@{'/user/addIngredienteToRicetta/' + ${ingrediente.id} + '/' + ${ricetta.id}}">Aggiungi</a>
 							</div>
 						</li>
 					</ul>
@@ -99,8 +96,12 @@
 			</div>
 			<div class="fine-btn">
 				<a th:href="@{'/user/formUpdateRicetta/' + ${ricetta.id}}">
-					<button type="button">Fine</button></a>
+					<button type="button">Fine</button>
+				</a>
 			</div>
+		</div>
+	</main>
+
 </body>
 
 </html>

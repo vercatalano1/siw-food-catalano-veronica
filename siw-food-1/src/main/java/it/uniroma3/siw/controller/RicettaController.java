@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +21,11 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.model.Ricetta;
+import it.uniroma3.siw.model.RicettaIngrediente;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.CuocoService;
 import it.uniroma3.siw.service.IngredienteService;
+import it.uniroma3.siw.service.RicettaIngredienteService;
 import it.uniroma3.siw.service.RicettaService;
 import jakarta.validation.Valid;
 
@@ -39,9 +38,11 @@ public class RicettaController {
 	@Autowired
 	private IngredienteService ingredienteService;
 	@Autowired
+	private RicettaIngredienteService ricettaIngredienteService;
+	@Autowired
 	private RicettaValidator ricettaValidator;
 	@Autowired
-    private CredentialsService credentialsService;
+	private CredentialsService credentialsService;
 
 	@GetMapping("/admin/indexRicetta")
 	public String indexRicetta() {
@@ -54,15 +55,12 @@ public class RicettaController {
 		return "admin/manageRicetta.html";
 	}
 
-
 	@GetMapping(value = "/user/formNewRicetta")
 	public String formNewRicetta(Model model) {
 		model.addAttribute("ricetta", new Ricetta());
 		return "user/formNewRicetta.html";
 	}
-	
-	
-	
+
 	@GetMapping("/user/setCuocoToRicetta/{cuocoId}/{ricettaId}")
 	public String setCuocoToricetta(@PathVariable("cuocoId") Long cuocoId, @PathVariable("ricettaId") Long ricettaId,
 			Model model) {
@@ -71,18 +69,27 @@ public class RicettaController {
 		Ricetta ricetta = this.ricettaService.findById(ricettaId);
 		ricetta.setCuoco(cuoco);
 		this.ricettaService.save(ricetta);
-		model.addAttribute("cuochi", cuocoService.getAllCuocos()); 
+		model.addAttribute("cuochi", cuocoService.getAllCuocos());
 		model.addAttribute("ricetta", ricetta);
 		return "user/formUpdateRicetta.html";
 	}
-	
 
 	@GetMapping("/user/formUpdateRicetta/{id}")
-	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
+	public String formUpdateRicetta(@PathVariable("id") Long id, Model model, Principal principal) {
 		Ricetta ricetta = ricettaService.findById(id);
-		List<Ingrediente> ingredienti = ricetta.getIngredienti();
+		List<RicettaIngrediente> ingredienti = ricetta.getIngredienti();
 		List<Cuoco> cuochi = cuocoService.getAllCuocos();
-		
+
+		String username = principal.getName();
+		// Trova le credenziali corrispondenti all'username
+		Credentials credentials = credentialsService.getCredentials(username);
+		String userRole = credentials.getRole();
+		if (Credentials.DEFAULT_ROLE.equals(userRole)) {
+			// Trova il cuoco corrispondente alle credenziali
+			Cuoco currentCuoco = credentials.getCuoco();
+			if (currentCuoco != ricetta.getCuoco())
+				return "redirect:/chef/profile";
+		}
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("cuochi", cuochi);
 		model.addAttribute("ingredienti", ingredienti);
@@ -103,56 +110,50 @@ public class RicettaController {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "ricette.html";
 	}
-	
-
 
 	@PostMapping("/searchRicette")
-    public String searchRicette(Model model, @RequestParam String nome) {
-        List<Ricetta> ricette = ricettaService.findByPartialNome(nome);
-        model.addAttribute("ricette", ricette);
-        return "foundRicette.html";
-    }
+	public String searchRicette(Model model, @RequestParam String nome) {
+		List<Ricetta> ricette = ricettaService.findByPartialNome(nome);
+		model.addAttribute("ricette", ricette);
+		return "foundRicette.html";
+	}
 
 	@GetMapping("/user/updateIngredienti/{id}")
-	public String updateIngredienti(@PathVariable("id") Long id,Model model) {
+	public String updateIngredienti(@PathVariable("id") Long id, Model model) {
 
 		List<Ingrediente> ingredientiToAdd = this.ingredientiToAdd(id);
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 		model.addAttribute("ricetta", this.ricettaService.findById(id));
 		return "user/ingredientiToAdd.html";
 	}
-	
-	
+
 	@PostMapping("/user/saveIngredientiQuantita")
 	public String saveIngredientiQuantita(@RequestParam("ricettaId") Long ricettaId,
-	                                      @RequestParam Map<String, String> ingredientiQuantita,
-	                                      Model model) {
-	    Ricetta ricetta = ricettaService.findById(ricettaId);
+			@RequestParam Map<String, String> ingredientiQuantita, Model model) {
+		Ricetta ricetta = ricettaService.findById(ricettaId);
 
-	    // Aggiorna le quantità degli ingredienti
-	    for (Ingrediente ingrediente : ricetta.getIngredienti()) {
-	        String quantitaString = ingredientiQuantita.get("ingredienti[" + ingrediente.getId() + "].quantita");
-	        if (quantitaString != null && !quantitaString.isEmpty()) {
-	            int quantita = Integer.parseInt(quantitaString);
-	            System.out.println("Aggiornamento quantità: " + ingrediente.getNome() + " a " + quantita);
-	            ingrediente.setQuantità(quantita);  
-	        }
-	        else {
-	            ingrediente.setQuantità(null); // Imposta null se il valore è vuoto
-	        }
-	        ingredienteService.save(ingrediente);
-	    }
+		// Aggiorna le quantità degli ingredienti
+		for (RicettaIngrediente ricettaIngrediente : ricetta.getIngredienti()) {
+			String quantitaString = ingredientiQuantita
+					.get("ingredienti[" + ricettaIngrediente.getIngrediente().getId() + "].quantita");
+			if (quantitaString != null && !quantitaString.isEmpty()) {
+				int quantita = Integer.parseInt(quantitaString);
+				ricettaIngrediente.setQuantità(quantita);
+			} else {
+				ricettaIngrediente.setQuantità(null); // Imposta null se il valore è vuoto
+			}
+		}
 
-	    ricettaService.save(ricetta);
-	    model.addAttribute("cuochi", cuocoService.getAllCuocos());
+		ricettaService.save(ricetta);
+		model.addAttribute("cuochi", cuocoService.getAllCuocos());
 
-	    // Aggiungi l'oggetto ricetta aggiornato al model per renderlo disponibile nella vista
-	    model.addAttribute("ricetta", ricetta);
+		// Aggiungi l'oggetto ricetta aggiornato al model per renderlo disponibile nella
+		// vista
+		model.addAttribute("ricetta", ricetta);
 
-	    // Ritorna il nome della vista da caricare dopo il submit del form
-	    return "user/formUpdateRicetta";
+		// Ritorna il nome della vista da caricare dopo il submit del form
+		return "user/formUpdateRicetta";
 	}
-	
 
 	@PostMapping("/user/ricetta")
 	public String newRicetta(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult,
@@ -160,99 +161,110 @@ public class RicettaController {
 
 		this.ricettaValidator.validate(ricetta, bindingResult);
 		if (bindingResult.hasErrors()) {
-            return "user/formNewRicetta.html";
-        }
-		
+			return "user/formNewRicetta.html";
+		}
+
 		String username = principal.getName();
 
-        // Trova le credenziali corrispondenti all'username
-        Credentials credentials = credentialsService.getCredentials(username);
-        
-        if (credentials == null) {
-            // Gestisci nel caso in cui le credenziali non siano trovate
-            redirectAttributes.addFlashAttribute("error", "Credenziali non trovate per l'utente corrente");
-            return "redirect:/user/formNewRicetta.html";
-        }
+		// Trova le credenziali corrispondenti all'username
+		Credentials credentials = credentialsService.getCredentials(username);
 
-        String userRole = credentials.getRole();
-        if (Credentials.DEFAULT_ROLE.equals(userRole)) {
-            // Trova il cuoco corrispondente alle credenziali
-            Cuoco currentCuoco = credentials.getCuoco();
-            if (currentCuoco == null) {
-                // Gestisci nel caso in cui il cuoco non sia trovato
-                redirectAttributes.addFlashAttribute("error", "Cuoco non trovato per l'utente corrente");
-                return "redirect:/user/formNewRicetta.html";
-            }
+		if (credentials == null) {
+			// Gestisci nel caso in cui le credenziali non siano trovate
+			redirectAttributes.addFlashAttribute("error", "Credenziali non trovate per l'utente corrente");
+			return "redirect:/user/formNewRicetta.html";
+		}
 
-        // Imposta il cuoco nella ricetta
-        ricetta.setCuoco(currentCuoco);
-        }
-        // Salva la ricetta
-        ricettaService.save(ricetta);
+		String userRole = credentials.getRole();
+		if (Credentials.DEFAULT_ROLE.equals(userRole)) {
+			// Trova il cuoco corrispondente alle credenziali
+			Cuoco currentCuoco = credentials.getCuoco();
+			if (currentCuoco == null) {
+				// Gestisci nel caso in cui il cuoco non sia trovato
+				redirectAttributes.addFlashAttribute("error", "Cuoco non trovato per l'utente corrente");
+				return "redirect:/user/formNewRicetta.html";
+			}
 
-        // Redirect alla pagina di aggiunta degli ingredienti per la nuova ricetta
-        return "redirect:/user/updateIngredienti/" + ricetta.getId();
-    }
-		
-			
-		
+			// Imposta il cuoco nella ricetta
+			ricetta.setCuoco(currentCuoco);
+		}
+		// Salva la ricetta
+		ricettaService.save(ricetta);
+
+		// Redirect alla pagina di aggiunta degli ingredienti per la nuova ricetta
+		return "redirect:/user/updateIngredienti/" + ricetta.getId();
+	}
 
 	@GetMapping("/user/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
 	public String addIngredienteToRicetta(@PathVariable("ingredienteId") Long ingredienteId,
-			@PathVariable("ricettaId") Long ricettaId, Model model) {
-		Ricetta ricetta = this.ricettaService.findById(ricettaId);
-		Ingrediente ingrediente = this.ingredienteService.findById(ingredienteId);
-		List<Ingrediente> ingredienti = ricetta.getIngredienti();
-		ingredienti.add(ingrediente);
-		this.ricettaService.save(ricetta);
+	                                      @PathVariable("ricettaId") Long ricettaId, Model model) {
+	    Ricetta ricetta = this.ricettaService.findById(ricettaId);
+	    Ingrediente ingrediente = this.ingredienteService.findById(ingredienteId);
 
-		List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+	    // Crea una nuova associazione RicettaIngrediente e aggiungi alla ricetta
+	    RicettaIngrediente ricettaIngrediente = new RicettaIngrediente();
+	    ricettaIngrediente.setRicetta(ricetta);
+	    ricettaIngrediente.setIngrediente(ingrediente);
+	    ricetta.getIngredienti().add(ricettaIngrediente);
 
-		model.addAttribute("ricetta", ricetta);
-		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+	    this.ricettaService.save(ricetta);
 
-		return "redirect:/user/updateIngredienti/" + ricetta.getId();
+	    // Aggiorna la lista ingredientiToAdd
+	    List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+
+	    model.addAttribute("ricetta", ricetta);
+	    model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+
+	    return "redirect:/user/updateIngredienti/" + ricetta.getId();
 	}
 
 	@GetMapping("/user/removeIngredienteFromRicetta/{ingredienteId}/{ricettaId}")
 	public String removeIngredienteFromRicetta(@PathVariable("ingredienteId") Long ingredienteId,
-			@PathVariable("ricettaId") Long ricettaId, Model model) {
-		Ricetta ricetta = this.ricettaService.findById(ricettaId);
-		Ingrediente ingrediente = this.ingredienteService.findById(ingredienteId);
-		List<Ingrediente> ingredienti = ricetta.getIngredienti();
-		ingredienti.remove(ingrediente);
-		this.ricettaService.save(ricetta);
+	                                           @PathVariable("ricettaId") Long ricettaId, Model model) {
+	    Ricetta ricetta = this.ricettaService.findById(ricettaId);
+	    Ingrediente ingrediente = this.ingredienteService.findById(ingredienteId);
 
-		List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+	    // Rimuovi la relazione RicettaIngrediente
+	    RicettaIngrediente ricettaIngrediente = ricettaIngredienteService.findByRicettaAndIngrediente(ricettaId, ingredienteId);
+	    if (ricettaIngrediente != null) {
+	        ricettaIngredienteService.delete(ricettaIngrediente);
+	        ricetta.getIngredienti().remove(ricettaIngrediente);
+	    }
 
-		model.addAttribute("ricetta", ricetta);
-		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+	    this.ricettaService.save(ricetta);
 
-		return "redirect:/user/updateIngredienti/" + ricetta.getId();
+	    // Aggiorna la lista ingredientiToAdd
+	    List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+
+	    model.addAttribute("ricetta", ricetta);
+	    model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+
+	    return "redirect:/user/updateIngredienti/" + ricetta.getId();
 	}
 
 	private List<Ingrediente> ingredientiToAdd(Long ricettaId) {
-		List<Ingrediente> ingredientiToAdd = new ArrayList<>();
+	    List<Ingrediente> ingredientiToAdd = new ArrayList<>();
 
-		for (Ingrediente s : ingredienteService.findIngredientiNotInRicetta(ricettaId)) {
-			ingredientiToAdd.add(s);
-		}
-		return ingredientiToAdd;
+	    for (Ingrediente ingrediente : ingredienteService.findIngredientiNotInRicetta(ricettaId)) {
+	        ingredientiToAdd.add(ingrediente);
+	    }
+
+	    return ingredientiToAdd;
 	}
+
 
 	@GetMapping("/admin/ricetta/{id}")
 	public String deleteRicetta(@PathVariable("id") Long id, Model model) {
-	    Ricetta ricetta = ricettaService.findById(id);
-	    if (ricetta != null) {
-	        ricettaService.delete(ricetta);
-	        // Redirect alla pagina di origine dopo la cancellazione
-	        return "redirect:/admin/manageRicetta";
-	        }
-	    else {
-	        // Nel caso in cui la Ricetta non esista
-	        model.addAttribute("messaggioErrore", "Ricetta non trovata");
-	        return "redirect:/admin/manageRicetta";
-	    }
+		Ricetta ricetta = ricettaService.findById(id);
+		if (ricetta != null) {
+			ricettaService.delete(ricetta);
+			// Redirect alla pagina di origine dopo la cancellazione
+			return "redirect:/admin/manageRicetta";
+		} else {
+			// Nel caso in cui la Ricetta non esista
+			model.addAttribute("messaggioErrore", "Ricetta non trovata");
+			return "redirect:/admin/manageRicetta";
+		}
 	}
 
 }

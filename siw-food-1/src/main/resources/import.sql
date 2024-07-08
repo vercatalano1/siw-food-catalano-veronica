@@ -20,96 +20,100 @@ insert into ricetta (id, nome, descrizione, image, cuoco_id, procedimento) value
 insert into ricetta (id, nome, descrizione, image, cuoco_id, procedimento) values(nextval('ricetta_seq'), 'Gambero mezzo fritto con salsa al tamarindo', 'I gamberi vengono preparati in modo da mantenere la loro succosità interna mentre la parte esterna è croccante e dorata, conferendo una texture piacevole al morso. La salsa al tamarindo aggiunge un tocco esotico e agrodolce al piatto, bilanciando perfettamente il gusto delicato dei gamberi con la complessità della salsa. Questa combinazione di croccantezza e sapore intenso rende il piatto non solo appetitoso ma anche intrigante per il palato.','gambero.png', 151, 'Mescolare la polpa di tamarindo con lo zucchero ed il sale. Stenderla sul silpat (2 millimetri circa) ed abbatterla di temperatura a -18°C. Preparare il gambero eliminando la parte superiore del carapace della testa e la parte del carapace del dorso della coda, in questo modo resteranno solo le zampe,che vanno passate nella semola e fritte in olio caldo mantenendo il gambero crudo. Servire sulle “piastrine” di tamarindo che in precedenza vanno posizionate sul piatto caldo, fino al decongelamento');
 insert into ricetta (id, nome, descrizione, image, cuoco_id, procedimento) values(nextval('ricetta_seq'), 'Risotto con tarassaco e gorgonzola dolce', 'Il risotto con tarassaco e gorgonzola dolce è una fusione audace di sapori contrastanti, che eleva la semplicità degli ingredienti a un livello di raffinatezza.','risotto2.png', 201, 'Tostare il riso in una pentola assieme al burro. Nel mentre, in una padella con olio, far rosolare la cipolla tritata. Quando il riso sarà dorato iniziare ad aggiungere piano piano il brodo continuando a mescolare. Una volta rosolata la cipolla, aggiungerla al riso. Mettere in seguito anche le foglie di tarassaco (tagliate grossolanamente), rosmarino e salvia. Una volta pulita la radice del tarassaco aggiungerla al brodo. Dopo aver cotto il riso per 5/6 minuti, aggiungere 1 cucchiaio di gorgonzola e continuare a mantecare aggiungendo di volta in volta il brodo. Aggiungere anche l’alloro e il secondo cucchiaio di gorgonzola. Una volta cotto il riso aggiungere (fuori fuoco) una noce di burro ghiacciata. Impiattare il risotto e guarnire con una cucchiaiata di gorgonzola, del peperone crusco sbriciolato, i pistacchi e due foglie di salvia');
 
-insert into ingrediente (id, nome, quantità) VALUES(nextval('ingrediente_seq'), 'Pomodorini ', '600');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Stracciatella', ' 200');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Alici', '100');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Aglio', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Basilico fresco', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Olio extravergine di oliva', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Sale', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Pepe macinato', null);
+insert into ingrediente (id, nome) VALUES(nextval('ingrediente_seq'), 'Pomodorini ');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Stracciatella');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Alici');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Aglio');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Basilico fresco');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Olio extravergine di oliva');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Sale');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Pepe macinato');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Riso', '240');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Acciughe','50');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cacao puro', '50');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Peperoncino', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Scalogno', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Scorza di limone', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Vino bianco', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Mascarpone', '50');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Burro', '45');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Riso');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Acciughe');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Cacao puro');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Peperoncino');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Scalogno');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Scorza di limone');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Vino bianco');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Mascarpone');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Burro');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Vino rosso', '500');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Susine', '32');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Guancia di maiale', '50');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipolla', '5');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Carota', '5');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Sedano', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Farina 00', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Zucchero', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Chiodi di garofano', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Rosmarino', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Timo', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Pepe in grani', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Vino rosso');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Susine');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Guancia di maiale');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Cipolla');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Carota');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Sedano');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Farina 00');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Zucchero');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Chiodi di garofano');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Rosmarino');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Timo');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Pepe in grani');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Acqua', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Zafferano', '1');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Formaggio di pecora', '30');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Prezzemolo', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Acqua');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Zafferano');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Formaggio di pecora');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Prezzemolo');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Sfoglia per lasagna', '180');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Gorgonzola', '120');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cavolfiore', '100');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Noci di burro', '3');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cipollotto', '1');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Rametto si salvia', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Paprica', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Curcuma', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Sfoglia per lasagna');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Gorgonzola');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Cavolfiore');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Noci di burro');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Cipollotto');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Rametto si salvia');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Paprica');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Curcuma');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Astice', '600');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Caviale Oscietra', '75');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Radici di zenzero', '1');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Succo di limone', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Astice');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Caviale Oscietra');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Radici di zenzero');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Succo di limone');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Carne di manzo', '400');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Burrata', '200');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Olive denocciolate', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Carne di manzo');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Burrata');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Olive denocciolate');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Farina di mais', '250');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Parmigiano Reggiano', '250');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Farina di mais');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Parmigiano Reggiano');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Tuorli d''uovo', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Pangrattato', '100');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Panna fresca', '300');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Tuorli d''uovo');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Pangrattato');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Panna fresca');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Spaghetti', '250');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Frutti rossi', '500');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Bacche di coriandolo', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Cardamomo in polvere', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Spaghetti');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Frutti rossi');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Bacche di coriandolo');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Cardamomo in polvere');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Patate', '450');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Albicocche', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Patate');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Albicocche');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Barbabietola', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Vodka', '30');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Lime', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Tabasco', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Worchester', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Barbabietola');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Vodka');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Lime');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Tabasco');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Worchester');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Gamberi', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Polpa di tamarindo', '80');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Olio di semi', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Gamberi');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Polpa di tamarindo');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Olio di semi');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Tarassaco', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Peperone', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Pistacchi', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Tarassaco');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Peperone');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Pistacchi');
 
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Pane', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Grissini', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Fagioli', '30');
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Wasabi', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Alloro', null);
-insert into ingrediente (id, nome, quantità) values(nextval('ingrediente_seq'), 'Brodo vegetale', null);
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Pane');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Grissini');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Fagioli');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Wasabi');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Alloro');
+insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'Brodo vegetale');
+
+
+INSERT INTO ricetta_ingrediente (id,quantità,ingrediente_id, ricetta_id) VALUES (nextval('ingrediente_seq'), '1',1, 1);
+INSERT INTO ricetta_ingrediente (id,quantità,ingrediente_id, ricetta_id) VALUES (nextval('ingrediente_seq'), '1',1, 51);
 
 
 INSERT INTO ricetta_ingredienti (ingredienti_id, ricette_id) VALUES (1, 1);

@@ -1,34 +1,28 @@
 package it.uniroma3.siw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Ingrediente {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-	
-	@Min(value = 1, message = "{ingrediente.quantità.min}")
-	@Column(nullable = true)
-    private Integer quantità;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@NotBlank(message = "{ingrediente.nome.notblank}")
 	private String nome;
-	
-	@ManyToMany(mappedBy="ingredienti")
-	private List<Ricetta> ricette;
+
+	@OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL)
+	private List<RicettaIngrediente> ricetteIngredienti = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -36,14 +30,6 @@ public class Ingrediente {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getQuantità() {
-		return quantità;
-	}
-
-	public void setQuantità(Integer quantità) {
-		this.quantità = quantità;
 	}
 
 	public String getNome() {
@@ -54,17 +40,17 @@ public class Ingrediente {
 		this.nome = nome;
 	}
 
-	public List<Ricetta> getRicette() {
-		return ricette;
+	public List<RicettaIngrediente> getRicetteIngredienti() {
+		return ricetteIngredienti;
 	}
 
-	public void setRicette(List<Ricetta> ricette) {
-		this.ricette = ricette;
+	public void setRicetteIngredienti(List<RicettaIngrediente> ricetteIngredienti) {
+		this.ricetteIngredienti = ricetteIngredienti;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nome, quantità, ricette);
+		return Objects.hash(id, nome, ricetteIngredienti);
 	}
 
 	@Override
@@ -77,8 +63,7 @@ public class Ingrediente {
 			return false;
 		Ingrediente other = (Ingrediente) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(quantità, other.quantità) && Objects.equals(ricette, other.ricette);
+				&& Objects.equals(ricetteIngredienti, other.ricetteIngredienti);
 	}
-	
-	
+
 }
