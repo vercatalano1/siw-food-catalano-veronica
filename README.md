@@ -1,5 +1,3 @@
-# siw-food-catalano-veronica
-progetto siw-Food
 
 # Casi D'uso 
 
